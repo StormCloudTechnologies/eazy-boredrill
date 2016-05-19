@@ -1,0 +1,26 @@
+{
+  "name": "boredrill-eazybiz",
+  "version": "1.0.0",
+  "description": "Repository for eazybiz boredrill website.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StormCloudTechnologies/eazy-boredrill.git"
+  },
+  "author": "Mohammad Irshad Gouri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StormCloudTechnologies/eazy-boredrill/issues"
+  },
+  "homepage": "https://github.com/StormCloudTechnologies/eazy-boredrill#readme",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "morgan": "^1.7.0",
+    "nodemailer": "^2.4.1"
+  }
+}
