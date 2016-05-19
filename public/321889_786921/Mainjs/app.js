@@ -1,5 +1,5 @@
 // EazyBiz App
-angular.module('starter', ['ui.router','ui.bootstrap','Main.Controllers', 'Login.Controllers', 'Home.Controllers', 'Contact.Controllers', 'About.Controllers', 'Services.Controllers', 'Project.Controllers'])
+angular.module('adminApp', ['ui.router','ui.bootstrap','Main.Controllers', 'Login.Controllers', 'Home.Controllers', 'Contact.Controllers', 'About.Controllers', 'Services.Controllers', 'Project.Controllers'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider

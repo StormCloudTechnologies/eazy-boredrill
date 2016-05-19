@@ -53,6 +53,10 @@ app.get('/', function(req, res) {
     res.sendfile('./public/index.html'); // load our public/index.html file
 });
 
+app.get('/321889_786921', function(req, res) {
+    res.sendfile('./public/321889_786921/index.html');
+});
+
 // post ad
 app.post('/api/sendMail', function(req, res) {
         // send mail
