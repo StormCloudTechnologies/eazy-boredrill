@@ -4,6 +4,7 @@
 var express  = require('express');
 var app      = express();                               // create our app w/ express
 var morgan = require('morgan');             // log requests to the console (express4)
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
 var nodemailer = require('nodemailer');
 
@@ -21,7 +22,20 @@ app.use(bodyParser.urlencoded({'extended':'true'}));            // parse applica
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 
+mongoose.connect('mongodb://localhost/boredrill-eazybiz');     // connect to mongoDB database
 
+var Schema = mongoose.Schema;
+
+// user account schema
+var projectSchema = new Schema({
+    project_name: String,
+    project_description: String,
+    images: [String]
+});
+
+var Projects = mongoose.model('Projects', projectSchema);
+
+module.exports = Projects;
 
 // listen (start app with node server.js) ======================================
 app.listen(8000);
@@ -51,7 +65,6 @@ app.post('/api/sendMail', function(req, res) {
       };
       transport.sendMail(msg, function (err) {
         if (err) {
-          console.log("====err=======",err);
           return;
         }
         return res.json({"message":"Your message sent successfully."});
