@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from demo.themexy.com/drill-html/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 May 2016 07:21:51 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Construction - Construction Company HTML Template</title>
+    
+    <!--Favicons-->
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- ===== CSS =====-->
+    <!-- General-->
+    <link rel="stylesheet" href="css/basic.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/theme.css" class="style-theme">
+    
+    <!-- Specific-->
+    <link rel="stylesheet" href="css/addons/fonts/artill-clean-icons.css"/>
+
+     <script src="js/plugins/pageprogressbar/pace.min.js"></script>
+    <!-- Specific-->
+    <script src="js/shared/jquery.cookie.min.js"></script>
+    <script src="js/shared/jquery.easing.1.3.js"></script>
+   
+     <script src="js/shared/perfect-scrollbar.min.js"></script>
+    <script src="js/plugins/accordions/jquery.collapsible.min.js"></script>
+    <script src="js/plugins/charts/c3/c3.min.js"></script>
+    <script src="js/plugins/charts/c3/d3.v3.min.js"></script>
+    <script src="js/plugins/charts/other/jquery.easypiechart.min.js"></script>
+    <script src="js/plugins/charts/rickshaw/rickshaw.min.js"></script>
+    <script src="js/plugins/datetime/jqClock.min.js"></script>
+    <script src="js/plugins/forms/elements/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="js/plugins/forms/elements/jquery.checkBo.min.js"></script>
+    <script src="js/plugins/forms/elements/jquery.switchery.min.js"></script>
+    
+    <script src="js/plugins/table/footable.all.min.js"></script>
+    <script src="js/plugins/tabs/jquery.easyResponsiveTabs.js"></script>
+    <script src="js/plugins/textrotator/jquery.simple-text-rotator.min.js"></script>
+    <script src="js/plugins/tooltip/jquery.tooltipster.min.js"></script>
+    <script src="js/plugins/weather/jquery.simpleWeather.min.js"></script>
+    <script src="js/calls/dashboard.1.js"></script>
+    <script src="js/calls/part.header.1.js"></script>
+    <script src="js/calls/part.sidebar.2.js"></script>
+    <script src="js/calls/part.theme.setting.js"></script>
+    <script src="js/calls/shared.tooltipster.js"></script>
+    <script src="js/basic/jquery.min.js"></script>
+    <script src="js/basic/jquery-migrate.min.js"></script>
+    <!-- General-->
+    <script src="js/basic/modernizr.min.js"></script>
+    <script src="js/basic/bootstrap.min.js"></script>
+    <script src="js/shared/jquery.asonWidget.js"></script>
+    <script src="js/plugins/plugins.js"></script>
+    <script src="js/general.js"></script>
+
+
+
+    <script src="Mainjs/angular.min.js"></script>
+    <!-- <script src="Mainjs/angular-ui-router.min.js"></script>
+    <script src="Mainjs/ui-bootstrap-tpls-1.3.2.min.js"></script>
+ -->
+    <!-- ========= controller start ========== -->
+   <!--  <script src="Mainjs/app.js"></script>
+    <script src="Mainjs/controllers/login.js"></script>
+    <script src="Mainjs/controllers/main.js"></script>
+    <script src="Mainjs/controllers/home.js"></script>
+    <script src="Mainjs/controllers/contact.js"></script>
+    <script src="Mainjs/controllers/about.js"></script>
+    <script src="Mainjs/controllers/services.js"></script>
+    <script src="Mainjs/controllers/project.js"></script> -->
+    
+    <!-- ========= controller End ========== -->
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="l-dashboard">
+    
+    <!--[if lt IE 9]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    
+   
+  
+    <!--SECTION-->
+    <section class="l-main-container">
+      <!--Left Sidebar Content-->
+      <aside id="sb-left" class="l-sidebar l-sidebar-1 t-sidebar-1">
+        <!--Switcher-->
+        <div class="l-side-box"><a href="#" data-ason-type="sidebar" data-ason-to-sm="sidebar" data-ason-target="#sb-left" class="sidebar-switcher switcher t-switcher-side ason-widget"><i class="fa fa-bars"></i></a></div>
+        
+        <!--Main Menu-->
+        <div class="l-side-box">
+          <!--MAIN NAVIGATION MENU-->
+          <nav class="navigation">
+            <ul data-ason-type="menu" class="ason-widget">
+              
+              <li><a href="home.html"><i class="icon fa fa-home"></i><span class="title">Home</span></a>
+              <li><a href="project.html"><i class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
+              <li><a href="post.html"><i class="icon fa fa-clipboard "></i><span class="title">Letest Post</span></a>
+              
+            
+            </ul>
+          </nav>
+        </div>
+      </aside>
+      <!--Main Content-->
+    <section class="l-container">
+        <!--HEADER-->
+        <header class="l-header l-header-1 t-header-1">
+          <div class="navbar navbar-ason">
+            <div class="container-fluid">
+                <button ui-sref="login" type="button" class="btn btn-warning pull-right" style="padding: 15px 25px !important;">
+                  Logout
+                </button>
+            </div>
+          </div>
+        </header>
+        <!-- Row 1 - Info Widgets-->
+        <div class="l-page-header">
+          <h2 class="l-page-title"><span>Project</span> List</h2>
+          <button type="button" class="btn btn-primary btn-lg" style="float: right;margin-top: -52px;color:#FFF;">Add Project</button>
+        </div>
+        <div class="l-spaced">
+          <div class="l-row">
+            <div class="l-box l-col-md-12 l-spaced-bottom">
+              <div class="l-box-header">
+                <h2 class="l-box-title"><span>Project</span> List</h2>
+                <ul class="l-box-options">
+                  <li><a href="#"><i class="fa fa-cogs"></i></a></li>
+                  <li><a href="#" data-ason-type="fullscreen" data-ason-target=".l-box" data-ason-content="true" class="ason-widget"></a></li>
+                  <li><a href="#" data-ason-type="refresh" data-ason-target=".l-box" data-ason-duration="1000" class="ason-widget"><i class="fa fa-rotate-right"></i></a></li>
+                  <li><a href="#" data-ason-type="toggle" data-ason-find=".l-box" data-ason-target=".l-box-body" data-ason-content="true" data-ason-duration="200" class="ason-widget"></a></li>
+                  <li><a href="#" data-ason-type="delete" data-ason-target=".l-box" data-ason-content="true" data-ason-animation="fadeOut" class="ason-widget"></a></li>
+                </ul>
+              </div>
+              <div class="l-box-body l-spaced">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Image</th>
+                      <th>Title</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                     <td>
+                        <img src="img/login.jpg" style="width: 150px;height: 150px;">
+                      </td>
+                      <td>Doe</td>
+                      <td>
+                        <button type="button" class="btn btn-success btn-lg">Update</button>
+                        <button type="button" class="btn btn-danger btn-lg">Delete</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+    </section>
+</body>
+
+
+<!-- Mirrored from demo.themexy.com/drill-html/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 May 2016 07:27:52 GMT -->
+</html>
