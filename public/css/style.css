@@ -65,6 +65,10 @@ Base Fonts 2 : Open Sans // less variable @baseFont2
 */
 /*----------------------------------------------------------------*/
 /*Prefix Styles*/
+.validation-message {
+  margin: -5px 0 5px 0 !important;
+  color: red !important;
+}
 .m0 {
   margin: 0;
 }

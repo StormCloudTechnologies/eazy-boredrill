@@ -129,54 +129,51 @@
                                 <li><i class="fa fa-phone"></i> +399 (500) 321 9548</li>
                                 <li><i class="fa fa-envelope"></i> info@domain.com</li>
                             </ul>
-                        </div>                        
+                        </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6" ng-app="contactModule" ng-controller="ContactCtrl">
                         <div class="row m0 commentForm">
-                            <form class="row m0" id="contactForm" method="post" name="contact" action="http://premiumlayers.com/demos/construction/contact_process.php">
+                            <form class="row m0" novalidate name="contactform">
                                 <div class="col-sm-6 p0 commenterInfoInputs">
                                     <div class="row m0">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name="name" id="name"  placeholder="Name">
+                                            <input type="text" class="form-control" name="name" ng-model="mail.name" placeholder="Name" required>
                                         </div>
+                                        <div class="validation-message padding-right" ng-show="contactform.name.$invalid && submitted">This field is required.</div>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                            <input type="email" class="form-control" name="email" id="email" placeholder="e-mail">
+                                            <input type="email" class="form-control" name="email" ng-model="mail.email" placeholder="e-mail" required>
                                         </div>
+                                        <div class="validation-message padding-right" ng-show="contactform.email.$error.required && submitted">This field is required.</div>
+                                        <div class="validation-message padding-right" ng-show="contactform.email.$invalid && contactform.email.$dirty">Invalid Email</div>
                                         <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-link"></i></span>
-                                            <input type="url"  name="url" id="url" class="form-control" placeholder="website">
+                                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                            <input type="number" name="phone" ng-model="mail.phone" class="form-control" placeholder="Phone" required>
                                         </div>
+                                        <div class="validation-message padding-right" ng-show="contactform.phone.$error.required && submitted">This field is required.</div>
+                                        <div class="validation-message padding-right" ng-show="contactform.phone.$invalid && contactform.phone.$dirty">Invalid Phone</div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 p0">
                                     <div class="row m0">                                        
                                         <div class="input-group">
-                                            <textarea placeholder="Message" name="message" id="message" class="form-control"></textarea>
+                                            <textarea placeholder="Message" name="message" ng-model="mail.message" class="form-control" required></textarea>
                                         </div>
-                                        <button class="btn btn-default" type="submit">send message</button>
+                                        <div class="validation-message padding-right" ng-show="contactform.message.$invalid && submitted">This field is required.</div>
+                                        <button class="btn btn-default" type="submit" ng-click="submitted=true;sendEmail(mail)">send message</button>
                                     </div>
                                 </div>
                             </form>
-                            <div id="success">
-                                <span class="green textcenter">
-                                    <p>Your message was sent successfully! I will be in touch as soon as I can.</p>
-                                </span>
-                            </div>
-                            <div id="error">
-                                <span>
-                                    <p>Something went wrong, try refreshing and submitting the form again.</p>
-                                </span>
-                            </div>
-                        </div>                       
+                            <div ng-if="successMessage" style="text-align:center;color: yellowgreen;font-size: 18px;"><i class="fa fa-check-circle" aria-hidden="true"></i> <strong>{{ successMessage }}</strong></div>
+                        </div>
                     </div>
-                </div>                
+                </div>
                 <div class="row m0">
                     <h3>Find us on Google Map</h3>
                     <div id="mapBox"></div>
                 </div>
-            </div>            
+            </div>
         </div>
     </section>
     
@@ -210,6 +207,8 @@
     <script src="js/construction.js"></script>
     <script src="js/google-map.js"></script>
     <script src="js/contact.js"></script>
+    <script src="js/controllers/apiService.js"></script>
+    <script src="js/controllers/contact.js"></script>
 </body>
 
 <!-- Mirrored from premiumlayers.com/demos/construction/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 May 2016 09:50:34 GMT -->

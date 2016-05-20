@@ -44,8 +44,8 @@ console.log("App listening on port 8000");
 var transport = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-      user: "stormcloudtechno@gmail.com",
-      pass: "Gostormcloud89"
+      user: "eazybiz.biz@gmail.com",
+      pass: "s02Ma#eazybuyeazysell#Ne89M"
     }
 });
 
@@ -57,20 +57,30 @@ app.get('/321889_786921', function(req, res) {
     res.sendfile('./public/321889_786921/index.html');
 });
 
+// admin login
+app.post('/api/adminLogin', function(req, res) {
+    if(req.body.email == 'eazyboredrill' && req.body.password == 'eazyboredrilladmin1') {
+        return res.json({"message":"success"});
+    }
+    else {
+        return res.json({"message":"Invalid Credentials"});
+    }
+});
+
 // post ad
 app.post('/api/sendMail', function(req, res) {
         // send mail
       var msg = {
-        html: "<b>Hello,</b><p><strong>Name: </strong>" + req.body.name + "</p><p><strong>Email: </strong>" + req.body.email + "</p><p><strong>Phone: </strong>" + req.body.phone + "</p><p><strong>Message: </strong>" + req.body.message + "</p>",
+        html: "<p><strong>Name: </strong>" + req.body.name + "</p><p><strong>Email: </strong>" + req.body.email + "</p><p><strong>Phone: </strong>" + req.body.phone + "</p><p><strong>Message: </strong>" + req.body.message + "</p>",
         createTextFromHtml: true,
-        from: "<stormcloudtechno@gmail.com>",
-        to: "<siddharthmane89@gmail.com>",
-        subject: "Message from website"
+        from: "<eazybiz.biz@gmail.com>",
+        to: "<irshadgouri92@gmail.com>",
+        subject: "Message from boredrill website"
       };
       transport.sendMail(msg, function (err) {
         if (err) {
           return;
         }
-        return res.json({"message":"Your message sent successfully."});
+        return res.json({"message":"Message sent successfully."});
       });
 });
