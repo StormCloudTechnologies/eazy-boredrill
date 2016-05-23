@@ -7,10 +7,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Construction - Construction Company HTML Template</title>
+    <title>Eazy BoreDrill</title>
     
     <!--Favicons-->
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="../favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../favicon/apple-touch-icon-60x60.png">
+    <link rel="icon" type="image/png" href="../favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../favicon/favicon-32x32.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#da532c">
     <!-- ===== CSS =====-->
     <!-- General-->
     <link rel="stylesheet" href="css/basic.css">
@@ -22,30 +26,13 @@
 
      <script src="js/plugins/pageprogressbar/pace.min.js"></script>
     <!-- Specific-->
-    <script src="js/shared/jquery.cookie.min.js"></script>
-    <script src="js/shared/jquery.easing.1.3.js"></script>
-   
+    
      <script src="js/shared/perfect-scrollbar.min.js"></script>
-    <script src="js/plugins/accordions/jquery.collapsible.min.js"></script>
     <script src="js/plugins/charts/c3/c3.min.js"></script>
     <script src="js/plugins/charts/c3/d3.v3.min.js"></script>
-    <script src="js/plugins/charts/other/jquery.easypiechart.min.js"></script>
     <script src="js/plugins/charts/rickshaw/rickshaw.min.js"></script>
-    <script src="js/plugins/datetime/jqClock.min.js"></script>
-    <script src="js/plugins/forms/elements/jquery.bootstrap-touchspin.min.js"></script>
-    <script src="js/plugins/forms/elements/jquery.checkBo.min.js"></script>
-    <script src="js/plugins/forms/elements/jquery.switchery.min.js"></script>
-    
-    <script src="js/plugins/table/footable.all.min.js"></script>
-    <script src="js/plugins/tabs/jquery.easyResponsiveTabs.js"></script>
-    <script src="js/plugins/textrotator/jquery.simple-text-rotator.min.js"></script>
-    <script src="js/plugins/tooltip/jquery.tooltipster.min.js"></script>
-    <script src="js/plugins/weather/jquery.simpleWeather.min.js"></script>
-    <script src="js/calls/dashboard.1.js"></script>
-    <script src="js/calls/part.header.1.js"></script>
-    <script src="js/calls/part.sidebar.2.js"></script>
-    <script src="js/calls/part.theme.setting.js"></script>
-    <script src="js/calls/shared.tooltipster.js"></script>
+  
+
     <script src="js/basic/jquery.min.js"></script>
     <script src="js/basic/jquery-migrate.min.js"></script>
     <!-- General-->
@@ -58,25 +45,18 @@
 
 
     <script src="Mainjs/angular.min.js"></script>
-    <!-- <script src="Mainjs/angular-ui-router.min.js"></script>
-    <script src="Mainjs/ui-bootstrap-tpls-1.3.2.min.js"></script>
- -->
-    <!-- ========= controller start ========== -->
-   <!--  <script src="Mainjs/app.js"></script>
-    <script src="Mainjs/controllers/login.js"></script>
-    <script src="Mainjs/controllers/main.js"></script>
-    <script src="Mainjs/controllers/home.js"></script>
-    <script src="Mainjs/controllers/contact.js"></script>
-    <script src="Mainjs/controllers/about.js"></script>
-    <script src="Mainjs/controllers/services.js"></script>
-    <script src="Mainjs/controllers/project.js"></script> -->
-    
-    <!-- ========= controller End ========== -->
-    
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
+    <style>
+        .logoutbtn{
+            margin: 8px !important;
+            background: #dedede;
+            color: #333;
+        }
+        .logoutbtn:hover{
+            margin: 8px !important;
+            background: #f2a730;
+            color: #FFF;
+        }
+    </style>
 </head>
 
 <body class="l-dashboard">
@@ -90,9 +70,11 @@
     <!--SECTION-->
     <section class="l-main-container">
       <!--Left Sidebar Content-->
-      <aside id="sb-left" class="l-sidebar l-sidebar-1 t-sidebar-1">
+      <aside id="sb-left" class="l-sidebar l-sidebar-1 t-sidebar-1 l-sidebar-compact-left">
         <!--Switcher-->
-        <div class="l-side-box"><a href="#" data-ason-type="sidebar" data-ason-to-sm="sidebar" data-ason-target="#sb-left" class="sidebar-switcher switcher t-switcher-side ason-widget"><i class="fa fa-bars"></i></a></div>
+        <div class="l-side-box"><a href="#" data-ason-type="sidebar" data-ason-to-sm="sidebar" data-ason-target="#sb-left" class="sidebar-switcher switcher t-switcher-side ason-widget">
+          <h2 style="font-size: 18px;">Menu</h2>
+        </a></div>
         
         <!--Main Menu-->
         <div class="l-side-box">
@@ -100,10 +82,15 @@
           <nav class="navigation">
             <ul data-ason-type="menu" class="ason-widget">
               
-              <li><a href="home.html"><i class="icon fa fa-home"></i><span class="title">Home</span></a>
-              <li><a href="project.html"><i class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
-              <li><a href="post.html"><i class="icon fa fa-clipboard "></i><span class="title">Letest Post</span></a>
-              
+              <li class="active"><a href="home.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;" class="icon fa fa-home"></i><span class="title">Home</span></a>
+              </li>
+              <li><a href="project.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;" class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
+              </li>
+              <li><a href="post.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;"  class="icon fa fa-clipboard "></i><span class="title">Letest Post</span></a>
+              </li>
+
+              <li><a href="index.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;"  class="icon fa fa-power-off"></i><span class="title">Logout</span></a>
+              </li>
             
             </ul>
           </nav>
@@ -112,19 +99,17 @@
       <!--Main Content-->
     <section class="l-container">
         <!--HEADER-->
-        <header class="l-header l-header-1 t-header-1">
+       <!--  <header class="l-header l-header-1 t-header-1">
           <div class="navbar navbar-ason">
             <div class="container-fluid">
-                <button ui-sref="login" type="button" class="btn btn-warning pull-right" style="padding: 15px 25px !important;">
-                  Logout
-                </button>
+                
             </div>
           </div>
-        </header>
+        </header> -->
         <!-- Row 1 - Info Widgets-->
         <div class="l-row l-spaced-horizontal l-spaced-top">
           <!-- User Widget Info-->
-          <div class="l-col-md-3 l-col-sm-6 l-spaced-bottom">
+          <div class="l-col-md-4 l-col-sm-6 l-spaced-bottom">
             <div data-ason-type="draggable" class="widget-info-wrapper ason-widget">
               <div class="widget-info-refresh-helper">
                 <div class="widget-info t-info-1 ui-drag-item">
@@ -161,7 +146,7 @@
             </div>
           </div>
           <!-- Orders Widget Info-->
-          <div class="l-col-md-3 l-col-sm-6 l-spaced-bottom l-clear-sm">
+          <div class="l-col-md-4 l-col-sm-6 l-spaced-bottom l-clear-sm">
             <div data-ason-type="draggable" class="widget-info-wrapper ason-widget">
               <div class="widget-info-refresh-helper">
                 <div class="widget-info t-info-2 ui-drag-item">
@@ -182,7 +167,7 @@
                     <div class="info-data open">
                       <h4>2332</h4>
                       <hr>
-                      <p><span>Total</span> Orders
+                      <p><span>Total</span> Projects
                       </p>
                       <div class="progress progress-no-border progress-mini">
                         <div role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;" class="progress-bar"><span class="sr-only">50% Complete</span></div>
@@ -200,7 +185,7 @@
             </div>
           </div>
           <!-- Reports Widget Info-->
-          <div class="l-col-md-3 l-col-sm-6 l-spaced-bottom">
+          <div class="l-col-md-4 l-col-sm-6 l-spaced-bottom">
             <div data-ason-type="draggable" class="widget-info-wrapper ason-widget">
               <div class="widget-info-refresh-helper">
                 <div class="widget-info t-info-3 ui-drag-item">
@@ -221,7 +206,7 @@
                     <div class="info-data open">
                       <h4>4253</h4>
                       <hr>
-                      <p><span>Total</span> Reports
+                      <p><span>Total</span> Post
                       </p>
                       <div class="progress progress-no-border progress-mini">
                         <div role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;" class="progress-bar"><span class="sr-only">20% Complete</span></div>
@@ -238,43 +223,7 @@
               </div>
             </div>
           </div>
-          <!-- Payout Widget Info-->
-          <div class="l-col-md-3 l-col-sm-6 l-spaced-bottom">
-            <div data-ason-type="draggable" class="widget-info-wrapper ason-widget">
-              <div class="widget-info-refresh-helper">
-                <div class="widget-info t-info-4 ui-drag-item">
-                  <ul class="widget-options is-options-right">
-                    <li class="option-main-item"><a href="#" class="ui-drag-handle"><i class="fa fa-arrows"></i></a></li>
-                    <li class="option-main-item"><a href="#" data-ason-type="refresh" data-ason-target=".widget-info-refresh-helper" data-ason-content="true" data-ason-duration="1100" class="ason-widget"></a></li>
-                    <li class="option-main-item"><a href="#" data-ason-type="toggle" data-ason-parent="false" data-ason-target="#payout-info" data-ason-content="true" data-ason-duration="200" class="ason-widget"></a></li>
-                    <li class="option-main-item"><a href="#" data-ason-type="delete" data-ason-target=".widget-info-wrapper" data-ason-content="true" data-ason-animation="fadeOut" class="ason-widget"></a></li>
-                    <li>
-                      <ul>
-                        <li><a href="#" class="toggler-btn"><i class="fa fa-circle-thin"></i></a></li>
-                        <li class="option-sub-item"><a href="#" class="details-btn"><i class="fa fa-file"></i></a></li>
-                        <li class="option-sub-item"><a href="#" class="chart-btn"><i class="fa fa-line-chart"></i></a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <div id="payout-info" class="widget-info-details">
-                    <div class="info-data open">
-                      <h4>$32768</h4>
-                      <hr>
-                      <p><span>Total</span> Payouts
-                      </p>
-                      <div class="progress progress-no-border progress-mini">
-                        <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%;" class="progress-bar"><span class="sr-only">65% Complete</span></div>
-                      </div>
-                    </div>
-                    <div class="info-chart">
-                      <div class="hide info-t-4-spark-1-c"></div>
-                      <div id="paymentChart"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
     </section>
 </body>

@@ -7,10 +7,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Construction - Construction Company HTML Template</title>
+    <title>Eazy BoreDrill</title>
     
     <!--Favicons-->
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="../favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../favicon/apple-touch-icon-60x60.png">
+    <link rel="icon" type="image/png" href="../favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../favicon/favicon-32x32.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#da532c">
     <!-- ===== CSS =====-->
     <!-- General-->
     <link rel="stylesheet" href="css/basic.css">
@@ -22,30 +26,11 @@
 
      <script src="js/plugins/pageprogressbar/pace.min.js"></script>
     <!-- Specific-->
-    <script src="js/shared/jquery.cookie.min.js"></script>
-    <script src="js/shared/jquery.easing.1.3.js"></script>
-   
-     <script src="js/shared/perfect-scrollbar.min.js"></script>
-    <script src="js/plugins/accordions/jquery.collapsible.min.js"></script>
+    <script src="js/shared/perfect-scrollbar.min.js"></script>
     <script src="js/plugins/charts/c3/c3.min.js"></script>
     <script src="js/plugins/charts/c3/d3.v3.min.js"></script>
-    <script src="js/plugins/charts/other/jquery.easypiechart.min.js"></script>
     <script src="js/plugins/charts/rickshaw/rickshaw.min.js"></script>
-    <script src="js/plugins/datetime/jqClock.min.js"></script>
-    <script src="js/plugins/forms/elements/jquery.bootstrap-touchspin.min.js"></script>
-    <script src="js/plugins/forms/elements/jquery.checkBo.min.js"></script>
-    <script src="js/plugins/forms/elements/jquery.switchery.min.js"></script>
     
-    <script src="js/plugins/table/footable.all.min.js"></script>
-    <script src="js/plugins/tabs/jquery.easyResponsiveTabs.js"></script>
-    <script src="js/plugins/textrotator/jquery.simple-text-rotator.min.js"></script>
-    <script src="js/plugins/tooltip/jquery.tooltipster.min.js"></script>
-    <script src="js/plugins/weather/jquery.simpleWeather.min.js"></script>
-    <script src="js/calls/dashboard.1.js"></script>
-    <script src="js/calls/part.header.1.js"></script>
-    <script src="js/calls/part.sidebar.2.js"></script>
-    <script src="js/calls/part.theme.setting.js"></script>
-    <script src="js/calls/shared.tooltipster.js"></script>
     <script src="js/basic/jquery.min.js"></script>
     <script src="js/basic/jquery-migrate.min.js"></script>
     <!-- General-->
@@ -58,41 +43,32 @@
 
 
     <script src="Mainjs/angular.min.js"></script>
-    <!-- <script src="Mainjs/angular-ui-router.min.js"></script>
-    <script src="Mainjs/ui-bootstrap-tpls-1.3.2.min.js"></script>
- -->
-    <!-- ========= controller start ========== -->
-   <!--  <script src="Mainjs/app.js"></script>
-    <script src="Mainjs/controllers/login.js"></script>
-    <script src="Mainjs/controllers/main.js"></script>
-    <script src="Mainjs/controllers/home.js"></script>
-    <script src="Mainjs/controllers/contact.js"></script>
-    <script src="Mainjs/controllers/about.js"></script>
-    <script src="Mainjs/controllers/services.js"></script>
-    <script src="Mainjs/controllers/project.js"></script> -->
-    
-    <!-- ========= controller End ========== -->
-    
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
+    <style>
+        .logoutbtn{
+            margin: 8px !important;
+            background: #dedede;
+            color: #333;
+        }
+        .logoutbtn:hover{
+            margin: 8px !important;
+            background: #f2a730;
+            color: #FFF;
+        }
+    </style>
 </head>
 
 <body class="l-dashboard">
     
-    <!--[if lt IE 9]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    
-   
   
     <!--SECTION-->
     <section class="l-main-container">
       <!--Left Sidebar Content-->
-      <aside id="sb-left" class="l-sidebar l-sidebar-1 t-sidebar-1">
+      <aside id="sb-left" class="l-sidebar l-sidebar-1 t-sidebar-1 l-sidebar-compact-left">
         <!--Switcher-->
-        <div class="l-side-box"><a href="#" data-ason-type="sidebar" data-ason-to-sm="sidebar" data-ason-target="#sb-left" class="sidebar-switcher switcher t-switcher-side ason-widget"><i class="fa fa-bars"></i></a></div>
+        <div class="l-side-box"><a href="#" data-ason-type="sidebar" data-ason-to-sm="sidebar" data-ason-target="#sb-left" class="sidebar-switcher switcher t-switcher-side ason-widget">
+       <!--  <i class="fa fa-bars"></i> -->
+        <h2 style="font-size: 18px;">Menu</h2>
+        </a></div>
         
         <!--Main Menu-->
         <div class="l-side-box">
@@ -100,10 +76,14 @@
           <nav class="navigation">
             <ul data-ason-type="menu" class="ason-widget">
               
-              <li><a href="home.html"><i class="icon fa fa-home"></i><span class="title">Home</span></a>
-              <li><a href="project.html"><i class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
-              <li><a href="post.html"><i class="icon fa fa-clipboard "></i><span class="title">Letest Post</span></a>
-              
+              <li><a href="home.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;" class="icon fa fa-home"></i><span class="title">Home</span></a>
+              </li>
+              <li><a href="project.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;" class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
+              </li>
+              <li class="active"><a href="post.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;" class="icon fa fa-clipboard "></i><span class="title">Letest Post</span></a>
+              </li>
+              <li><a href="index.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;"  class="icon fa fa-power-off "></i><span class="title">Logout</span></a>
+              </li>
             
             </ul>
           </nav>
@@ -112,29 +92,32 @@
       <!--Main Content-->
     <section class="l-container">
         <!--HEADER-->
-        <header class="l-header l-header-1 t-header-1">
+        <!-- <header class="l-header l-header-1 t-header-1">
           <div class="navbar navbar-ason">
             <div class="container-fluid">
-                <button ui-sref="login" type="button" class="btn btn-warning pull-right" style="padding: 15px 25px !important;">
-                  Logout
+                <button href="index.html" type="button" class="btn logoutbtn pull-right" style="margin: 8px !important;">
+                 <span class="icon fa fa-sign-out "></span> Logout
                 </button>
             </div>
           </div>
-        </header>
+        </header> -->
         <!-- Row 1 - Info Widgets-->
         <div class="l-page-header">
           <h2 class="l-page-title"><span>Post</span> List</h2>
           <!--BREADCRUMB-->
-          <button data-toggle="modal" data-target="#Addpost" type="button" class="btn btn-primary btn-lg" style="float: right;margin-top: -52px;color:#FFF;">Add Post</button>
+          <button data-toggle="modal" data-target="#Addpost" type="button" class="btn btn-primary btn-lg" style="float: right;margin-top: -52px;color:#FFF;">
+            <span class="btn-label"><i class="glyphicon glyphicon-plus"></i></span>
+            Add Post
+          </button>
         </div>
 
-         <!--Basic-->
+         <!--Add Post Basic-->
         <div id="Addpost" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel" aria-hidden="true" class="modal fade">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-                <h4 id="basicModalLabel" class="modal-title">Modal title</h4>
+                <h4 id="basicModalLabel" class="modal-title">Create Post</h4>
               </div>
               <div class="modal-body">
                 <div class="l-box">
@@ -152,29 +135,67 @@
                             <textarea id="msg" name="message" rows="5" required="" class="form-control"></textarea>
                           </div>
                         </div>
+                         <div class="form-group">
+                          <label for="lastname" class="col-sm-3 control-label">Image</label>
+                          <div class="col-sm-9">
+                           <span class="btn btn-success fileinput-button"><i class="glyphicon glyphicon-plus"></i><span>Add files...</span>
+                             <input type="file" name="files[]" multiple="">
+                          </span>
+                          </div>
+                        </div>
 
-                          
-          
-                        <div class="form-group">
-                          <div class="col-sm-offset-3 col-sm-9">
-                            <div>
-                              <input id="agree" type="checkbox" name="agree" class="checkradios">Please agree to our policy
-                            </div>
-                            <label for="agree" class="error">This field is required.</label>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="col-sm-offset-3 col-sm-9">
-                            <button type="submit" class="btn btn-dark">Submit</button>
-                          </div>
-                        </div>
                       </form>
                     </div>
                   </div>
               </div>
               <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
-                <button type="button" class="btn btn-success">Save changes</button>
+                <button type="button" class="btn btn-success">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+         <!--Update Model-->
+        <div id="updatepost" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel" aria-hidden="true" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 id="basicModalLabel" class="modal-title">Update Post</h4>
+              </div>
+              <div class="modal-body">
+                <div class="l-box">
+                    <div class="l-box-body l-spaced">
+                      <form id="validateDefault" role="form" class="form-horizontal validate">
+                        <div class="form-group">
+                          <label for="firstname" class="col-sm-3 control-label">Title</label>
+                          <div class="col-sm-9">
+                            <input id="firstname" type="text" name="firstname" placeholder="Firstname" class="form-control">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="lastname" class="col-sm-3 control-label">Description</label>
+                          <div class="col-sm-9">
+                            <textarea id="msg" name="message" rows="5" required="" class="form-control"></textarea>
+                          </div>
+                        </div>
+                         <div class="form-group">
+                          <label for="lastname" class="col-sm-3 control-label">Image</label>
+                          <div class="col-sm-9">
+                           <span class="btn btn-success fileinput-button"><i class="glyphicon glyphicon-plus"></i><span>Add files...</span>
+                             <input type="file" name="files[]" multiple="">
+                          </span>
+                          </div>
+                        </div>
+
+                      </form>
+                    </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
+                <button type="button" class="btn btn-success">Update</button>
               </div>
             </div>
           </div>
@@ -183,25 +204,8 @@
         <div class="l-spaced">
           <div class="l-row">
             <div class="l-box l-col-md-12 l-spaced-bottom">
-              <div class="l-box-header">
-                <h2 class="l-box-title"><span>Post</span> List</h2>
-                <ul class="l-box-options">
-                  <li><a href="#"><i class="fa fa-cogs"></i></a></li>
-                  <li><a href="#" data-ason-type="fullscreen" data-ason-target=".l-box" data-ason-content="true" class="ason-widget"></a></li>
-                  <li><a href="#" data-ason-type="refresh" data-ason-target=".l-box" data-ason-duration="1000" class="ason-widget"><i class="fa fa-rotate-right"></i></a></li>
-                  <li><a href="#" data-ason-type="toggle" data-ason-find=".l-box" data-ason-target=".l-box-body" data-ason-content="true" data-ason-duration="200" class="ason-widget"></a></li>
-                  <li><a href="#" data-ason-type="delete" data-ason-target=".l-box" data-ason-content="true" data-ason-animation="fadeOut" class="ason-widget"></a></li>
-                </ul>
-              </div>
               <div class="l-box-body l-spaced">
                 <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Image</th>
-                      <th>Title</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
                   <tbody>
                     <tr>
                      <td>
@@ -209,7 +213,7 @@
                       </td>
                       <td>Doe</td>
                       <td>
-                        <button type="button" class="btn btn-success btn-lg">Update</button>
+                        <button data-toggle="modal" data-target="#updatepost" type="button" class="btn btn-success btn-lg">Update</button>
                         <button type="button" class="btn btn-danger btn-lg">Delete</button>
                       </td>
                     </tr>
