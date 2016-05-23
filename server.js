@@ -7,6 +7,8 @@ var morgan = require('morgan');             // log requests to the console (expr
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
 var nodemailer = require('nodemailer');
+var multer  =   require('multer');
+var fs = require("fs");
 
 app.use(function(req, res, next) { //allow cross origin requests
     res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
@@ -17,6 +19,7 @@ app.use(function(req, res, next) { //allow cross origin requests
 
 // configuration
 app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will be /img for users
+app.use('/public/uploads',express.static(__dirname + '/public/uploads'));
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
@@ -59,12 +62,56 @@ var transport = nodemailer.createTransport({
     }
 });
 
+// file upload code
+var storage = multer.diskStorage({ //multers disk storage settings
+    destination: function (req, file, cb) {
+        cb(null, './public/uploads/')
+    },
+    filename: function (req, file, cb) {
+        var datetimestamp = Date.now();
+        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
+    }
+});
+
+var uploadMultiple = multer({ //multer settings
+        storage: storage
+    }).array('file',20);
+
+var uploadSingle = multer({ //multer settings
+        storage: storage
+    }).single('file');
+
 app.get('/', function(req, res) {
     res.sendfile('./public/index.html'); // load our public/index.html file
 });
 
 app.get('/321889_786921', function(req, res) {
     res.sendfile('./public/321889_786921/index.html');
+});
+
+
+/** API for single file upload */
+app.post('/api/uploadPhoto', function(req, res) {
+    uploadSingle(req,res,function(err){
+        if(err){
+             res.json({error_code:1,err_desc:err});
+             return;
+        }
+         res.json(req.file);
+    })
+
+});
+
+/** API for single file upload */
+app.post('/api/uploadPhotos', function(req, res) {
+    uploadMultiple(req,res,function(err){
+        if(err){
+             res.json({error_code:1,err_desc:err});
+             return;
+        }
+         res.json(req.files);
+    })
+
 });
 
 // admin login
