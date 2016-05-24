@@ -6,15 +6,12 @@
       <div >
         <uib-carousel interval="myInterval" active="active_slide">
           <uib-slide ng-repeat="ImageSlider in ImageSliders"  index="$index">
-            <img ng-src="{{ImageSlider.image}}" class="carousel" style="margin:0 auto;width: 100% !important;height:300px !important;">
-            <!-- <div class="carousel-caption">
-              <h6>Advertisements &nbsp;!!</h6>
-             </div> -->
+            <img ng-src="{{ImageSlider}}" class="carousel" style="margin:0 auto;width: 100% !important;height:300px !important;">
           </uib-slide>
         </uib-carousel>
       </div>
     </div>
-    <p>This year in our 2014 roadmap one of our goals was to improve financial tooling for authors. A big part of that is the withdrawal cycle.</p>
+    <p>{{projectDiscrition}}</p>
 </div>
 <div class="modal-footer" style="text-align:right;">
       <button class="btn btn-lg" style="background:#f7b71e;color:#FFF;" type="button" ng-click="cancel()">Close</button>

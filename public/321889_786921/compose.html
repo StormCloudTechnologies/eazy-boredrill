@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from themes.loxdesign.net/proteus/themes/admin/bootstrap/theme/app-mail.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 May 2016 13:09:03 GMT -->
+<head>
+    <title>Proteus - Apps - Mail</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <!-- ===== FAVICON =====-->
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- ===== CSS =====-->
+    <!-- General-->
+    <link rel="stylesheet" href="css/basic.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/theme.css" class="style-theme">
+    
+    <!-- Specific-->
+    <link rel="stylesheet" href="css/addons/theme/summernote.css" class="style-theme-addon"/>
+    <!--[if lt IE 9]>
+    <script src="js/basic/respond.min.js"></script>
+    <script src="js/basic/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="l-mail-app">
+    
+    <!--SECTION-->
+    <section class="l-main-container">
+      <aside id="slide-left" class="l-sidebar l-sidebar-1 t-sidebar-1">
+        <!--User Profile-->
+        <div class="l-side-box mt-10">
+          <div class="widget-profile-2 profile-2-in-side t-profile-2-1">
+            <div class="profile-2-img"><a><img src="img/profile/profile.jpg" style="width: 60%;">
+                <div class="profile-2-status" style="right: 68px;">
+                  <!-- <div id="status" tabindex="1" class="status"><span><i class="fa fa-circle label-color-1"></i></span>
+                    <ul class="dropdown">
+                      <li title="Online" class="tt-mail-right"><i class="fa fa-circle status-color-1"></i></li>
+                      <li title="Away" class="tt-mail-right"><i class="fa fa-circle status-color-2"></i></li>
+                      <li title="Busy" class="tt-mail-right"><i class="fa fa-circle status-color-3"></i></li>
+                      <li title="Invisible" class="tt-mail-right"><i class="fa fa-circle status-color-4"></i></li>
+                    </ul>
+                  </div> -->
+                </div></a></div>
+            <ul class="profile-2-info">
+              <li class="text-center">
+                <h3>Capt. Seleman Kasawala Jalakala</h3>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <hr class="mail-side-sep">
+        <!--Mail Menu Box-->
+        <div class="l-side-box">
+          <!--MAIL NAVIGATION MENU-->
+          <nav class="navigation">
+            <ul data-ason-type="menu" class="ason-widget">
+              <li><a href="mail.html"><i class="icon fa fa-inbox"></i><span class="title">Inbox</span><span class="info last">3</span></a>
+              </li>
+             
+              <li><a href="sendmail.html"><i class="icon fa fa-send"></i><span class="title">Sent</span></a>
+              </li>
+             
+              <li><a href="deletemail.html"><i class="icon fa fa-trash-o"></i><span class="title">Trash</span></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <hr class="mail-side-sep">
+        <nav class="navigation">
+            <ul data-ason-type="menu" class="ason-widget">
+              
+              <li><a href="home.html" style="font-size: 16px !important;font-weight: bold;"><i class="icon fa fa-home"></i><span class="title">Home</span></a>
+              </li>
+              <li><a href="project.html" style="font-size: 16px !important;font-weight: bold;"><i class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
+              </li>
+              <li><a href="post.html" style="font-size: 16px !important;font-weight: bold;"><i class="icon fa fa-clipboard "></i><span class="title">Letest Post</span></a>
+              </li>
+
+             <li><a ng-click="logout()" style="font-size: 16px !important;font-weight: bold;"><i class="icon fa fa-power-off"></i><span class="title">Logout</span></a>
+              </li>
+            
+            </ul>
+          </nav>
+      </aside>
+      <!--Main wrapper-->
+      <section class="l-container">
+        
+        <div class="mailcheckbo"  style="margin:0px;">
+            <h3 class="new-message-title">New Message</h3>
+            <!-- New message header-->
+            <!-- New message body-->
+            <div class="new-message-body">
+              <form role="form">
+                <div class="input-group new-message-to"><span class="input-group-addon">To</span>
+                  <input id="inputTo" type="text" class="form-control"><span class="input-group-btn">
+                    <button type="button" class="btn-cc btn btn-mail">CC</button></span><span class="input-group-btn">
+                    <button type="button" class="btn-bcc btn btn-mail">BCC</button></span>
+                </div>
+                <div class="new-message-cc">
+                  <div class="input-group"><span class="input-group-addon">CC</span>
+                    <input id="inputCc" type="text" class="form-control"><span class="input-group-btn">
+                      <button type="button" class="close-cc btn btn-mail"><i class="fa fa-times"></i></button></span>
+                  </div>
+                </div>
+                <div class="new-message-bcc">
+                  <div class="input-group"><span class="input-group-addon">BCC</span>
+                    <input id="inputBcc" type="text" class="form-control"><span class="input-group-btn">
+                      <button type="button" class="close-bcc btn btn-mail"><i class="fa fa-times"></i></button></span>
+                  </div>
+                </div>
+                <div class="input-group new-message-to"><span class="input-group-addon">Subject</span>
+                  <input id="inputSubject" type="text" class="form-control">
+                </div>
+                <div class="form-group message-content">
+                  <div id="inputMessage">Your Message</div>
+                </div>
+                <div class="input-group"><span class="input-group-btn"><span class="btn btn-mail btn-file">Browse…
+                      <input id="exampleInputFile" type="file" multiple=""></span></span>
+                  <input type="text" readonly="" placeholder="Upload Files" class="form-control input-upload">
+                </div><span class="help-block">You can select one or more files at a time</span>
+              </form>
+            </div>
+            <!-- New message footer-->
+            <div class="new-message-footer">
+              <!-- Send-->
+              <button type="button" class="btn btn-mail-send new-message-send">Send</button>
+              <!-- Draft-->
+              <button type="button" class="btn btn-mail new-message-draft">Draft</button>
+              <!-- Discard-->
+              <button type="button" class="btn btn-mail new-message-discard"><i class="fa fa-trash"></i></button>
+            </div>
+          </div>
+        </div>
+    </section>
+    <!-- ===== JS =====-->
+    <!-- jQuery-->
+    <script src="js/basic/jquery.min.js"></script>
+    <script src="js/basic/jquery-migrate.min.js"></script>
+    <!-- General-->
+    <script src="js/basic/modernizr.min.js"></script>
+    <script src="js/basic/bootstrap.min.js"></script>
+    <script src="js/shared/jquery.asonWidget.js"></script>
+    <script src="js/plugins/plugins.js"></script>
+    <script src="js/general.js"></script>
+    <!-- Semi general-->
+    <script type="text/javascript">
+      var paceSemiGeneral = { restartOnPushState: false };
+      if (typeof paceSpecific != 'undefined'){
+        var paceOptions = $.extend( {}, paceSemiGeneral, paceSpecific );
+        paceOptions = paceOptions;
+      }else{
+        paceOptions = paceSemiGeneral;
+      }
+      
+    </script>
+    <script src="js/plugins/pageprogressbar/pace.min.js"></script>
+    <!-- Specific-->
+    <script src="js/shared/jquery.cookie.min.js"></script>
+    <script src="js/plugins/accordions/jquery.collapsible.min.js"></script>
+    <script src="js/plugins/forms/elements/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="js/plugins/forms/elements/jquery.checkBo.min.js"></script>
+    <script src="js/plugins/forms/upload/jquery.summernote.min.js"></script>
+    <script src="js/plugins/forms/elements/jquery.switchery.min.js"></script>
+    <script src="js/plugins/tooltip/jquery.tooltipster.min.js"></script>
+    <script src="js/calls/app.mail.js"></script>
+    <script src="js/calls/part.header.1.js"></script>
+    <script src="js/calls/part.theme.setting.js"></script>
+    
+  </body>
+
+<!-- Mirrored from themes.loxdesign.net/proteus/themes/admin/bootstrap/theme/app-mail.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 May 2016 13:09:04 GMT -->
+</html>

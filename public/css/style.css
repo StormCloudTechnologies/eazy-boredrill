@@ -2425,7 +2425,7 @@ header .social_nav ul li:last-child {
     border-top: 40px solid #FFF;
   }
   #nr_footer .container .copyrightRow {
-    line-height: 80px;
+    line-height: 0px;
   }
   .twitterSlide {
     padding: 80px 0;
@@ -2439,7 +2439,7 @@ header .social_nav ul li:last-child {
     border-top: 40px solid #FFF;
   }
   #nr_footer .container .copyrightRow {
-    line-height: 80px;
+    line-height: 43px;
   }
   .twitterSlide {
     padding: 80px 0;

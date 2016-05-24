@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="css/basic.css">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/theme.css" class="style-theme">
-    
+    <link rel="stylesheet" href="css/ngDialog-theme-default.min.css" class="style-theme">
+    <link rel="stylesheet" href="css/ngDialog.min.css" class="style-theme">
     <!-- Specific-->
     <link rel="stylesheet" href="css/addons/fonts/artill-clean-icons.css"/>
 
@@ -43,21 +44,16 @@
 
 
     <script src="Mainjs/angular.min.js"></script>
-    <style>
-        .logoutbtn{
-            margin: 8px !important;
-            background: #dedede;
-            color: #333;
-        }
-        .logoutbtn:hover{
-            margin: 8px !important;
-            background: #f2a730;
-            color: #FFF;
-        }
-    </style>
+    <script src="Mainjs/ui-bootstrap-tpls-1.3.2.min.js"></script>
+    <script src="Mainjs/ng-file-upload-shim.min.js"></script>
+    <script src="Mainjs/ng-file-upload.min.js"></script>
+    <script src="Mainjs/ngDialog.min.js"></script>
+    <script src="Mainjs/services.js"></script>
+    <script src="Mainjs/controllers/post.js"></script>
+   
 </head>
 
-<body class="l-dashboard">
+<body  ng-app="starter" ng-controller="PostCtrl"  class="l-dashboard">
     
   
     <!--SECTION-->
@@ -65,9 +61,9 @@
       <!--Left Sidebar Content-->
       <aside id="sb-left" class="l-sidebar l-sidebar-1 t-sidebar-1 l-sidebar-compact-left">
         <!--Switcher-->
-        <div class="l-side-box"><a href="#" data-ason-type="sidebar" data-ason-to-sm="sidebar" data-ason-target="#sb-left" class="sidebar-switcher switcher t-switcher-side ason-widget">
-       <!--  <i class="fa fa-bars"></i> -->
-        <h2 style="font-size: 18px;">Menu</h2>
+        <div class="l-side-box"><a class="sidebar-switcher switcher t-switcher-side ason-widget">
+        <i class="fa fa-bars"></i>
+        <!-- <h2 style="font-size: 18px;">Menu</h2> -->
         </a></div>
         
         <!--Main Menu-->
@@ -76,13 +72,15 @@
           <nav class="navigation">
             <ul data-ason-type="menu" class="ason-widget">
               
-              <li><a href="home.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;" class="icon fa fa-home"></i><span class="title">Home</span></a>
+              <li><a href="home.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-home"></i><span class="title">Home</span></a>
               </li>
-              <li><a href="project.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;" class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
+              <li><a href="project.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
               </li>
-              <li class="active"><a href="post.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;" class="icon fa fa-clipboard "></i><span class="title">Letest Post</span></a>
+              <li class="active"><a href="post.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-clipboard "></i><span class="title">Letest Post</span></a>
               </li>
-              <li><a href="index.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;"  class="icon fa fa-power-off "></i><span class="title">Logout</span></a>
+              <li><a href="mail.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-envelope "></i><span class="title">Contact List</span></a>
+              </li>
+              <li><a ng-click="logout()" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-power-off "></i><span class="title">Logout</span></a>
               </li>
             
             </ul>
@@ -90,28 +88,24 @@
         </div>
       </aside>
       <!--Main Content-->
-    <section class="l-container">
+     <section class="l-container">
         <!--HEADER-->
         <!-- <header class="l-header l-header-1 t-header-1">
           <div class="navbar navbar-ason">
             <div class="container-fluid">
-                <button href="index.html" type="button" class="btn logoutbtn pull-right" style="margin: 8px !important;">
-                 <span class="icon fa fa-sign-out "></span> Logout
-                </button>
+               
             </div>
           </div>
         </header> -->
         <!-- Row 1 - Info Widgets-->
         <div class="l-page-header">
-          <h2 class="l-page-title"><span>Post</span> List</h2>
-          <!--BREADCRUMB-->
-          <button data-toggle="modal" data-target="#Addpost" type="button" class="btn btn-primary btn-lg" style="float: right;margin-top: -52px;color:#FFF;">
+          <h2 class="l-page-title"><span style="color:#FFC20A;">Post</span> List</h2>
+          <button ng-hide="postlist.length!='2'"  data-toggle="modal" data-target="#Addpost" type="button" class="btn btn-primary btn-lg" ng-click="addPost()" style="float: right;margin-top: -52px;color:#FFF;">
             <span class="btn-label"><i class="glyphicon glyphicon-plus"></i></span>
             Add Post
           </button>
         </div>
-
-         <!--Add Post Basic-->
+          <!--Create Model-->
         <div id="Addpost" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel" aria-hidden="true" class="modal fade">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -126,22 +120,30 @@
                         <div class="form-group">
                           <label for="firstname" class="col-sm-3 control-label">Title</label>
                           <div class="col-sm-9">
-                            <input id="firstname" type="text" name="firstname" placeholder="Firstname" class="form-control">
+                            <input ng-model="post.project_name" type="text" name="Title" placeholder="Title" class="form-control" capitalize-first>
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="lastname" class="col-sm-3 control-label">Description</label>
                           <div class="col-sm-9">
-                            <textarea id="msg" name="message" rows="5" required="" class="form-control"></textarea>
+                            <textarea ng-model="post.project_description" name="message" rows="5" required="" class="form-control"></textarea>
                           </div>
                         </div>
                          <div class="form-group">
                           <label for="lastname" class="col-sm-3 control-label">Image</label>
                           <div class="col-sm-9">
                            <span class="btn btn-success fileinput-button"><i class="glyphicon glyphicon-plus"></i><span>Add files...</span>
-                             <input type="file" name="files[]" multiple="">
+                             <input type="file" ngf-select="uploadPhoto($files)" accept="image/*" multiple>
                           </span>
                           </div>
+                        </div>
+                        <div class="row" ng-if="post.images!=''">
+                            <div ng-repeat="images in post.images" style="margin: 2% 5% 0 5%;float: left;background-color: #fafafa;width:40%;">
+                              <span>
+                                <img width="80%"  height="135px" src="../{{images}}" class="thumb">
+                                <i ng-click="removeChoice($index)" style="font-size: 27px;cursor:pointer;margin-top: 44px;margin-right: 13px;;color:#F00;" class="close pull-right fa fa-trash-o danger"></i>
+                              </span>
+                            </div>
                         </div>
 
                       </form>
@@ -150,7 +152,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
-                <button type="button" class="btn btn-success">Submit</button>
+                <button type="button" ng-click="AddPost(post)" class="btn btn-success">Submit</button>
               </div>
             </div>
           </div>
@@ -171,56 +173,79 @@
                         <div class="form-group">
                           <label for="firstname" class="col-sm-3 control-label">Title</label>
                           <div class="col-sm-9">
-                            <input id="firstname" type="text" name="firstname" placeholder="Firstname" class="form-control">
+                            <input ng-model="post.project_name" type="text" name="Title" placeholder="Title" class="form-control" capitalize-first>
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="lastname" class="col-sm-3 control-label">Description</label>
                           <div class="col-sm-9">
-                            <textarea id="msg" name="message" rows="5" required="" class="form-control"></textarea>
+                            <textarea ng-model="post.project_description" name="message" rows="5" required="" class="form-control"></textarea>
                           </div>
                         </div>
                          <div class="form-group">
                           <label for="lastname" class="col-sm-3 control-label">Image</label>
                           <div class="col-sm-9">
                            <span class="btn btn-success fileinput-button"><i class="glyphicon glyphicon-plus"></i><span>Add files...</span>
-                             <input type="file" name="files[]" multiple="">
+                             <input type="file" ngf-select="uploadPhoto1($files)" accept="image/*" multiple>
                           </span>
                           </div>
                         </div>
-
-                      </form>
+                        <div class="row" ng-if="post.images!=''">
+                            <div ng-repeat="images in post.images" style="margin: 2% 5% 0 5%;float: left;background-color: #fafafa;width:40%;">
+                              <span>
+                                <img width="80%" height="135px" src="../{{images}}" class="thumb">
+                                <i ng-click="removeChoice1($index)" style="font-size: 27px;cursor:pointer;margin-top: 44px;margin-right: 13px;;color:#F00;" class="close pull-right fa fa-trash-o danger"></i>
+                              </span>
+                            </div>
+                         </div>
+                    </form>
                     </div>
                   </div>
               </div>
               <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
-                <button type="button" class="btn btn-success">Update</button>
+                <button type="button" class="btn btn-warning " ng-click="Updatepost(post)">Update</button>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="l-spaced">
+        <div class="no_pro" ng-show="no_product" style="padding: 15% 0 !important;">
+            <center>
+                <i style="color:#B2B2B2;" class="fa fa-5x fa-exclamation-triangle"></i>
+                <div class="h1" style="color:#f2a730;">Whooops!</div>
+                <div class="h4" style="color:#B2B2B2;">No Post has been posted</div>
+                </div>
+            </center>
+        </div>
+    
+        <div class="l-spaced"  ng-hide="no_product">
           <div class="l-row">
             <div class="l-box l-col-md-12 l-spaced-bottom">
               <div class="l-box-body l-spaced">
                 <table class="table">
                   <tbody>
-                    <tr>
+                    <tr ng-repeat="post in postlist">
                      <td>
-                        <img src="img/login.jpg" style="width: 150px;height: 150px;">
+                        <img src="../{{post.images[0]}}" style="width: 150px;height: 150px;">
                       </td>
-                      <td>Doe</td>
                       <td>
-                        <button data-toggle="modal" data-target="#updatepost" type="button" class="btn btn-success btn-lg">Update</button>
-                        <button type="button" class="btn btn-danger btn-lg">Delete</button>
+                      <h2 style="font-size:20px !important;color:#FFC20A;">{{post.project_name | limitTo: 100 }}</h2>
+                      <p>{{post.project_description | limitTo: 100 }}</p>
+                      </td>
+                      <td style="padding-top: 30px !important;">
+                        <button style="line-height: 0;padding: 10px;margin: 4px;" data-toggle="modal" data-target="#updatepost" type="button" class="btn btn-warning  btn-lg" ng-click="update(post);">
+                        <span class="icon fa fa-pencil-square-o"></span> &nbsp;Update</button>
+                        <button style="line-height: 0;padding: 10px 13px;;margin: 4px;" type="button" ng-click="deletePost(post)" class="btn btn-danger btn-lg">
+                        <span class="icon fa fa-trash-o "></span> &nbsp; Delete</button>
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
+          </div>
+        </div>
     </section>
 </body>
 

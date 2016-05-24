@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from demo.themexy.com/drill-html/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 May 2016 07:21:51 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eazy BoreDrill</title>
+    
+    <!--Favicons-->
+    <link rel="apple-touch-icon" sizes="57x57" href="../favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../favicon/apple-touch-icon-60x60.png">
+    <link rel="icon" type="image/png" href="../favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../favicon/favicon-32x32.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <!-- ===== CSS =====-->
+    <!-- General-->
+    <link rel="stylesheet" href="css/basic.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/theme.css" class="style-theme">
+    
+    <!-- Specific-->
+    <link rel="stylesheet" href="css/addons/fonts/artill-clean-icons.css"/>
+
+     <script src="js/plugins/pageprogressbar/pace.min.js"></script>
+    <!-- Specific-->
+    
+     <script src="js/shared/perfect-scrollbar.min.js"></script>
+    <script src="js/plugins/charts/c3/c3.min.js"></script>
+    <script src="js/plugins/charts/c3/d3.v3.min.js"></script>
+    <script src="js/plugins/charts/rickshaw/rickshaw.min.js"></script>
+  
+
+    <script src="js/basic/jquery.min.js"></script>
+    <script src="js/basic/jquery-migrate.min.js"></script>
+    <!-- General-->
+    <script src="js/basic/modernizr.min.js"></script>
+    <script src="js/basic/bootstrap.min.js"></script>
+    <script src="js/shared/jquery.asonWidget.js"></script>
+    <script src="js/plugins/plugins.js"></script>
+    <script src="js/general.js"></script>
+
+
+
+    <!-- <script src="Mainjs/angular.min.js"></script> -->
+    <!-- <script src="Mainjs/ui-bootstrap-tpls-1.3.2.min.js"></script>
+    <script src="Mainjs/ng-file-upload-shim.min.js"></script>
+    <script src="Mainjs/ng-file-upload.min.js"></script> -->
+    <!-- <script src="Mainjs/services.js"></script>
+    <script src="Mainjs/controllers/mail.js"></script> -->
+    
+</head>
+
+ <body class="l-mail-app">
+
+    
+   
+    <!--THEME SETTINGS-->
+   
+    <!--SECTION-->
+    <section class="l-main-container">
+      <!--Left Sidebar Content-->
+      <aside id="slide-left" class="l-sidebar l-sidebar-1 t-sidebar-1">
+        <!--User Profile-->
+        <div class="l-side-box mt-10">
+          <div class="widget-profile-2 profile-2-in-side t-profile-2-1">
+            <div class="profile-2-img"><a><img src="img/profile/profile.jpg" style="width: 60%;">
+                <div class="profile-2-status" style="right: 88px;">
+                 <!--  <div id="status" tabindex="1" class="status"><span><i class="fa fa-circle label-color-1"></i></span>
+                    <ul class="dropdown">
+                      <li title="Online" class="tt-mail-right"><i class="fa fa-circle status-color-1"></i></li>
+                      <li title="Away" class="tt-mail-right"><i class="fa fa-circle status-color-2"></i></li>
+                      <li title="Busy" class="tt-mail-right"><i class="fa fa-circle status-color-3"></i></li>
+                      <li title="Invisible" class="tt-mail-right"><i class="fa fa-circle status-color-4"></i></li>
+                    </ul>
+                  </div> -->
+                </div></a></div>
+            <ul class="profile-2-info">
+              <li  class="text-center">
+                <h3>Capt. Seleman Kasawala Jalakala</h3>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="mail-side-sep">
+        <!--Mail Menu Box-->
+        <div class="l-side-box">
+          <!--MAIL NAVIGATION MENU-->
+          <nav class="navigation">
+            <ul data-ason-type="menu" class="ason-widget">
+              <li><a href="mail.html"><i class="icon fa fa-inbox"></i><span class="title">Inbox</span><span class="info last">3</span></a>
+              </li>
+              <li><a href="sendmail.html"><i class="icon fa fa-send"></i><span class="title">Sent</span></a>
+              </li>
+              <li><a href="deletemail.html"><i class="icon fa fa-trash-o"></i><span class="title">Trash</span></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <hr class="mail-side-sep">
+        <nav class="navigation">
+            <ul data-ason-type="menu" class="ason-widget">
+              
+              <li><a href="home.html" style="font-size: 16px !important;font-weight: bold;"><i class="icon fa fa-home"></i><span class="title">Home</span></a>
+              </li>
+              <li><a href="project.html" style="font-size: 16px !important;font-weight: bold;"><i class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
+              </li>
+              <li><a href="post.html" style="font-size: 16px !important;font-weight: bold;"><i class="icon fa fa-clipboard "></i><span class="title">Letest Post</span></a>
+              </li>
+
+             <li><a ng-click="logout()" style="font-size: 16px !important;font-weight: bold;"><i class="icon fa fa-power-off"></i><span class="title">Logout</span></a>
+              </li>
+            
+            </ul>
+          </nav>
+      </aside>
+      <!--Main wrapper-->
+      <section class="l-container">
+           <div class="mail-details" style="margin:0px;">
+              <!-- Mail details header-->
+              <div class="mail-details-header">
+                <h3 class="mail-details-subject">Meeting rescheduled due to flight delay (2)</h3>
+              </div>
+              <!-- Mail message 1-->
+              <div class="mail-details-message open">
+                <div class="mail-details-message-header">
+                  <div class="mail-details-sender"><img src="img/mail/profile_1.jpg" class="mail-profile"><strong>John Doe</strong> (noreply@johndoe.com) to <strong>me</strong></div>
+                  <div class="mail-details-time">Today at 9:28</div>
+                </div>
+                <div class="mail-details-message-content">
+                  <div class="mail-details-message-body">
+                    <p>Hello Johnny!!!</p>
+                    <p>Sum expectantes. Ego hodie expectantes. Expectantes, et misit unum de pueris Gus interficere. Et suus vos. Nescio quis, qui est bonus usus liberi ad Isai? Qui nosti ... Quis dimisit filios ad necem ... hmm? Gus! Est, ante me factus singulis decem gradibus. Et nunc ad aliud opus mihi tandem tollendum est puer ille consensus et nunc fugit. Ipse suus obtinuit eam. Non solum autem illa, sed te tractantur in se trahens felis.</p>
+                    <p>No! Hoc non credant? Gus habet cameras ubique placet. Audire te! Non, omnia novit, omnia simul. Ubi eras hodie? In Lab! Et vos nolite cogitare suus 'possible ut Tyrus de cigarette elevaverunt CAPSA vestris? Age! Tu non vides? Pompeius extrema partem es. Tu omne quod ille voluit.</p>
+                    <p>Tu nunc coci ejus. Tu autem cocus Lab et probavimus liceat mihi sine causa est nunc coci interficere. Reputo it! Suus egregie. Ut antecedat. Quod si putas me posse facere, ergo ante. Pone aute in caput, et nunc interficere. Faciat! Fac. Fac. Fac.</p>
+                    <p>Saule ... , ostendit quod hoc quidem ... hoc quod dixit, ... potuit adiutorium mihi, et educat me in tota vita nova facio certus ut Im 'non invenit. Ego quidem illius memini Saul. Gus sit amet interfíciat mei tota familia. Nunc opus est mihi iste. Saul ... nunc Saule.</p>
+                    <ul class="list-styled">
+                      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                      <li>Phasellus vel turpis quis libero egestas maximus.</li>
+                      <li>Aenean volutpat nibh a condimentum facilisis.</li>
+                      <li>Donec eget quam maximus, fringilla elit vel, mollis nulla.</li>
+                      <li>Nullam a nulla ut orci gravida pharetra id a orci.</li>
+                    </ul>
+                    <p></p>
+                    <ul class="list-styled">
+                      <li>Ut ac sem elementum ligula molestie egestas.</li>
+                      <li>Nullam id erat sed orci interdum porta ac sed magna.</li>
+                    </ul>
+                    <p></p>
+                    <ul class="list-styled">
+                      <li>Nulla et ipsum a ipsum pulvinar sagittis in quis lorem.</li>
+                      <li>Quisque vestibulum orci et venenatis scelerisque.</li>
+                      <li>Fusce a nisl sed felis molestie imperdiet at non purus.</li>
+                      <li>Aliquam porttitor purus ac neque suscipit sodales.</li>
+                      <li>Aenean fermentum diam bibendum sagittis bibendum.</li>
+                    </ul>
+                  </div>
+                  <div class="mail-details-message-attachment">
+                    <div class="mail-details-attachment-header"><i class="fa fa-paperclip"></i>3 attachments -<a href="#">Download all</a><span class="mail-doc-sep">|</span><a href="#">View all</a></div>
+                    <div class="mail-details-attachment-body">
+                      <div class="l-col-lg-3 l-col-md-4">
+                        <div class="well well-sm">
+                          <div class="img-wrapper"><img src="img/mail/profile_1.jpg"></div>
+                          <h4>sample_img_1.jpg</h4>
+                          <p>280KB</p><a href="#">Download</a><span class="mail-doc-sep">|</span><a href="#">View</a>
+                        </div>
+                      </div>
+                      <div class="l-col-lg-3 l-col-md-4">
+                        <div class="well well-sm">
+                          <div class="img-wrapper"><img src="img/mail/profile_1.jpg"></div>
+                          <h4>sample_img_2.jpg</h4>
+                          <p>135KB</p><a href="#">Download</a><span class="mail-doc-sep">|</span><a href="#">View</a>
+                        </div>
+                      </div>
+                      <div class="l-col-lg-3 l-col-md-4">
+                        <div class="well well-sm">
+                          <div class="img-wrapper"><i class="fa fa-file"></i></div>
+                          <h4>sample_doc_1.doc</h4>
+                          <p>38KB</p><a href="#">Download</a><span class="mail-doc-sep">|</span><a href="#">View</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Mail message 2-->
+              <div class="mail-details-message">
+                <div class="mail-details-message-header">
+                  <div class="mail-details-sender"><img src="img/mail/profile_1.jpg" class="mail-profile"><strong>me</strong> to <strong>John Doe</strong> (noreply@johndoe.com)</div>
+                  <div class="mail-details-time">Today at 9:40</div>
+                </div>
+                <div class="mail-details-message-content">
+                  <div class="mail-details-message-body">
+                    <p>Hello Mike!!!</p>
+                    <p>Sum expectantes. Ego hodie expectantes. Expectantes, et misit unum de pueris Gus interficere. Et suus vos. Nescio quis, qui est bonus usus liberi ad Isai? Qui nosti ... Quis dimisit filios ad necem ... hmm? Gus! Est, ante me factus singulis decem gradibus. Et nunc ad aliud opus mihi tandem tollendum est puer ille consensus et nunc fugit. Ipse suus obtinuit eam. Non solum autem illa, sed te tractantur in se trahens felis.</p>
+                    <p>No! Hoc non credant? Gus habet cameras ubique placet. Audire te! Non, omnia novit, omnia simul. Ubi eras hodie? In Lab! Et vos nolite cogitare suus 'possible ut Tyrus de cigarette elevaverunt CAPSA vestris? Age! Tu non vides? Pompeius extrema partem es. Tu omne quod ille voluit.</p>
+                    <p>Tu nunc coci ejus. Tu autem cocus Lab et probavimus liceat mihi sine causa est nunc coci interficere. Reputo it! Suus egregie. Ut antecedat. Quod si putas me posse facere, ergo ante. Pone aute in caput, et nunc interficere. Faciat! Fac. Fac. Fac.</p>
+                    <p>Saule ... , ostendit quod hoc quidem ... hoc quod dixit, ... potuit adiutorium mihi, et educat me in tota vita nova facio certus ut Im 'non invenit. Ego quidem illius memini Saul. Gus sit amet interfíciat mei tota familia. Nunc opus est mihi iste. Saul ... nunc Saule.</p>
+                    <ul class="list-styled">
+                      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                      <li>Phasellus vel turpis quis libero egestas maximus.</li>
+                      <li>Aenean volutpat nibh a condimentum facilisis.</li>
+                      <li>Donec eget quam maximus, fringilla elit vel, mollis nulla.</li>
+                      <li>Nullam a nulla ut orci gravida pharetra id a orci.</li>
+                    </ul>
+                    <p></p>
+                    <ul class="list-styled">
+                      <li>Ut ac sem elementum ligula molestie egestas.</li>
+                      <li>Nullam id erat sed orci interdum porta ac sed magna.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </section>
+     
+    </section>
+    <!-- ===== JS =====-->
+    <!-- jQuery-->
+    <script src="js/basic/jquery.min.js"></script>
+    <script src="js/basic/jquery-migrate.min.js"></script>
+    <!-- General-->
+    <script src="js/basic/modernizr.min.js"></script>
+    <script src="js/basic/bootstrap.min.js"></script>
+    <script src="js/shared/jquery.asonWidget.js"></script>
+    <script src="js/plugins/plugins.js"></script>
+    <script src="js/general.js"></script>
+    <!-- Semi general-->
+    <script type="text/javascript">
+      var paceSemiGeneral = { restartOnPushState: false };
+      if (typeof paceSpecific != 'undefined'){
+        var paceOptions = $.extend( {}, paceSemiGeneral, paceSpecific );
+        paceOptions = paceOptions;
+      }else{
+        paceOptions = paceSemiGeneral;
+      }
+      
+    </script>
+    <script src="js/plugins/pageprogressbar/pace.min.js"></script>
+    <!-- Specific-->
+    <script src="js/shared/jquery.cookie.min.js"></script>
+    <script src="js/plugins/accordions/jquery.collapsible.min.js"></script>
+    <script src="js/plugins/forms/elements/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="js/plugins/forms/elements/jquery.checkBo.min.js"></script>
+    <script src="js/plugins/forms/upload/jquery.summernote.min.js"></script>
+    <script src="js/plugins/forms/elements/jquery.switchery.min.js"></script>
+    <script src="js/plugins/tooltip/jquery.tooltipster.min.js"></script>
+    <script src="js/calls/app.mail.js"></script>
+    <script src="js/calls/part.header.1.js"></script>
+    <script src="js/calls/part.theme.setting.js"></script>
+    
+  </body>
+
+</html>

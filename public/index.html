@@ -31,12 +31,12 @@
     <!--Construction Styles-->
     <link rel="stylesheet" href="css/style.css">
     
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
+    <script src="js/angular.min.js"></script>
+    <script src="js/ui-bootstrap-tpls-1.3.2.min.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers/home.js"></script>
 </head>
-<body>
+<body ng-app="starter" ng-controller="homeCtrl">
   
     <header class="row">
         <div class="container">
@@ -295,68 +295,30 @@
     </section> <!--Services-->
     
 
-    <section id="latestPosts" class="row">
+    <section id="latestPosts" class="row" ng-if="ProjectLists!=''">
         <div class="container">
             <div class="row sectionTitles">
                 <h2 class="sectionTitle">Latest Posts</h2>
                 <div class="sectionSubTitle">fresh news</div>
             </div>
             <div class="row">
-                <div class="col-sm-4 blog latest-blog">
+                 <div class="col-sm-4 blog latest-blog" ng-repeat="ProjectList in ProjectLists">
                     <div class="row m0 blogInner">
-                        <div class="row m0 blogDateTime">
+                        <!-- <div class="row m0 blogDateTime">
                             <i class="fa fa-calendar"></i> 18 November 2014, 11:50 AM
-                        </div>
+                        </div> -->
                         <div class="row m0 featureImg">
-                            <a>
-                                <img src="images/blog/blog1.png" alt="Faceted Search Has Landed" class="img-responsive">
+                            <a ng-click="Project(ProjectList)">
+                                <img src="{{ProjectList.images[0]}}" style="height: 140px;" alt="Faceted Search Has Landed" class="img-responsive">
                             </a>
                         </div>
                         <div class="row m0 postExcerpts">
                             <div class="row m0 postExcerptInner">
-                                <a class="postTitle row m0"><h4>Faceted Search Has Landed</h4></a>
-                                <p>This year in our 2014 roadmap one of our goals was to improve financial tooling for authors. A big part of that is the withdrawal cycle.</p>
-                                <a class="readMore">read more</a>
+                                <a ng-click="Project(ProjectList)" class="postTitle row m0"><h4>{{ProjectList.project_name  | limitTo: 50}}</h4></a>
+                                <p>{{ProjectList.project_description  | limitTo: 50}}</p>
+                                <a ng-click="Project(ProjectList)" class="readMore">read more</a>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 blog latest-blog">
-                    <div class="row m0 blogInner">
-                        <div class="row m0 blogDateTime">
-                            <i class="fa fa-calendar"></i> 16 November 2014, 12:20 AM
-                        </div>
-                        <div class="row m0 featureImg">
-                            <a>
-                                <img src="images/blog/blog2.png" alt="Faceted Search Has Landed" class="img-responsive">
-                            </a>
-                        </div>
-                        <div class="row m0 postExcerpts">
-                            <div class="row m0 postExcerptInner">
-                                <a" class="postTitle row m0"><h4>Vat and Global Marketplace</h4></a>
-                                <p>This year in our 2014 roadmap one of our goals was to improve financial tooling for authors. A big part of that is the withdrawal cycle.</p>
-                                <a class="readMore">read more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 blog latest-blog">
-                    <div class="row m0 blogInner">
-                        <div class="row m0 blogDateTime">
-                            <i class="fa fa-calendar"></i> 14 November 2014, 10:50 AM
-                        </div>
-                        <div class="row m0 featureImg">
-                            <a>
-                                <img src="images/blog/blog3.png" alt="Faceted Search Has Landed" class="img-responsive">
-                            </a>
-                        </div>
-                        <div class="row m0 postExcerpts">
-                            <div class="row m0 postExcerptInner">
-                                <a class="postTitle row m0"><h4>Default withdrawal option</h4></a>
-                                <p>This year in our 2014 roadmap one of our goals was to improve financial tooling for authors. A big part of that is the withdrawal cycle.</p>
-                                <a class="readMore">read more</a>
-                            </div>
-                        </div>
+                       </div>
                     </div>
                 </div>
             </div>
@@ -379,7 +341,6 @@
     <script src="js/jquery-2.1.3.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- <script src="js/angular.min.js"></script> -->
     
     <script src="vendors/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
     <script src="vendors/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>

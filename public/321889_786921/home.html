@@ -45,21 +45,15 @@
 
 
     <script src="Mainjs/angular.min.js"></script>
-    <style>
-        .logoutbtn{
-            margin: 8px !important;
-            background: #dedede;
-            color: #333;
-        }
-        .logoutbtn:hover{
-            margin: 8px !important;
-            background: #f2a730;
-            color: #FFF;
-        }
-    </style>
+    <script src="Mainjs/ui-bootstrap-tpls-1.3.2.min.js"></script>
+    <script src="Mainjs/ng-file-upload-shim.min.js"></script>
+    <script src="Mainjs/ng-file-upload.min.js"></script>
+    <script src="Mainjs/services.js"></script>
+    <script src="Mainjs/controllers/home.js"></script>
+    
 </head>
 
-<body class="l-dashboard">
+<body ng-app="starter" ng-controller="HomeCtrl" class="l-dashboard">
     
     <!--[if lt IE 9]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -72,8 +66,9 @@
       <!--Left Sidebar Content-->
       <aside id="sb-left" class="l-sidebar l-sidebar-1 t-sidebar-1 l-sidebar-compact-left">
         <!--Switcher-->
-        <div class="l-side-box"><a href="#" data-ason-type="sidebar" data-ason-to-sm="sidebar" data-ason-target="#sb-left" class="sidebar-switcher switcher t-switcher-side ason-widget">
-          <h2 style="font-size: 18px;">Menu</h2>
+        <div class="l-side-box"><a class="sidebar-switcher switcher t-switcher-side ason-widget">
+        <i class="fa fa-bars"></i>
+          <!-- <h2 style="font-size: 18px;">Menu</h2> -->
         </a></div>
         
         <!--Main Menu-->
@@ -82,14 +77,17 @@
           <nav class="navigation">
             <ul data-ason-type="menu" class="ason-widget">
               
-              <li class="active"><a href="home.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;" class="icon fa fa-home"></i><span class="title">Home</span></a>
+              <li class="active"><a href="home.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-home"></i><span class="title">Home</span></a>
               </li>
-              <li><a href="project.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;" class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
+              <li><a href="project.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
               </li>
-              <li><a href="post.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;"  class="icon fa fa-clipboard "></i><span class="title">Letest Post</span></a>
+              <li><a href="post.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-clipboard "></i><span class="title">Letest Post</span></a>
               </li>
 
-              <li><a href="index.html" style="font-size: 16px !important;"><i  style="font-size: 20px !important;"  class="icon fa fa-power-off"></i><span class="title">Logout</span></a>
+              <li><a href="mail.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-envelope "></i><span class="title">Contact List</span></a>
+              </li>
+
+              <li><a ng-click="logout()" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-power-off"></i><span class="title">Logout</span></a>
               </li>
             
             </ul>
@@ -130,7 +128,7 @@
                     <div class="info-data open">
                       <h4>1577</h4>
                       <hr>
-                      <p><span>Total</span> Customers
+                      <p><span>Total</span> Views
                       </p>
                       <div class="progress progress-no-border progress-mini">
                         <div role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;" class="progress-bar"><span class="sr-only">75% Complete</span></div>
@@ -167,7 +165,7 @@
                     <div class="info-data open">
                       <h4>2332</h4>
                       <hr>
-                      <p><span>Total</span> Projects
+                      <p><span>Total</span> Messages
                       </p>
                       <div class="progress progress-no-border progress-mini">
                         <div role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;" class="progress-bar"><span class="sr-only">50% Complete</span></div>
@@ -206,7 +204,7 @@
                     <div class="info-data open">
                       <h4>4253</h4>
                       <hr>
-                      <p><span>Total</span> Post
+                      <p><span>Total</span> Projects
                       </p>
                       <div class="progress progress-no-border progress-mini">
                         <div role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;" class="progress-bar"><span class="sr-only">20% Complete</span></div>
@@ -223,7 +221,6 @@
               </div>
             </div>
           </div>
-          
         </div>
     </section>
 </body>
