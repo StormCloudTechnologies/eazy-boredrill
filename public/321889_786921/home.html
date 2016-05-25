@@ -34,13 +34,48 @@
   
 
     <script src="js/basic/jquery.min.js"></script>
-    <script src="js/basic/jquery-migrate.min.js"></script>
-    <!-- General-->
-    <script src="js/basic/modernizr.min.js"></script>
-    <script src="js/basic/bootstrap.min.js"></script>
-    <script src="js/shared/jquery.asonWidget.js"></script>
-    <script src="js/plugins/plugins.js"></script>
-    <script src="js/general.js"></script>
+   <script src="js/basic/jquery-migrate.min.js"></script>
+   <script src="js/shared/jquery-ui.min.js"></script>
+   <script src="js/shared/jquery.ui.touch-punch.min.js"></script>
+   <script type="text/javascript">
+     // jQuery Ui and Bootstrap conflict workaround
+     $.widget.bridge('uitooltip', $.ui.tooltip);
+     $.widget.bridge('uibutton', $.ui.button);
+   </script>
+   <!-- General-->
+   <script src="js/basic/modernizr.min.js"></script>
+   <script src="js/basic/bootstrap.min.js"></script>
+   <script src="js/shared/jquery.asonWidget.js"></script>
+   <script src="js/plugins/plugins.js"></script>
+   <script src="js/general.js"></script>
+   <!-- Semi general-->
+   <script type="text/javascript">
+     var paceSemiGeneral = { restartOnPushState: false };
+     if (typeof paceSpecific != 'undefined'){
+      var paceOptions = $.extend( {}, paceSemiGeneral, paceSpecific );
+      paceOptions = paceOptions;
+     }else{
+      paceOptions = paceSemiGeneral;
+     }
+     
+   </script>
+   <script src="js/plugins/pageprogressbar/pace.min.js"></script>
+   <!-- Specific-->
+   <script src="js/shared/classie.js"></script>
+   <script src="js/shared/jquery.cookie.min.js"></script>
+   <script src="js/shared/perfect-scrollbar.min.js"></script>
+   <script src="js/plugins/accordions/jquery.collapsible.min.js"></script>
+   <script src="js/plugins/charts/c3/c3.min.js"></script>
+   <script src="js/plugins/charts/c3/d3.v3.min.js"></script>
+   <script src="js/plugins/charts/other/jquery.sparkline.min.js"></script>
+   <script src="js/plugins/forms/elements/jquery.bootstrap-touchspin.min.js"></script>
+   <script src="js/plugins/forms/elements/jquery.checkBo.min.js"></script>
+   <script src="js/plugins/forms/elements/jquery.switchery.min.js"></script>
+   <script src="js/plugins/tooltip/jquery.tooltipster.min.js"></script>
+   <script src="js/calls/dashboard.2.js"></script>
+   <script src="js/calls/part.header.1.js"></script>
+   <script src="js/calls/part.sidebar.2.js"></script>
+   <script src="js/calls/part.theme.setting.js"></script>
 
 
 
@@ -86,7 +121,7 @@
               <li><a href="post.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-clipboard "></i><span class="title">Latest Post</span></a>
               </li>
 
-              <li><a href="mail.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-envelope "></i><span class="title">Contact List</span></a>
+              <li><a href="mail.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-envelope "></i><span class="title">Email</span></a>
               </li>
 
               <li><a ng-click="logout()" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-power-off"></i><span class="title">Logout</span></a>
@@ -167,7 +202,7 @@
                     <div class="info-data open">
                       <h4>2332</h4>
                       <hr>
-                      <p><span>Total</span> Messages
+                      <p><span>Total</span> Emails
                       </p>
                       <div class="progress progress-no-border progress-mini">
                         <div role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;" class="progress-bar"><span class="sr-only">50% Complete</span></div>
@@ -224,6 +259,28 @@
             </div>
           </div>
         </div>
+        <div class="l-row l-spaced-horizontal">
+         <!-- Revenue Widget-->
+         <div class="widget-revenue l-spaced-bottom">
+           <ul class="widget-options is-options-right">
+             <li class="option-main-item"><a href="#" data-ason-type="refresh" data-ason-target=".widget-revenue" data-ason-loader-class="spinner line back-and-forth grow" data-ason-content="true" data-ason-duration="1100" class="ason-widget"></a></li>
+             <li class="option-main-item"><a href="#" data-ason-type="toggle" data-ason-parent="false" data-ason-target=".widget-revenue-info" data-ason-content="true" data-ason-duration="200" class="ason-widget"></a></li>
+             <li class="option-main-item"><a href="#" data-ason-type="delete" data-ason-target=".widget-revenue" data-ason-content="true" data-ason-animation="fadeOut" class="ason-widget"></a></li>
+             <li><a href="#" class="toggler-btn"><i class="fa fa-circle-thin"></i></a></li>
+           </ul>
+           <div class="widget-revenue-info">
+             <h4 class="widget-header">Annual Revenue</h4>
+             <div class="hide c3-revenue-1"></div>
+             <div class="hide c3-revenue-2"></div>
+             <div class="hide c3-revenue-3"></div>
+             <div class="hide c3-revenue-4"></div>
+             <div class="hide c3-revenue-5"></div>
+             <div class="revenue-chart">
+               <div id="revenueChart"></div>
+             </div>
+           </div>
+         </div>
+       </div>
     </section>
 </body>
 
