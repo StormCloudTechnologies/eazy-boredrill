@@ -80,7 +80,7 @@
               </li>
               <li><a href="project.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
               </li>
-              <li class="active"><a href="post.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-clipboard "></i><span class="title">Letest Post</span></a>
+              <li class="active"><a href="post.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-clipboard "></i><span class="title">Latest Post</span></a>
               </li>
               <li><a href="mail.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-envelope "></i><span class="title">Contact List</span></a>
               </li>
@@ -104,7 +104,7 @@
         <!-- Row 1 - Info Widgets-->
         <div class="l-page-header">
           <h2 class="l-page-title"><span style="color:#FFC20A;">Post</span> List</h2>
-          <button ng-hide="postlist.length!='2'"  data-toggle="modal" data-target="#Addpost" type="button" class="btn btn-primary btn-lg" ng-click="addPost()" style="float: right;margin-top: -52px;color:#FFF;">
+          <button ng-hide="postlist.length >= '2'"  data-toggle="modal" data-target="#Addpost" type="button" class="btn btn-primary btn-lg" ng-click="addPost()" style="float: right;margin-top: -52px;color:#FFF;">
             <span class="btn-label"><i class="glyphicon glyphicon-plus"></i></span>
             Add Post
           </button>
