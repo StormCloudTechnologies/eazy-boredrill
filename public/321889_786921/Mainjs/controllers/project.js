@@ -32,6 +32,37 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialo
          capitalize($parse(attrs.ngModel)(scope)); // capitalize initial value
      }
    };
+}).factory('genericInterceptor', function($q, $rootScope) {
+    var interceptor = {
+        'request': function(config) {
+            // Successful request method
+            $rootScope.loadCompetition = true;
+            return config; // or $q.when(config);
+        },
+        'response': function(response) {
+            // Successful response
+            $rootScope.loadCompetition = false;
+            return response; // or $q.when(config);
+        },
+        'requestError': function(rejection) {
+            // An error happened on the request
+            // if we can recover from the error
+            // we can return a new request
+            // or promise
+            $rootScope.loadCompetition = false;
+            return response;
+            // Otherwise, we can reject the next
+            // by returning a rejection
+            // return $q.reject(rejection);
+        },
+        'responseError': function(rejection) {
+            
+            // Returning a rejection
+            $rootScope.loadCompetition = false;
+            return rejection;
+        }
+    };
+    return interceptor;
 })
 .controller('ProjectCtrl', function($scope, APIService, Upload, $uibModal, $localstorage, ngDialog) {
   
@@ -73,9 +104,16 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialo
           data: {projectData: project, delete_images : $scope.deleteImages}
       }).then(function(resp) {
       	console.log(resp);
-          if(resp.data) {
+          if(resp.data.message=="Project has been added successfully.") {
             ngDialog.open({ template: 'sucess.html', className: 'ngdialog-theme-default' });
-            window.location = "project.html";
+            setTimeout(function() {
+              window.location = "project.html";
+            }, 100);
+          }else{
+            ngDialog.open({ template: 'error.html', className: 'ngdialog-theme-default' });
+            setTimeout(function() {
+              window.location = "project.html";
+            }, 100);
           }
          },function(resp) {
             // This block execute in case of error.
@@ -177,9 +215,16 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialo
           data: {projectData: project, delete_images : $scope.deleteImages}
       }).then(function(resp) {
         console.log(resp);
-          if(resp.data) {
-            ngDialog.open({template: 'update.html', className: 'ngdialog-theme-default' });
-            window.location = "project.html";
+          if(resp.data.message=="Updated successfully.") {
+            ngDialog.open({ template: 'update.html', className: 'ngdialog-theme-default' });
+            setTimeout(function() {
+              window.location = "project.html";
+            }, 100);
+          }else{
+            ngDialog.open({ template: 'error.html', className: 'ngdialog-theme-default' });
+            setTimeout(function() {
+              window.location = "project.html";
+            }, 100);
           }
          },function(resp) {
             // This block execute in case of error.

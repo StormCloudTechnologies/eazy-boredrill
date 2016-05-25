@@ -55,7 +55,11 @@
 
  <body class="l-mail-app" ng-app="starter" ng-controller="MailCtrl">
 
-    
+    <div ng-show='loadCompetition'>
+     <div class="loading_div">
+       <img src="img/loader.gif" style="width: 40% !important;" />
+     </div>
+   </div>
    
     <!--THEME SETTINGS-->
    
@@ -189,7 +193,7 @@
           <div class="mail-content mail-layout-bottom">
             <!-- Mail list-->
             <div class="mail-list-container">
-              <div data-ason-type="scrollbar" class="mail-list ason-widget">
+              <div data-ason-type="scrollbar" class="mail-list ason-widget" >
                 <table class="table table-hover">
                   <tbody>
                     <tr class="mail-row unread">

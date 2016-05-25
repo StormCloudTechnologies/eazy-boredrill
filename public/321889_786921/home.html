@@ -55,9 +55,11 @@
 
 <body ng-app="starter" ng-controller="HomeCtrl" class="l-dashboard">
     
-    <!--[if lt IE 9]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+   <div ng-show='loadCompetition'>
+     <div class="loading_div">
+       <img src="img/loader.gif" style="width: 40% !important;" />
+     </div>
+   </div>
     
    
   

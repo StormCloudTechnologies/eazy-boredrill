@@ -13,3 +13,10 @@
 .profile-2-img img {
     border: none !important;
 }
+.loading_div{
+position: absolute;
+   /* text-align: center; */
+   top: 43% !important;
+   left: 45% !important;
+   z-index: 9999999;
+}
