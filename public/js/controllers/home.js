@@ -4,7 +4,7 @@ angular.module('starter', ['APIModule', 'ui.bootstrap'])
   $scope.ProjectLists = [];
   $scope.getProject = function() {
      APIService.setData({
-            req_url: 'http://localhost:8000/api/getLatestJobs',
+            req_url: 'http://52.39.156.51:8000/api/getLatestJobs',
             data: {projectData:{}}
         }).then(function(resp) {
           console.log(resp);

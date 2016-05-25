@@ -1,3 +1,4 @@
+var url = 'http://52.39.156.51:8000/';
 angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialog'])
 .factory('$localstorage', ['$window', function($window) {
   return {
@@ -80,7 +81,7 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialo
   
   $scope.getProject = function() {
      APIService.setData({
-            req_url: 'http://localhost:8000/api/getProjects',
+            req_url: url + 'api/getProjects',
             data: {projectData:{}}
         }).then(function(resp) {
           console.log(resp);
@@ -100,7 +101,7 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialo
 	$scope.AddProject = function(project) {
       console.log(project);
 		 APIService.setData({
-          req_url: 'http://localhost:8000/api/addProject',
+          req_url: url + 'api/addProject',
           data: {projectData: project, delete_images : $scope.deleteImages}
       }).then(function(resp) {
       	console.log(resp);
@@ -128,7 +129,7 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialo
     $scope.ImagePath = [];  
     $scope.uploadPhoto = function(file) {
         file.upload = Upload.upload({
-          url: 'http://localhost:8000/api/uploadPhotos',
+          url: url + 'api/uploadPhotos',
           arrayKey: '',
           data: {file: file}
         });
@@ -188,7 +189,7 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialo
     };
     $scope.uploadPhoto1 = function(file) {
         file.upload = Upload.upload({
-          url: 'http://localhost:8000/api/uploadPhotos',
+          url: url + 'api/uploadPhotos',
           arrayKey: '',
           data: {file: file}
         });
@@ -211,7 +212,7 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialo
 
     $scope.UpdateProject = function(project) {
      APIService.updateData({
-          req_url: 'http://localhost:8000/api/updateProject',
+          req_url: url + 'api/updateProject',
           data: {projectData: project, delete_images : $scope.deleteImages}
       }).then(function(resp) {
         console.log(resp);
@@ -234,7 +235,7 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialo
 }).controller('DeleteConfirmationCtrl', function ($scope, $rootScope, $uibModalInstance, APIService, product){
     $scope.delete = function () {
         APIService.removeData({
-            req_url: 'http://localhost:8000/api/removeProject',
+            req_url: url + 'api/removeProject',
             data: product
         }).then(function(resp) {
             $uibModalInstance.close(resp.data);

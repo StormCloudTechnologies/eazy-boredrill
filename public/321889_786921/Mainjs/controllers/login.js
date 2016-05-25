@@ -61,7 +61,7 @@ angular.module('starter', ['APIModule'])
     }
 	$scope.login = function(productObj) {
         APIService.setData({
-            req_url: 'http://localhost:8000/api/adminLogin',
+            req_url: 'http://52.39.156.51:8000/api/adminLogin',
             data: productObj
         }).then(function(resp) {
           if(resp.data.message=="success") {
@@ -74,7 +74,7 @@ angular.module('starter', ['APIModule'])
     };
     $scope.resetpassword = function() {
          APIService.setData({
-            req_url: 'http://localhost:8000/api/forgotAdminPassword',
+            req_url: 'http://52.39.156.51:8000/api/forgotAdminPassword',
             data: ''
         }).then(function(resp) {
             console.log(resp);
