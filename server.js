@@ -131,7 +131,7 @@ app.post('/api/sendMail', function(req, res) {
         html: "<p><strong>Name: </strong>" + req.body.name + "</p><p><strong>Email: </strong>" + req.body.email + "</p><p><strong>Phone: </strong>" + req.body.phone + "</p><p><strong>Message: </strong>" + req.body.message + "</p>",
         createTextFromHtml: true,
         from: "<eazybiz.biz@gmail.com>",
-        to: "<irshadgouri92@gmail.com>",
+        to: "<eazybiz.biz@gmail.com>",
         subject: "Message from boredrill website"
       };
       transport.sendMail(msg, function (err) {
