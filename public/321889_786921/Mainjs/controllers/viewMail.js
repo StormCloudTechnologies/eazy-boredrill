@@ -32,17 +32,17 @@ angular.module('mailModule', ['APIModule'])
     };
     return interceptor;
 })
-.controller('MailCtrl', function($scope, APIService) {
+.controller('ViewMailCtrl', function($scope, APIService) {
    $scope.compose = function(){
       window.location = "compose.html";
    }
-   $scope.ViewMail = function(mail){
-     localStorage.setItem("viewMail",JSON.stringify(mail));
-      window.location = "viewmail.html";
+   if(localStorage.getItem("viewMail")) {
+      $scope.mail = JSON.parse(localStorage.getItem("viewMail"));
    }
-   $scope.getMails = function() {
-      APIService.getData({
-          req_url: url_prifix + 'api/getMails'
+   $scope.replyMail = function(message) {
+      APIService.setData({
+          req_url: url_prifix + 'api/sendCustomMail',
+          data : {to: $scope.mail.email, subject: 'Boredrill Reply' ,message: "</p>" + message + "</p>"}
       }).then(function(resp) {
           if(resp.data.length > 0) {
               $scope.mails = resp.data;
@@ -54,5 +54,4 @@ angular.module('mailModule', ['APIModule'])
             // This block execute in case of error.
       });
    }
-   $scope.getMails();
 });

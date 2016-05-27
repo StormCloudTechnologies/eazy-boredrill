@@ -50,6 +50,18 @@ var LatestJobs = mongoose.model('LatestJobs', latestJobsSchema);
 
 module.exports = LatestJobs;
 
+var mailSchema = new Schema({
+    name: String,
+    email: String,
+    phone: Number,
+    message: String,
+    date: { type: Date, default: Date.now }
+});
+
+var Mails = mongoose.model('Mails', mailSchema);
+
+module.exports = Mails;
+
 // listen (start app with node server.js) ======================================
 app.listen(8000);
 console.log("App listening on port 8000");
@@ -124,9 +136,14 @@ app.post('/api/adminLogin', function(req, res) {
     }
 });
 
-// post ad
+// send mail
 app.post('/api/sendMail', function(req, res) {
         // send mail
+      Mails.create(req.body, function(err, mails) {
+          if (err)
+              res.send(err);
+        console.log("===mails====",mails);
+      });
       var msg = {
         html: "<p><strong>Name: </strong>" + req.body.name + "</p><p><strong>Email: </strong>" + req.body.email + "</p><p><strong>Phone: </strong>" + req.body.phone + "</p><p><strong>Message: </strong>" + req.body.message + "</p>",
         createTextFromHtml: true,
@@ -141,6 +158,25 @@ app.post('/api/sendMail', function(req, res) {
         return res.json({"message":"Message sent successfully."});
       });
 });
+
+// send custom mail
+app.post('/api/sendCustomMail', function(req, res) {
+      var msg = {
+        html: req.body.message,
+        createTextFromHtml: true,
+        from: "<eazybiz.biz@gmail.com>",
+        to: req.body.to,
+        subject: req.body.subject
+      };
+      transport.sendMail(msg, function (err) {
+        if (err) {
+          return;
+        }
+        return res.json({"message":"Message sent successfully."});
+      });
+});
+
+
 
 /** API for sending mail to admin */
 app.post('/api/forgotAdminPassword', function(req, res) {
@@ -161,6 +197,77 @@ app.post('/api/forgotAdminPassword', function(req, res) {
     });
 
 });
+
+// Mail API
+
+// add project
+app.post('/api/addProject', function(req, res) {
+    var delete_images = req.body.delete_images;
+
+    Projects.create(req.body.projectData, function(err, projects) {
+        if (err)
+            res.send(err);
+
+        // get and return all the todos after you create another
+        if(projects) {
+            return res.json({"message":"Project has been added successfully."});
+        }
+    });
+    if(delete_images.length > 0) {
+        delete_images.forEach(function(file_path) {
+          fs.unlink(file_path);
+        });
+    }
+
+});
+
+// update project
+app.put('/api/updateProject', function(req, res) {
+    var delete_images = req.body.delete_images;
+    Projects.findByIdAndUpdate(req.body.projectData._id, req.body.projectData
+    , function(err, projects) {
+        if (err)
+            res.send(err);
+        if(delete_images.length > 0) {
+            delete_images.forEach(function(file_path) {
+              fs.unlink(file_path);
+            });
+        }
+        return res.json({"message":"Updated successfully."});
+    });
+});
+
+// delete project
+app.delete('/api/removeProject', function(req, res) {
+    var delete_images = req.body.images;
+    Projects.remove({
+        _id : req.body._id
+    }, function(err, project) {
+        if (err)
+            res.send(err);
+        if(delete_images.length > 0) {
+            delete_images.forEach(function(file_path) {
+              fs.unlink(file_path);
+            });
+        }
+        Projects.find(function(err, projects) {
+            if (err)
+                res.send(err)
+            res.json(projects); // return all advertisement in JSON format
+        });
+    });
+});
+
+// get mails
+app.get('/api/getMails', function(req, res) {
+    Mails.find({}, function(err, mails) {
+        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+        if (err)
+            res.send(err)
+        res.json(mails); // return all advertisement in JSON format
+    });
+});
+
 
 // Projects API
 

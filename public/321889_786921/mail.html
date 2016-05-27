@@ -53,7 +53,7 @@
     
 </head>
 
- <body class="l-mail-app" ng-app="starter" ng-controller="MailCtrl">
+ <body class="l-mail-app" ng-app="mailModule" ng-controller="MailCtrl">
 
     <div ng-show='loadCompetition'>
      <div class="loading_div">
@@ -125,7 +125,7 @@
           </nav>
       </aside>
       <!--Main wrapper-->
-      <section class="l-container">
+      <section class="l-container" ng-show="mails.length > 0">
         <!--HEADER-->
         <header class="l-header l-header-1 t-header-1">
           <div class="navbar navbar-ason">
@@ -196,118 +196,16 @@
               <div data-ason-type="scrollbar" class="mail-list ason-widget">
                 <table class="table table-hover">
                   <tbody>
-                    <tr class="mail-row unread">
+                    <tr class="mail-row unread" ng-repeat="mail in mails">
                       <td class="col-input">
                         <label class="cb-checkbox">
-                          <input name="cb" type="checkbox" value="">
+                          <input name="cb" ng-model="mail.check" type="checkbox" value="">
                         </label>
                       </td>
-                      <td class="col-sender"><img src="img/mail/profile_1.jpg" class="mail-profile"><a ng-click="ViewMail()" class="starred"><i class="fa fa-star"></i></a><a ng-click="ViewMail()" class="sender">Envato Market News</a></td>
-                      <td class="col-subject"><a ng-click="ViewMail()" class="subject">
-                          <div class="label label-bg-color-1">Work</div>This week's featured items: Proteus bootstrap admin webapp</a></td>
-                      <td class="col-attachment"><i class="fa fa-paperclip"></i></td>
-                      <td class="col-time">9:28</td>
-                    </tr>
-                    <tr class="mail-row unread">
-                      <td class="col-input">
-                        <label class="cb-checkbox">
-                          <input name="cb" type="checkbox" value="">
-                        </label>
-                      </td>
-                      <td class="col-sender"><img src="img/mail/profile_1.jpg" class="mail-profile"><a ng-click="ViewMail()" class="starred"><i class="fa fa-star-o"></i></a><a ng-click="ViewMail()" class="sender">John Doe</a></td>
-                      <td class="col-subject"><a ng-click="ViewMail()" class="subject">Meeting rescheduled due to flight delay</a></td>
-                      <td class="col-attachment"><i class="fa fa-paperclip"></i></td>
-                      <td class="col-time">14:45</td>
-                    </tr>
-                    <tr class="mail-row">
-                      <td class="col-input">
-                        <label class="cb-checkbox">
-                          <input name="cb" type="checkbox" value="">
-                        </label>
-                      </td>
-                      <td class="col-sender"><img src="img/mail/profile_1.jpg" class="mail-profile"><a ng-click="ViewMail()" class="starred"><i class="fa fa-star"></i></a><a ng-click="ViewMail()" class="sender">Peter Walker</a></td>
-                      <td class="col-subject"><a ng-click="ViewMail()" class="subject">
-                          <div class="label label-bg-color-3">Social</div>Tomorrow is movie night, don't forget it</a></td>
-                      <td class="col-attachment">&nbsp;</td>
-                      <td class="col-time">Today</td>
-                    </tr>
-                    <tr class="mail-row">
-                      <td class="col-input">
-                        <label class="cb-checkbox">
-                          <input name="cb" type="checkbox" value="">
-                        </label>
-                      </td>
-                      <td class="col-sender"><img src="img/mail/profile_1.jpg" class="mail-profile"><a ng-click="ViewMail()" class="starred"><i class="fa fa-star-o"></i></a><a ng-click="ViewMail()" class="sender">Amazon.com</a></td>
-                      <td class="col-subject"><a ng-click="ViewMail()" class="subject">Check out our new top selling products</a></td>
-                      <td class="col-attachment">&nbsp;</td>
-                      <td class="col-time">Yesterday</td>
-                    </tr>
-                    <tr class="mail-row">
-                      <td class="col-input">
-                        <label class="cb-checkbox">
-                          <input name="cb" type="checkbox" value="">
-                        </label>
-                      </td>
-                      <td class="col-sender"><img src="img/mail/profile_1.jpg" class="mail-profile"><a ng-click="ViewMail()" class="starred"><i class="fa fa-star-o"></i></a><a ng-click="ViewMail()" class="sender">Twitter</a></td>
-                      <td class="col-subject"><a ng-click="ViewMail()" class="subject">Envato shared a photo on Twitter!</a></td>
-                      <td class="col-attachment"><i class="fa fa-paperclip"></i></td>
-                      <td class="col-time">Nov 12</td>
-                    </tr>
-                    <tr class="mail-row">
-                      <td class="col-input">
-                        <label class="cb-checkbox">
-                          <input name="cb" type="checkbox" value="">
-                        </label>
-                      </td>
-                      <td class="col-sender"><img src="img/mail/profile_1.jpg" class="mail-profile"><a ng-click="ViewMail()" class="starred"><i class="fa fa-star-o"></i></a><a ng-click="ViewMail()" class="sender">info@loxdesign.net</a></td>
-                      <td class="col-subject"><a ng-click="ViewMail()" class="subject">Check out our brand new product, you will love it !!!</a></td>
-                      <td class="col-attachment">&nbsp;</td>
-                      <td class="col-time">Oct 23</td>
-                    </tr>
-                    <tr class="mail-row">
-                      <td class="col-input">
-                        <label class="cb-checkbox">
-                          <input name="cb" type="checkbox" value="">
-                        </label>
-                      </td>
-                      <td class="col-sender"><img src="img/mail/profile_1.jpg" class="mail-profile"><a ng-click="ViewMail()" class="starred"><i class="fa fa-star-o"></i></a><a ng-click="ViewMail()" class="sender">Facebook</a></td>
-                      <td class="col-subject"><a ng-click="ViewMail()" class="subject">John, you have 7 new notifications, 6 pokes and 1 event invite</a></td>
-                      <td class="col-attachment"><i class="fa fa-paperclip"></i></td>
-                      <td class="col-time">Jul 2</td>
-                    </tr>
-                    <tr class="mail-row">
-                      <td class="col-input">
-                        <label class="cb-checkbox">
-                          <input name="cb" type="checkbox" value="">
-                        </label>
-                      </td>
-                      <td class="col-sender"><img src="img/mail/profile_1.jpg" class="mail-profile"><a ng-click="ViewMail()" class="starred"><i class="fa fa-star-o"></i></a><a ng-click="ViewMail()" class="sender">William Clark</a></td>
-                      <td class="col-subject"><a ng-click="ViewMail()" class="subject">
-                          <div class="label label-bg-color-2">Family</div>Happy valentines day darling</a></td>
-                      <td class="col-attachment">&nbsp;</td>
-                      <td class="col-time">Feb 14</td>
-                    </tr>
-                    <tr class="mail-row">
-                      <td class="col-input">
-                        <label class="cb-checkbox">
-                          <input name="cb" type="checkbox" value="">
-                        </label>
-                      </td>
-                      <td class="col-sender"><img src="img/mail/profile_1.jpg" class="mail-profile"><a ng-click="ViewMail()" class="starred"><i class="fa fa-star-o"></i></a><a ng-click="ViewMail()" class="sender">John Wood</a></td>
-                      <td class="col-subject"><a ng-click="ViewMail()" class="subject">Congratulation for your new promotion</a></td>
-                      <td class="col-attachment">&nbsp;</td>
-                      <td class="col-time">Jan 5</td>
-                    </tr>
-                    <tr class="mail-row">
-                      <td class="col-input">
-                        <label class="cb-checkbox">
-                          <input name="cb" type="checkbox" value="">
-                        </label>
-                      </td>
-                      <td class="col-sender"><img src="img/mail/profile_1.jpg" class="mail-profile"><a ng-click="ViewMail()" class="starred"><i class="fa fa-star-o"></i></a><a ng-click="ViewMail()" class="sender">Kelly Hudson</a></td>
-                      <td class="col-subject"><a ng-click="ViewMail()" class="subject">We wish you a happy new year my friend</a></td>
-                      <td class="col-attachment"><i class="fa fa-paperclip"></i></td>
-                      <td class="col-time">12/31/13</td>
+                      <td class="col-sender"><a ng-click="ViewMail(mail)" class="sender">{{ mail.name }} </a></td>
+                      <td class="col-subject"><a ng-click="ViewMail(mail)" class="subject">
+                          <div class="label label-bg-color-1">Message</div>{{ mail.message }}</a></td>
+                      <td class="col-time">{{ mail.date | date:"dd/MM/yyyy 'at' h:mm a" }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -318,7 +216,7 @@
           
         </div>
       </section>
-     
+      <h1 ng-hide="mails.length > 0" class="text-center">No Message</h1>
     </section>
     <!-- ===== JS =====-->
     <!-- jQuery-->

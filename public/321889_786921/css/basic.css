@@ -20,3 +20,6 @@ position: absolute;
    left: 45% !important;
    z-index: 9999999;
 }
+.cursor-pointer{
+    cursor: pointer;
+   }
