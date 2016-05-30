@@ -49,7 +49,7 @@ angular.module('mailModule', ['APIModule', 'ngDialog'])
           if(resp.data.message="Message sent successfully.") {
               // $scope.mails = resp.data;
               ngDialog.open({ template: 'sendmailsucess.html', className: 'ngdialog-theme-default' });
-              window.location = "viewMail.html";
+              window.location = "mail.html";
           }
           else {
               $scope.mails = [];
