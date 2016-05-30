@@ -41,8 +41,9 @@ angular.module('mailModule', ['APIModule'])
       window.location = "viewmail.html";
    }
    $scope.getMails = function() {
-      APIService.getData({
-          req_url: url_prifix + 'api/getMails'
+      APIService.setData({
+          req_url: url_prifix + 'api/getMails',
+          data: {status: 'INBOX'}
       }).then(function(resp) {
           if(resp.data.length > 0) {
               $scope.mails = resp.data;

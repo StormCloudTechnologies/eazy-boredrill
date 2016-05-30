@@ -54,6 +54,8 @@ var mailSchema = new Schema({
     name: String,
     email: String,
     phone: Number,
+    subject: String,
+    status: String,
     message: String,
     date: { type: Date, default: Date.now }
 });
@@ -139,10 +141,11 @@ app.post('/api/adminLogin', function(req, res) {
 // send mail
 app.post('/api/sendMail', function(req, res) {
         // send mail
-      Mails.create(req.body, function(err, mails) {
+      var mail = req.body;
+      mail.status = 'INBOX';
+      Mails.create(mail, function(err, mails) {
           if (err)
               res.send(err);
-        console.log("===mails====",mails);
       });
       var msg = {
         html: "<p><strong>Name: </strong>" + req.body.name + "</p><p><strong>Email: </strong>" + req.body.email + "</p><p><strong>Phone: </strong>" + req.body.phone + "</p><p><strong>Message: </strong>" + req.body.message + "</p>",
@@ -161,6 +164,11 @@ app.post('/api/sendMail', function(req, res) {
 
 // send custom mail
 app.post('/api/sendCustomMail', function(req, res) {
+      var mail = {name: 'EazyBiz',email: req.body.to, status: 'SENT', message: req.body.message, subject: req.body.subject};
+      Mails.create(mail, function(err, mails) {
+          if (err)
+              res.send(err);
+      });
       var msg = {
         html: req.body.message,
         createTextFromHtml: true,
@@ -259,8 +267,8 @@ app.delete('/api/removeProject', function(req, res) {
 });
 
 // get mails
-app.get('/api/getMails', function(req, res) {
-    Mails.find({}, function(err, mails) {
+app.post('/api/getMails', function(req, res) {
+    Mails.find(req.body, function(err, mails) {
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err)
             res.send(err)
