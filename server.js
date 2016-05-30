@@ -184,6 +184,16 @@ app.post('/api/sendCustomMail', function(req, res) {
       });
 });
 
+// update mail status
+app.put('/api/updateMail', function(req, res) {
+    Mails.findByIdAndUpdate(req.body._id, req.body
+    , function(err, mail) {
+        if (err)
+            res.send(err);
+        return res.json({"message":"Updated successfully."});
+    });
+});
+
 // delete mail
 app.delete('/api/deleteMail', function(req, res) {
     Mails.remove({
