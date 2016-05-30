@@ -54,6 +54,7 @@ var mailSchema = new Schema({
     name: String,
     email: String,
     phone: Number,
+    images: [String],
     subject: String,
     status: String,
     message: String,
@@ -164,7 +165,7 @@ app.post('/api/sendMail', function(req, res) {
 
 // send custom mail
 app.post('/api/sendCustomMail', function(req, res) {
-      var mail = {name: 'EazyBiz',email: req.body.to, status: 'SENT', message: req.body.message, subject: req.body.subject};
+      var mail = {name: 'EazyBiz',email: req.body.to, status: 'SENT', message: req.body.message, subject: req.body.subject, images : req.body.images};
       Mails.create(mail, function(err, mails) {
           if (err)
               res.send(err);
@@ -174,7 +175,8 @@ app.post('/api/sendCustomMail', function(req, res) {
         createTextFromHtml: true,
         from: "<eazybiz.biz@gmail.com>",
         to: req.body.to,
-        subject: req.body.subject
+        subject: req.body.subject,
+        attachments: req.body.images
       };
       transport.sendMail(msg, function (err) {
         if (err) {
