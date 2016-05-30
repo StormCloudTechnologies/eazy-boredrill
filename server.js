@@ -165,6 +165,12 @@ app.post('/api/sendMail', function(req, res) {
 
 // send custom mail
 app.post('/api/sendCustomMail', function(req, res) {
+      var attachment = [];
+      if(req.body.images) {
+          var attachmentImages = req.body.images;
+          for(var i = 0;i<attachmentImages.length;i++)
+              attachment.push({path: attachmentImages[i]});
+      }
       var mail = {name: 'EazyBiz',email: req.body.to, status: 'SENT', message: req.body.message, subject: req.body.subject, images : req.body.images};
       Mails.create(mail, function(err, mails) {
           if (err)
@@ -176,7 +182,7 @@ app.post('/api/sendCustomMail', function(req, res) {
         from: "<eazybiz.biz@gmail.com>",
         to: req.body.to,
         subject: req.body.subject,
-        attachments: req.body.images
+        attachments: attachment
       };
       transport.sendMail(msg, function (err) {
         if (err) {
