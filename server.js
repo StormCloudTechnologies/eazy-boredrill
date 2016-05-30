@@ -184,6 +184,20 @@ app.post('/api/sendCustomMail', function(req, res) {
       });
 });
 
+// delete mail
+app.delete('/api/deleteMail', function(req, res) {
+    Mails.remove({
+        _id : req.body._id
+    }, function(err, mail) {
+        if (err)
+            res.send(err);
+        Mails.find(function(err, mails) {
+            if (err)
+                res.send(err)
+            res.json(mails); // return all advertisement in JSON format
+        });
+    });
+});
 
 
 /** API for sending mail to admin */
