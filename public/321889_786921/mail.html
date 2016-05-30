@@ -96,8 +96,8 @@
           <!--MAIL NAVIGATION MENU-->
           <nav class="navigation">
             <ul data-ason-type="menu" class="ason-widget">
-              <li><a href="mail.html"><i class="icon fa fa-inbox"></i><span class="title">Inbox</span><span class="info last">3</span></a>
-              </li>
+              <li><a href="mail.html"><i class="icon fa fa-inbox"></i><span class="title">Inbox
+              </span></a> </li>
              
               <li><a href="sendmail.html"><i class="icon fa fa-send"></i><span class="title">Sent</span></a>
               </li>
@@ -140,7 +140,7 @@
                     <!-- Search Widget-->
                     <div class="widget-search search-in-header is-search-right t-search-1">
                       <form role="form">
-                        <input type="text" placeholder="Search..." class="form-control">
+                        <input type="text" placeholder="Search..." ng-model="searchKey" class="form-control">
                         <button type="submit" class="btn"><i class="fa fa-search"></i></button>
                       </form>
                     </div>
@@ -196,16 +196,16 @@
               <div data-ason-type="scrollbar" class="mail-list ason-widget">
                 <table class="table table-hover">
                   <tbody>
-                    <tr class="mail-row unread" ng-repeat="mail in mails">
+                    <tr class="mail-row unread" ng-repeat="mail in mails | filter : searchKey" >
                       <td class="col-input">
                         <label class="cb-checkbox">
-                          <input name="cb" ng-model="mail.check" type="checkbox" value="">
+                          <input name="mail.check" ng-model="mail.check" type="checkbox">
                         </label>
                       </td>
-                      <td class="col-sender"><a ng-click="ViewMail(mail)" class="sender">{{ mail.name }} </a></td>
-                      <td class="col-subject"><a ng-click="ViewMail(mail)" class="subject">
+                      <td class="col-sender" ng-click="ViewMail(mail)"><a ng-click="ViewMail(mail)" class="sender">{{ mail.name }} </a></td>
+                      <td class="col-subject ng-click="ViewMail(mail)"" ng-click="ViewMail(mail)"><a ng-click="ViewMail(mail)" class="subject">
                           <div class="label label-bg-color-1">Message</div>{{ mail.message }}</a></td>
-                      <td class="col-time">{{ mail.date | date:"dd/MM/yyyy 'at' h:mm a" }}</td>
+                      <td class="col-time" ng-click="ViewMail(mail)">{{ mail.date | date:"dd/MM/yyyy 'at' h:mm a" }}</td>
                     </tr>
                   </tbody>
                 </table>

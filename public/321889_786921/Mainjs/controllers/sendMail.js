@@ -32,10 +32,8 @@ angular.module('mailModule', ['APIModule'])
     };
     return interceptor;
 })
-.controller('MailCtrl', function($scope, APIService) {
-  $scope.mail = {};
-  $scope.mail.check =true;
-
+.controller('SendMailCtrl', function($scope, APIService) {
+   
    $scope.compose = function(){
       window.location = "compose.html";
    }

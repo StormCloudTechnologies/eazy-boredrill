@@ -1,5 +1,5 @@
 var url_prifix = 'http://localhost:8000/';
-angular.module('mailModule', ['APIModule'])
+angular.module('mailModule', ['APIModule', 'ngDialog'])
 .factory('genericInterceptor', function($q, $rootScope) {
     var interceptor = {
         'request': function(config) {
@@ -32,7 +32,7 @@ angular.module('mailModule', ['APIModule'])
     };
     return interceptor;
 })
-.controller('ViewMailCtrl', function($scope, APIService) {
+.controller('ViewMailCtrl', function($scope, APIService, ngDialog) {
    $scope.compose = function(){
       window.location = "compose.html";
    }
@@ -44,8 +44,11 @@ angular.module('mailModule', ['APIModule'])
           req_url: url_prifix + 'api/sendCustomMail',
           data : {to: $scope.mail.email, subject: 'Boredrill Reply' ,message: "</p>" + message + "</p>"}
       }).then(function(resp) {
-          if(resp.data.length > 0) {
-              $scope.mails = resp.data;
+          console.log(resp);
+          if(resp.data.message="Message sent successfully.") {
+              // $scope.mails = resp.data;
+              ngDialog.open({ template: 'sendmailsucess.html', className: 'ngdialog-theme-default' });
+              window.location = "viewMail.html";
           }
           else {
               $scope.mails = [];
