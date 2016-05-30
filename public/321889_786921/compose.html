@@ -3,7 +3,7 @@
   
 <!-- Mirrored from themes.loxdesign.net/proteus/themes/admin/bootstrap/theme/app-mail.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 May 2016 13:09:03 GMT -->
 <head>
-    <title>Proteus - Apps - Mail</title>
+    <title>Eazy BoreDrill</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,13 +15,11 @@
     <link rel="stylesheet" href="css/basic.css">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/theme.css" class="style-theme">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     
     <!-- Specific-->
     <link rel="stylesheet" href="css/addons/theme/summernote.css" class="style-theme-addon"/>
-    <!--[if lt IE 9]>
-    <script src="js/basic/respond.min.js"></script>
-    <script src="js/basic/html5shiv.min.js"></script>
-    <![endif]-->
+  
   </head>
   <body class="l-mail-app" ng-app="starter" ng-controller="ComposeCtrl">
    <!--  <div ng-show='loadCompetition'>
@@ -37,14 +35,7 @@
           <div class="widget-profile-2 profile-2-in-side t-profile-2-1">
             <div class="profile-2-img"><a><img src="img/profile/profile.jpg" style="width: 60%;">
                 <div class="profile-2-status" style="right: 68px;">
-                  <!-- <div id="status" tabindex="1" class="status"><span><i class="fa fa-circle label-color-1"></i></span>
-                    <ul class="dropdown">
-                      <li title="Online" class="tt-mail-right"><i class="fa fa-circle status-color-1"></i></li>
-                      <li title="Away" class="tt-mail-right"><i class="fa fa-circle status-color-2"></i></li>
-                      <li title="Busy" class="tt-mail-right"><i class="fa fa-circle status-color-3"></i></li>
-                      <li title="Invisible" class="tt-mail-right"><i class="fa fa-circle status-color-4"></i></li>
-                    </ul>
-                  </div> -->
+                  
                 </div></a></div>
             <ul class="profile-2-info">
               <li class="text-center">
@@ -60,7 +51,7 @@
           <!--MAIL NAVIGATION MENU-->
           <nav class="navigation">
             <ul data-ason-type="menu" class="ason-widget">
-              <li><a href="mail.html"><i class="icon fa fa-inbox"></i><span class="title">Inbox</span><span class="info last">3</span></a>
+              <li><a href="mail.html"><i class="icon fa fa-inbox"></i><span class="title">Inbox</a>
               </li>
              
               <li><a href="sendmail.html"><i class="icon fa fa-send"></i><span class="title">Sent</span></a>
@@ -96,7 +87,7 @@
             <!-- New message header-->
             <!-- New message body-->
             <div class="new-message-body">
-              <form role="form">
+              <form>
                 <div class="input-group new-message-to"><span class="input-group-addon">To</span>
                   <input id="inputTo" type="text" class="form-control"><span class="input-group-btn">
                 </div>
@@ -104,21 +95,28 @@
                   <input id="inputSubject" type="text" class="form-control">
                 </div>
                 <div class="form-group message-content">
-                  <div id="inputMessage" ng-model="compose.editerdata" ng-change="editerdata()">Your Message</div>
+                  <wysiwyg textarea-id="question" textarea-class="form-control"  textarea-height="300px" textarea-name="textareaQuestion" textarea-required ng-model="inputMessage" enable-bootstrap-title="true" textarea-menu="Data.customMenu"></wysiwyg>
                 </div>
+                
                 <div class="input-group"><span class="input-group-btn"><span class="btn btn-mail btn-file">Browse…
-                      <input id="exampleInputFile" type="file" multiple=""></span></span>
+                   <input type="file" ngf-select="uploadPhoto($files)" accept="image/*" multiple></span></span>
                   <input type="text" readonly="" placeholder="Upload Files" class="form-control input-upload">
-                </div><span class="help-block">You can select one or more files at a time</span>
+                </div>
+                 <div class="row" ng-if="compose.images!=''">
+                      <div ng-repeat="images in compose.images" style="margin: 2% 0% 0 1%;float: left;background-color: #fafafa;width:30%;">
+                        <span>
+                          <img width="80%" height="135px" src="../{{images}}" class="thumb">
+                          <i ng-click="removeChoice($index)" style="font-size: 27px;cursor:pointer;margin-top: 44px;margin-right: 13px;;color:#F00;" class="close pull-right fa fa-trash-o danger"></i>
+                        </span>
+                      </div>
+                  </div>
               </form>
             </div>
             <!-- New message footer-->
             <div class="new-message-footer">
               <!-- Send-->
-              <button type="button" class="btn btn-mail-send new-message-send">Send</button>
-              <!-- Draft-->
-              <button type="button" class="btn btn-mail new-message-draft">Draft</button>
-              <!-- Discard-->
+              <button type="button" ng-click="editerdata()" class="btn btn-mail-send new-message-send">Send</button>
+             <!-- Discard-->
               <button type="button" class="btn btn-mail new-message-discard"><i class="fa fa-trash"></i></button>
             </div>
           </div>
@@ -134,19 +132,7 @@
     <script src="js/shared/jquery.asonWidget.js"></script>
     <script src="js/plugins/plugins.js"></script>
     <script src="js/general.js"></script>
-    <!-- Semi general-->
-    <script type="text/javascript">
-      var paceSemiGeneral = { restartOnPushState: false };
-      if (typeof paceSpecific != 'undefined'){
-        var paceOptions = $.extend( {}, paceSemiGeneral, paceSpecific );
-        paceOptions = paceOptions;
-      }else{
-        paceOptions = paceSemiGeneral;
-      }
-      
-    </script>
-    <script src="js/plugins/pageprogressbar/pace.min.js"></script>
-    <!-- Specific-->
+   
     <script src="js/shared/jquery.cookie.min.js"></script>
     <script src="js/plugins/accordions/jquery.collapsible.min.js"></script>
     <script src="js/plugins/forms/elements/jquery.bootstrap-touchspin.min.js"></script>
@@ -154,10 +140,19 @@
     <script src="js/plugins/forms/upload/jquery.summernote.min.js"></script>
     <script src="js/plugins/forms/elements/jquery.switchery.min.js"></script>
     <script src="js/plugins/tooltip/jquery.tooltipster.min.js"></script>
-    <script src="js/calls/app.mail.js"></script>
+    <!-- <script src="js/calls/app.mail.js"></script> -->
     <script src="js/calls/part.header.1.js"></script>
     <script src="js/calls/part.theme.setting.js"></script>
     
+    <script src="Mainjs/angular.min.js"></script>
+    <script src="Mainjs/ui-bootstrap-tpls-1.3.2.min.js"></script>
+    <script src="Mainjs/ng-file-upload-shim.min.js"></script>
+    <script src="Mainjs/ng-file-upload.min.js"></script>
+    <script src="Mainjs/services.js"></script>
+    <script src="Mainjs/controllers/compose.js"></script>
+    <script type="text/javascript" src="MainJs/textAngular.min.js"></script>
+    <script type="text/javascript" src="MainJs/angular-wysiwyg.js"></script>
+    <script type="text/javascript" src="MainJs/bootstrap-colorpicker-module.js"></script>
   </body>
 
 <!-- Mirrored from themes.loxdesign.net/proteus/themes/admin/bootstrap/theme/app-mail.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 May 2016 13:09:04 GMT -->
