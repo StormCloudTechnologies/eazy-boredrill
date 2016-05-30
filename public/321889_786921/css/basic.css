@@ -23,3 +23,18 @@ position: absolute;
 .cursor-pointer{
     cursor: pointer;
  }
+.checkboxinput{
+	width: 35px;
+    height: 20px;
+    margin: 6px 4px;
+    background: #fff;
+    border-radius: 0px !important;
+}
+input[type="checkbox"]:checked + label {
+	display:inline-block;
+ 	width: 35px;
+    height: 20px;
+    margin: 6px 4px;
+    background: #fff;
+    border-radius: 0px !important;
+}

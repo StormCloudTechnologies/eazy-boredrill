@@ -58,30 +58,30 @@ angular.module('mailModule', ['APIModule'])
       });
    }
    $scope.getMails();
-   $scope.mail = {};
-   $scope.mail.checked = "";
-   console.log($scope.mail.checked);
+   
    $scope.deleteAllMsg = function(){
+      angular.forEach($scope.mails, function (item) {
+            if(item.checked) {
+              console.log("=====item====",item._id);
+              item.status = 'TRASH';
+              APIService.updateData({
+                  req_url: url_prifix + 'api/updateMail',
+                  data: item
+              }).then(function(resp) {
+                  console.log(resp);
+                  if(resp.data.message="Updated successfully.") {
+                      // $scope.mails = resp.data;
+                      // ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
+                      window.location = "mail.html";
+                  }
+                  else {
+                      $scope.mails = [];
+                  }
+                 },function(resp) {
+                    // This block execute in case of error.
+              });
+            }            
+        })
         
-        var value = $scope.mail.checked;
-        console.log(value);
-        return false;
-        mail.status = 'TRASH';
-        APIService.updateData({
-            req_url: url_prifix + 'api/updateMail',
-            data: mail
-        }).then(function(resp) {
-            console.log(resp);
-            if(resp.data.message="Updated successfully.") {
-                // $scope.mails = resp.data;
-                // ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
-                window.location = "mail.html";
-            }
-            else {
-                $scope.mails = [];
-            }
-           },function(resp) {
-              // This block execute in case of error.
-        });
      }
 });

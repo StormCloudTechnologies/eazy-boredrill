@@ -195,8 +195,9 @@
                   <tbody>
                     <tr class="mail-row unread" ng-repeat="mail in mails | filter : searchKey">
                       <td class="col-input">
-                        <label class="cb-checkbox">
-                          <input name="cb" ng-model="mail.check" type="checkbox" value="">
+                        <!-- <label class="cb-checkbox"> -->
+                        <label>
+                          <input id="{{mail._id}}" class="checkboxinput" type="checkbox" value="{{mail._id}}" ng-model="mail.checked"/>
                         </label>
                       </td>
                       <td class="col-sender" ng-click="ViewMail(mail,'sent')"><a  class="sender">{{ mail.name }} </a></td>

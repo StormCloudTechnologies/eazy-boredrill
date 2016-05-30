@@ -198,9 +198,8 @@
                   <tbody>
                     <tr class="mail-row unread" ng-repeat="mail in mails | filter : searchKey" >
                       <td class="col-input">
-                        <label style="padding: 3px 0;color: inherit;cursor: pointer;overflow: hidden;font-size: inherit;font-weight: 400;display: inline-block;  line-height: 18px;margin: 0;">
-                          <!-- <input type="checkbox" checklist-model="user.mail" checklist-value="role"> -->
-                      <input id="{{mail._id}}" type="checkbox" value="{{mail._id}}" ng-model="mail.checked" />
+                        <label >
+                           <input id="{{mail._id}}" class="checkboxinput" type="checkbox" value="{{mail._id}}" ng-model="mail.checked"/>
  
                         </label>
                       </td>

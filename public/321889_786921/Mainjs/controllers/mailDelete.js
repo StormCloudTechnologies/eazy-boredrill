@@ -58,4 +58,30 @@ angular.module('mailModule', ['APIModule'])
       });
    }
    $scope.gettrashMails();
+
+    $scope.deleteAllMsg = function(){
+      angular.forEach($scope.mails, function (item) {
+            if(item.checked) {
+              console.log("=====item====",item._id);
+              item.status = 'TRASH';
+              APIService.updateData({
+                  req_url: url_prifix + 'api/deleteMail',
+                  data: item
+              }).then(function(resp) {
+                  console.log(resp);
+                  if(resp.data.message="Updated successfully.") {
+                      // $scope.mails = resp.data;
+                      // ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
+                      window.location = "mail.html";
+                  }
+                  else {
+                      $scope.mails = [];
+                  }
+                 },function(resp) {
+                    // This block execute in case of error.
+              });
+            }            
+        })
+        
+     }
 });
