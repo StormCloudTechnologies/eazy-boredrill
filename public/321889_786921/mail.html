@@ -96,8 +96,8 @@
           <!--MAIL NAVIGATION MENU-->
           <nav class="navigation">
             <ul data-ason-type="menu" class="ason-widget">
-              <li><a href="mail.html"><i class="icon fa fa-inbox"></i><span class="title">Inbox</span><span class="info last">3</span></a>
-              </li>
+              <li><a href="mail.html"><i class="icon fa fa-inbox"></i><span class="title">Inbox
+              </span></a> </li>
              
               <li><a href="sendmail.html"><i class="icon fa fa-send"></i><span class="title">Sent</span></a>
               </li>
@@ -115,7 +115,7 @@
               </li>
               <li><a href="project.html" style="font-size: 16px !important;font-weight: bold;"><i class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
               </li>
-              <li><a href="post.html" style="font-size: 16px !important;font-weight: bold;"><i class="icon fa fa-clipboard "></i><span class="title">Letest Post</span></a>
+              <li><a href="post.html" style="font-size: 16px !important;font-weight: bold;"><i class="icon fa fa-clipboard "></i><span class="title">Latest Post</span></a>
               </li>
 
              <li><a ng-click="logout()" style="font-size: 16px !important;font-weight: bold;"><i class="icon fa fa-power-off"></i><span class="title">Logout</span></a>
@@ -140,7 +140,7 @@
                     <!-- Search Widget-->
                     <div class="widget-search search-in-header is-search-right t-search-1">
                       <form role="form">
-                        <input type="text" placeholder="Search..." class="form-control">
+                        <input type="text" placeholder="Search..." ng-model="searchKey" class="form-control">
                         <button type="submit" class="btn"><i class="fa fa-search"></i></button>
                       </form>
                     </div>
@@ -181,7 +181,7 @@
                   <li class="divider"></li>
                 </ul>
               </div>
-              <a href="#" role="button" class="btn btn-mail"><i class="fa fa-trash-o icon-sep-right"></i>Delete</a>
+              <a ng-click="deleteAllMsg(mail.check)" role="button" class="btn btn-mail"><i class="fa fa-trash-o icon-sep-right"></i>Delete</a>
             </div>
             <!-- Labeling options-->
             <div class="btn-group mail-labels"></div>
@@ -196,16 +196,16 @@
               <div data-ason-type="scrollbar" class="mail-list ason-widget">
                 <table class="table table-hover">
                   <tbody>
-                    <tr class="mail-row unread" ng-repeat="mail in mails">
+                    <tr class="mail-row unread" ng-repeat="mail in mails | filter : searchKey" >
                       <td class="col-input">
-                        <label class="cb-checkbox">
-                          <input name="cb" ng-model="mail.check" type="checkbox" value="">
+                        <label style="padding: 3px 0;color: inherit;cursor: pointer;overflow: hidden;font-size: inherit;font-weight: 400;display: inline-block;  line-height: 18px;margin: 0;">
+                          <input type="checkbox" name="mail.check" ng-model="mail.check">
                         </label>
                       </td>
-                      <td class="col-sender"><a ng-click="ViewMail(mail)" class="sender">{{ mail.name }} </a></td>
-                      <td class="col-subject"><a ng-click="ViewMail(mail)" class="subject">
+                      <td class="col-sender" ng-click="ViewMail(mail,'inbox')"><a class="sender">{{ mail.name }} </a></td>
+                      <td class="col-subject" ng-click="ViewMail(mail,'inbox')"><a class="subject">
                           <div class="label label-bg-color-1">Message</div>{{ mail.message }}</a></td>
-                      <td class="col-time">{{ mail.date | date:"dd/MM/yyyy 'at' h:mm a" }}</td>
+                      <td class="col-time" ng-click="ViewMail(mail,'inbox')">{{ mail.date | date:"dd/MM/yyyy 'at' h:mm a" }}</td>
                     </tr>
                   </tbody>
                 </table>

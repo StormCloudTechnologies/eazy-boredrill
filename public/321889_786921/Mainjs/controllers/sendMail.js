@@ -32,21 +32,22 @@ angular.module('mailModule', ['APIModule'])
     };
     return interceptor;
 })
-.controller('MailCtrl', function($scope, APIService) {
+.controller('SendMailCtrl', function($scope, APIService) {
+   
    $scope.compose = function(){
       window.location = "compose.html";
    }
-   
-   $scope.ViewMail = function(mail,statusmail){
+   $scope.ViewMail = function(mail, statusmail){
      localStorage.setItem("statusmail",statusmail);
      localStorage.setItem("viewMail",JSON.stringify(mail));
       window.location = "viewmail.html";
    }
    $scope.getMails = function() {
-      APIService.setData({
+     APIService.setData({
           req_url: url_prifix + 'api/getMails',
-          data: {status: 'INBOX'}
+          data: {status: 'SENT'}
       }).then(function(resp) {
+          console.log(resp);
           if(resp.data.length > 0) {
               $scope.mails = resp.data;
           }
@@ -58,26 +59,4 @@ angular.module('mailModule', ['APIModule'])
       });
    }
    $scope.getMails();
-
-   $scope.deleteAllMsg = function(checked){
-      console.log(checked);
-      return false;
-        mail.status = 'TRASH';
-        APIService.updateData({
-            req_url: url_prifix + 'api/updateMail',
-            data: mail
-        }).then(function(resp) {
-            console.log(resp);
-            if(resp.data.message="Updated successfully.") {
-                // $scope.mails = resp.data;
-                ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
-                window.location = "mail.html";
-            }
-            else {
-                $scope.mails = [];
-            }
-           },function(resp) {
-              // This block execute in case of error.
-        });
-     }
 });
