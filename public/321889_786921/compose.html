@@ -89,13 +89,13 @@
             <div class="new-message-body">
               <form>
                 <div class="input-group new-message-to"><span class="input-group-addon">To</span>
-                  <input id="inputTo" type="text" class="form-control"><span class="input-group-btn">
+                  <input id="inputTo"  type="text" class="form-control" ng-model="compose.to"><span class="input-group-btn">
                 </div>
                 <div class="input-group new-message-to"><span class="input-group-addon">Subject</span>
-                  <input id="inputSubject" type="text" class="form-control">
+                  <input id="inputSubject" ng-model="compose.subject" type="text" class="form-control">
                 </div>
                 <div class="form-group message-content">
-                  <wysiwyg textarea-id="question" textarea-class="form-control"  textarea-height="300px" textarea-name="textareaQuestion" textarea-required ng-model="inputMessage" enable-bootstrap-title="true" textarea-menu="Data.customMenu"></wysiwyg>
+                  <wysiwyg textarea-id="question" textarea-class="form-control"  textarea-height="300px" textarea-name="textareaQuestion" textarea-required ng-model="compose.editerData" enable-bootstrap-title="true" textarea-menu="Data.customMenu"></wysiwyg>
                 </div>
                 
                 <div class="input-group"><span class="input-group-btn"><span class="btn btn-mail btn-file">Browse…
@@ -115,7 +115,7 @@
             <!-- New message footer-->
             <div class="new-message-footer">
               <!-- Send-->
-              <button type="button" ng-click="editerdata()" class="btn btn-mail-send new-message-send">Send</button>
+              <button type="button" ng-click="sendMail(compose.to, compose.subject, compose.images, compose.editerData)" class="btn btn-mail-send new-message-send">Send</button>
              <!-- Discard-->
               <button type="button" class="btn btn-mail new-message-discard"><i class="fa fa-trash"></i></button>
             </div>

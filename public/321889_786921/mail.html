@@ -181,7 +181,7 @@
                   <li class="divider"></li>
                 </ul>
               </div>
-              <a ng-click="deleteAllMsg(mail.check)" role="button" class="btn btn-mail"><i class="fa fa-trash-o icon-sep-right"></i>Delete</a>
+              <a ng-click="deleteAllMsg()" role="button" class="btn btn-mail"><i class="fa fa-trash-o icon-sep-right"></i>Delete</a>
             </div>
             <!-- Labeling options-->
             <div class="btn-group mail-labels"></div>
@@ -199,7 +199,9 @@
                     <tr class="mail-row unread" ng-repeat="mail in mails | filter : searchKey" >
                       <td class="col-input">
                         <label style="padding: 3px 0;color: inherit;cursor: pointer;overflow: hidden;font-size: inherit;font-weight: 400;display: inline-block;  line-height: 18px;margin: 0;">
-                          <input type="checkbox" name="mail.check" ng-model="mail.check">
+                          <!-- <input type="checkbox" checklist-model="user.mail" checklist-value="role"> -->
+                      <input id="{{mail._id}}" type="checkbox" value="{{mail._id}}" ng-model="mail.checked" />
+ 
                         </label>
                       </td>
                       <td class="col-sender" ng-click="ViewMail(mail,'inbox')"><a class="sender">{{ mail.name }} </a></td>

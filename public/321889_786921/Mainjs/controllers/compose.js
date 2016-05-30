@@ -94,5 +94,22 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'colorpi
         });
     };
 
+     $scope.sendMail = function(To, subject, images, editerdata) {
+      APIService.setData({
+          req_url: url + 'api/sendCustomMail',
+          data : {to: To, subject: subject ,message: editerdata, images : images }
+      }).then(function(resp) {
+          if(resp.data.message="Message sent successfully.") {
+              // $scope.mails = resp.data;
+              // ngDialog.open({ template: 'sendmailsucess.html', className: 'ngdialog-theme-default' });
+              window.location = "mail.html";
+          }
+          else {
+              $scope.mails = [];
+          }
+         },function(resp) {
+            // This block execute in case of error.
+      });
+   }
 
 })
