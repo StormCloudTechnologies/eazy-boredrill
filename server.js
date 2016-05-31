@@ -198,7 +198,7 @@ app.post('/api/sendCustomMail', function(req, res) {
 
 // update mail status
 app.put('/api/updateMail', function(req, res) {
-    Mails.findByIdAndUpdate(req.body._id, req.body
+    Mails.findByIdAndUpdate({_id : { $in: req.body.updateMailList }}, {status: req.body.status}
     , function(err, mail) {
         if (err)
             res.send(err);
@@ -227,7 +227,7 @@ app.post('/api/forgotAdminPassword', function(req, res) {
    var msg = {
       html: "<b>Hello!</b><p>Your password for Eazy Boredrill account <strong>eazyboredrill</strong> is <strong>eazyboredrilladmin1</strong></p>.",
       createTextFromHtml: true,
-      from:    "<eazybiz.biz@gmail.com>",
+      from: "<eazybiz.biz@gmail.com>",
       to: "<eazybiz.biz@gmail.com>",
       subject: "Eazy Boredrill Credentials"
     };
