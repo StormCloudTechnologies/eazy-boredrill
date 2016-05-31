@@ -1,4 +1,20 @@
-angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap'])
+angular.module('starter', ['ui.router', 'APIModule', 'ngFileUpload', 'ui.bootstrap'])
+
+.run(function($rootScope, $state){
+
+        $state.transitionTo('home');
+})
+
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+
+  .state('home', {
+    url: '/home',
+    templateUrl: 'partials/home.html',
+    controller: 'HomeCtrl'
+  });
+})
+
 .factory('$localstorage', ['$window', function($window) {
   return {
     set: function(key, value) {
