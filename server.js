@@ -168,9 +168,13 @@ app.post('/api/sendCustomMail', function(req, res) {
       var attachment = [];
       if(req.body.images) {
           var attachmentImages = req.body.images;
-          for(var i = 0;i<attachmentImages.length;i++)
-              attachment.push({path: attachmentImages[i]});
+          for(var i = 0;i<attachmentImages.length;i++) {
+              var imageNumber = i + 1;
+              var imageName = 'EazyBore Image ' + imageNumber;
+              attachment.push({filename: imageName,path: attachmentImages[i] });
+          }
       }
+  console.log("=====attachment==========",attachment);
       var mail = {name: 'EazyBiz',email: req.body.to, status: 'SENT', message: req.body.message, subject: req.body.subject, images : req.body.images};
       Mails.create(mail, function(err, mails) {
           if (err)
@@ -205,7 +209,7 @@ app.put('/api/updateMail', function(req, res) {
 // delete mail
 app.delete('/api/deleteMail', function(req, res) {
     Mails.remove({
-        _id : req.body._id
+        _id : { $in: req.body.deleteMailList }
     }, function(err, mail) {
         if (err)
             res.send(err);
