@@ -58,6 +58,30 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'colorpi
        $localstorage.set('islogin', "0");
 	   window.location = "index.html";
 	}
+
+  $scope.toggled = function(open) {
+    $log.log('Dropdown is now: ', open);
+  };
+  $scope.searchEmailIds = function (search_value) {
+        return APIService.setData({
+            req_url: url + 'api/getEmailIds',
+            data: {
+                email_search: search_value
+            }
+        }).then(function(resp) {
+            return resp.data;
+        },function(resp) {
+        });
+    };
+  $scope.toggleDropdown = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.status.isopen = !$scope.status.isopen;
+  };
+
+  $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
+
+
     $scope.compose = {images:[]};
     $scope.inputMessage = "";
     $scope.editerdata = function(){

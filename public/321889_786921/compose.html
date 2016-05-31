@@ -90,7 +90,7 @@
               <form name="composeform">
                  <div style="color:red;" ng-show="composeform.Cemail.$invalid && !composeform.Cemail.$pristine" class="error-message padding-right">Invalid Email</div>
                 <div class="input-group new-message-to"><span class="input-group-addon">To</span>
-                  <input id="inputTo"  type="text" class="form-control" ng-model="compose.to" name = "Cemail" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
+                  <input id="inputTo"  type="text" class="form-control" ng-model="compose.to" name = "Cemail" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" uib-typeahead="mail.email as mail.email for mail in searchEmailIds($viewValue)" typeahead-loading="loadingProducts" typeahead-no-results="noResults" required>
 
                 </div>
 
