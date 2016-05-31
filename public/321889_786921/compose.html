@@ -87,10 +87,13 @@
             <!-- New message header-->
             <!-- New message body-->
             <div class="new-message-body">
-              <form>
+              <form name="composeform">
+                 <div style="color:red;" ng-show="composeform.Cemail.$invalid && !composeform.Cemail.$pristine" class="error-message padding-right">Invalid Email</div>
                 <div class="input-group new-message-to"><span class="input-group-addon">To</span>
-                  <input id="inputTo"  type="text" class="form-control" ng-model="compose.to">
+                  <input id="inputTo"  type="text" class="form-control" ng-model="compose.to" name = "Cemail" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
+
                 </div>
+
                 <div class="input-group new-message-to"><span class="input-group-addon">Subject</span>
                   <input id="inputSubject" ng-model="compose.subject" type="text" class="form-control">
                 </div>
@@ -115,9 +118,9 @@
             <!-- New message footer-->
             <div class="new-message-footer">
               <!-- Send-->
-              <button type="button" ng-click="sendMail(compose.to, compose.subject, compose.images, compose.editerData)" class="btn btn-mail-send new-message-send">Send</button>
+              <button type="button" ng-disabled="composeform.$invalid || compose.images.length==''" ng-click="sendMail(compose.to, compose.subject, compose.images, compose.editerData)" class="btn btn-mail-send new-message-send">Send</button>
              <!-- Discard-->
-              <button type="button" class="btn btn-mail new-message-discard"><i class="fa fa-trash"></i></button>
+              <button type="reset" class="btn btn-mail new-message-discard"><i class="fa fa-trash"></i></button>
             </div>
           </div>
         </div>
