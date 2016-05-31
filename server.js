@@ -171,10 +171,9 @@ app.post('/api/sendCustomMail', function(req, res) {
           for(var i = 0;i<attachmentImages.length;i++) {
               var imageNumber = i + 1;
               var imageName = 'EazyBore Image ' + imageNumber;
-              attachment.push({filename: imageName,path: attachmentImages[i] });
+              attachment.push({path: attachmentImages[i]});
           }
       }
-  console.log("=====attachment==========",attachment);
       var mail = {name: 'EazyBiz',email: req.body.to, status: 'SENT', message: req.body.message, subject: req.body.subject, images : req.body.images};
       Mails.create(mail, function(err, mails) {
           if (err)
