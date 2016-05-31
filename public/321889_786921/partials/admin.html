@@ -1,9 +1,10 @@
+
 <div class="l-dashboard">
-  <div ng-show='loadCompetition'>
+ <!--  <div ng-show='loadCompetition'>
    <div class="loading_div">
      <img src="img/loader.gif" style="width: 60% !important;" />
    </div>
-  </div>
+  </div> -->
   <section class="l-main-container">
     <!--Left Sidebar Content-->
     <aside id="sb-left" class="l-sidebar l-sidebar-1 t-sidebar-1 l-sidebar-compact-left">
@@ -19,9 +20,9 @@
         <nav class="navigation">
           <ul data-ason-type="menu" class="ason-widget">
 
-            <li class="active"><a href="home.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-home"></i><span class="title">Home</span></a>
+            <li class="active"><a ui-sref="admin.home" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-home"></i><span class="title">Home</span></a>
             </li>
-            <li><a href="project.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
+            <li><a ui-sref="admin.projectlist" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
             </li>
             <li><a href="post.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-clipboard "></i><span class="title">Latest Post</span></a>
             </li>

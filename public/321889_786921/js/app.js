@@ -1,4 +1,4 @@
-angular.module('eazyBoredrill', ['ui.router', 'APIModule', 'ngFileUpload', 'ui.bootstrap','admin.controllers','home.controllers'])
+angular.module('eazyBoredrill', ['ui.router', 'APIModule', 'ngFileUpload', 'tc.chartjs', 'ui.bootstrap','admin.controllers','home.controllers', 'ProjectList.controllers'])
 
 
 .factory('$localstorage', ['$window', function($window) {
@@ -69,6 +69,15 @@ angular.module('eazyBoredrill', ['ui.router', 'APIModule', 'ngFileUpload', 'ui.b
       'container': {
         templateUrl: 'partials/home.html',
         controller: 'HomeCtrl'
+      }
+    }
+  })
+.state('admin.projectlist', {
+    url: '/projectlist',
+    views: {
+      'container': {
+        templateUrl: 'partials/projectlist.html',
+        controller: 'ProjectListCtrl'
       }
     }
   })
