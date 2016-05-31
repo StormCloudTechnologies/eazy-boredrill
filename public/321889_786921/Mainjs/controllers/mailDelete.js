@@ -1,5 +1,6 @@
 var url_prifix = 'http://localhost:8000/';
 angular.module('mailModule', ['APIModule'])
+
 .factory('genericInterceptor', function($q, $rootScope) {
     var interceptor = {
         'request': function(config) {
@@ -32,6 +33,18 @@ angular.module('mailModule', ['APIModule'])
     };
     return interceptor;
 })
+.directive('dynamic', function ($compile) {
+    return {
+    restrict: 'A',
+    replace: true,
+    link: function (scope, ele, attrs) {
+      scope.$watch(attrs.dynamic, function(html) {
+      ele.html(html);
+      $compile(ele.contents())(scope);
+      });
+    }
+    };
+  })
 .controller('DeleteMailCtrl', function($scope, APIService) {
    
    $scope.compose = function(){
@@ -58,30 +71,53 @@ angular.module('mailModule', ['APIModule'])
       });
    }
    $scope.gettrashMails();
+  $scope.mail = {};
+   $scope.mail.checked = false;
+   $scope.allcheck = false;
+   $scope.deleteMailList = [];
+   $scope.checkAllmaildata = function(){
+        angular.forEach($scope.mails, function (item) {
+            item.checked = $scope.allcheck;
+            if($scope.allcheck)
+            $scope.deleteMailList.push(item._id);
+            else
+             $scope.deleteMailList = []; 
+        });
 
-    $scope.deleteAllMsg = function(){
+      
+   }
+
+   $scope.checksinglemail = function(updatecheckId){
+      console.log(updatecheckId);
       angular.forEach($scope.mails, function (item) {
-            if(item.checked) {
-              console.log("=====item====",item._id);
-              item.status = 'TRASH';
-              APIService.updateData({
-                  req_url: url_prifix + 'api/deleteMail',
-                  data: item
-              }).then(function(resp) {
-                  console.log(resp);
-                  if(resp.data.message="Updated successfully.") {
-                      // $scope.mails = resp.data;
-                      // ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
-                      window.location = "mail.html";
-                  }
-                  else {
-                      $scope.mails = [];
-                  }
-                 },function(resp) {
-                    // This block execute in case of error.
-              });
-            }            
-        })
-        
+         if(item.checked==true){
+            console.log("push");
+            $scope.deleteMailList.push(updatecheckId);
+         }
+         if(item.checked==false){
+          console.log("splice");
+          $scope.deleteMailList.splice(updatecheckId);
+         }
+         
+      });
+   }
+     $scope.deleteAllMsg = function(){
+          APIService.removeData({
+              req_url: url_prifix + 'api/deleteMail',
+              data: {deleteMailList: $scope.deleteMailList}
+          }).then(function(resp) {
+              console.log(resp);
+              if(resp.data.message="Updated successfully.") {
+                  // $scope.mails = resp.data;
+                  // ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
+                 window.location = "deletemail.html";
+              }
+              else {
+                  $scope.mails = [];
+              }
+             },function(resp) {
+                // This block execute in case of error.
+          });
+       
      }
 });

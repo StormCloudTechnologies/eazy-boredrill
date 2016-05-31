@@ -53,11 +53,11 @@
 
  <body class="l-mail-app" ng-app="mailModule" ng-controller="SendMailCtrl">
 
-    <!-- <div ng-show='loadCompetition'>
+    <div ng-show='loadCompetition'>
      <div class="loading_div">
-       <img src="img/loader.gif" style="width: 40% !important;" />
+       <img src="img/loader.gif" style="width: 60% !important;" />
      </div>
-   </div> -->
+   </div>
    
     <!--THEME SETTINGS-->
    
@@ -151,9 +151,9 @@
           <div class="mail-options">
             <!-- Select options-->
             <div class="btn-group mail-select">
-              <div class="btn btn-label btn-mail">
-                <label id="mail-all" class="cb-checkbox cb-checkbox-dark-1">
-                  <input name="chbox" type="checkbox" value="">
+              <div class="btn btn-label btn-mail" style="height:34px;">
+                <label style="margin-top: -5px;">
+                  <input name="chbox" ng-model="allcheck" type="checkbox" class="myinput large" ng-change="checkAllmaildata(mails)">
                 </label>
               </div>
               <button type="button" data-toggle="dropdown" title="Select" class="btn btn-mail tt-mail dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
@@ -197,7 +197,7 @@
                       <td class="col-input">
                         <!-- <label class="cb-checkbox"> -->
                         <label>
-                          <input id="{{mail._id}}" class="checkboxinput" type="checkbox" value="{{mail._id}}" ng-model="mail.checked"/>
+                          <input id="{{mail._id}}" class="myinput large" type="checkbox" value="{{mail._id}}" ng-model="mail.checked" ng-change="checksinglemail(mail._id)"/>
                         </label>
                       </td>
                       <td class="col-sender" ng-click="ViewMail(mail,'sent')"><a  class="sender">{{ mail.name }} </a></td>

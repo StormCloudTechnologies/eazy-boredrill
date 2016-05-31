@@ -198,10 +198,12 @@ app.post('/api/sendCustomMail', function(req, res) {
 
 // update mail status
 app.put('/api/updateMail', function(req, res) {
-    Mails.findByIdAndUpdate({_id : { $in: req.body.updateMailList }}, {status: req.body.status}
-    , function(err, mail) {
+    Mails.update({_id : { $in: req.body.updateMailList }}, {status: req.body.status}
+    ,{multi:true}, function(err, mail) {
         if (err)
+        {
             res.send(err);
+        }
         return res.json({"message":"Updated successfully."});
     });
 });

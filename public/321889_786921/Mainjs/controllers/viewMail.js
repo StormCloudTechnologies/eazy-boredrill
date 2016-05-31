@@ -58,13 +58,14 @@ angular.module('mailModule', ['APIModule', 'ngDialog'])
             // This block execute in case of error.
       });
    }
-
+   $scope.viewmailList = [];
    $scope.deleteMsg = function(mail){
+    console.log("demooo",mail);
+    $scope.viewmailList.push(mail._id)
     if(statusmail == "inbox"){
-         mail.status = 'TRASH';
          APIService.updateData({
             req_url: url_prifix + 'api/updateMail',
-            data: mail
+            data: {updateMailList: $scope.viewmailList,status:'TRASH'}
         }).then(function(resp) {
             console.log(resp);
             if(resp.data.message="Updated successfully.") {
@@ -80,10 +81,9 @@ angular.module('mailModule', ['APIModule', 'ngDialog'])
         });
      }
      if(statusmail == "sent"){
-         mail.status = 'TRASH';
          APIService.updateData({
             req_url: url_prifix + 'api/updateMail',
-            data: mail
+            data: {updateMailList: $scope.viewmailList,status:'TRASH'}
         }).then(function(resp) {
             console.log(resp);
             if(resp.data.message="Updated successfully.") {
@@ -101,7 +101,7 @@ angular.module('mailModule', ['APIModule', 'ngDialog'])
      if(statusmail == "trash"){
         APIService.removeData({
             req_url: url_prifix + 'api/deleteMail',
-            data: mail
+            data:  {deleteMailList: $scope.viewmailList}
         }).then(function(resp) {
             console.log("=================resp==========",resp);
             if(resp.data.length>=0) {

@@ -71,15 +71,42 @@ angular.module('mailModule', ['APIModule'])
       });
    }
    $scope.getMails();
+   $scope.mail = {};
+   $scope.mail.checked = false;
+   $scope.allcheck = false;
+   $scope.updateMailList = [];
+   $scope.checkAllmaildata = function(){
+        angular.forEach($scope.mails, function (item) {
+            item.checked = $scope.allcheck;
+            if($scope.allcheck)
+            $scope.updateMailList.push(item._id);
+            else
+             $scope.updateMailList = []; 
+        });
+
+      
+   }
+
+   $scope.checksinglemail = function(updatecheckId){
+      console.log(updatecheckId);
+      angular.forEach($scope.mails, function (item) {
+         if(item.checked==true){
+            console.log("push");
+            $scope.updateMailList.push(updatecheckId);
+         }
+         if(item.checked==false){
+          console.log("splice");
+          $scope.updateMailList.splice(updatecheckId);
+         }
+         
+      });
+   }
+
 
     $scope.deleteAllMsg = function(){
-      angular.forEach($scope.mails, function (item) {
-            if(item.checked) {
-              console.log("=====item====",item._id);
-              item.status = 'TRASH';
-              APIService.updateData({
+             APIService.updateData({
                   req_url: url_prifix + 'api/updateMail',
-                  data: item
+                  data: {updateMailList: $scope.updateMailList,status:'TRASH'}
               }).then(function(resp) {
                   console.log(resp);
                   if(resp.data.message="Updated successfully.") {
@@ -93,8 +120,6 @@ angular.module('mailModule', ['APIModule'])
                  },function(resp) {
                     // This block execute in case of error.
               });
-            }            
-        })
-        
+       
      }
 });
