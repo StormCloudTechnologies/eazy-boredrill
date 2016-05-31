@@ -222,6 +222,16 @@ app.delete('/api/deleteMail', function(req, res) {
     });
 });
 
+// get products
+app.post('/api/getEmailIds', function(req, res) {
+    Mails.find({"email": new RegExp(req.body.email_search, "i")},function(err, mails) {
+        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+        if (err)
+            res.send(err)
+        res.json(mails); // return all mails in JSON format
+    });
+});
+
 
 /** API for sending mail to admin */
 app.post('/api/forgotAdminPassword', function(req, res) {
