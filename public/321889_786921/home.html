@@ -77,8 +77,6 @@
    <script src="js/calls/part.sidebar.2.js"></script>
    <script src="js/calls/part.theme.setting.js"></script>
 
-
-
     <script src="Mainjs/angular.min.js"></script>
     <script src="Mainjs/angular-ui-router.min.js"></script>
     <script src="Mainjs/ui-bootstrap-tpls-1.3.2.min.js"></script>
@@ -89,62 +87,9 @@
     
 </head>
 
-<body ng-app="starter" ng-controller="HomeCtrl" class="l-dashboard">
-    
-   <div ng-show='loadCompetition'>
-     <div class="loading_div">
-       <img src="img/loader.gif" style="width: 60% !important;" />
-     </div>
-   </div>
+<body ng-app="starter" ng-controller="HomeCtrl">
     
    
-  
-    <!--SECTION-->
-    <section class="l-main-container">
-      <!--Left Sidebar Content-->
-      <aside id="sb-left" class="l-sidebar l-sidebar-1 t-sidebar-1 l-sidebar-compact-left">
-        <!--Switcher-->
-        <div class="l-side-box"><a class="sidebar-switcher switcher t-switcher-side ason-widget">
-        <i class="fa fa-bars"></i>
-          <!-- <h2 style="font-size: 18px;">Menu</h2> -->
-        </a></div>
-        
-        <!--Main Menu-->
-        <div class="l-side-box">
-          <!--MAIN NAVIGATION MENU-->
-          <nav class="navigation">
-            <ul data-ason-type="menu" class="ason-widget">
-              
-              <li class="active"><a href="home.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-home"></i><span class="title">Home</span></a>
-              </li>
-              <li><a href="project.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
-              </li>
-              <li><a href="post.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-clipboard "></i><span class="title">Latest Post</span></a>
-              </li>
-
-              <li><a href="mail.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-envelope "></i><span class="title">Email</span></a>
-              </li>
-
-              <li><a ng-click="logout()" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-power-off"></i><span class="title">Logout</span></a>
-              </li>
-            
-            </ul>
-          </nav>
-        </div>
-      </aside>
-      <!--Main Content-->
-    <section class="l-container">
-        <!--HEADER-->
-       <!--  <header class="l-header l-header-1 t-header-1">
-          <div class="navbar navbar-ason">
-            <div class="container-fluid">
-                
-            </div>
-          </div>
-        </header> -->
-        <!-- Row 1 - Info Widgets-->
-        <div ui-view></div>
-    </section>
 </body>
 
 

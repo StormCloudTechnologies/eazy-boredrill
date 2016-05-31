@@ -1,4 +1,5 @@
-angular.module('home.controllers', ['ui.router', 'APIModule', 'ngFileUpload', 'ui.bootstrap'])
+angular.module('eazyBoredrill', ['ui.router', 'APIModule', 'ngFileUpload', 'ui.bootstrap','admin.controllers','home.controllers'])
+
 
 .factory('$localstorage', ['$window', function($window) {
   return {
@@ -48,14 +49,33 @@ angular.module('home.controllers', ['ui.router', 'APIModule', 'ngFileUpload', 'u
     return interceptor;
 })
 
-.controller('HomeCtrl', function($scope, APIService, Upload, $uibModal, $localstorage) {
-	var islogin = $localstorage.get('islogin');
-	  if(islogin!=1){
-	      window.location = "index.html";
-	  }
-  
-	$scope.logout = function(){
-       $localstorage.set('islogin', "0");
-	   window.location = "index.html";
-	}
+.run(function($rootScope, $state){
+    $state.transitionTo('admin.home');
 })
+
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+
+  .state('admin', {
+    url: '/admin',
+    abstract: true,
+    templateUrl: 'partials/admin.html',
+    controller: 'AdminCtrl'
+  })
+
+.state('admin.home', {
+    url: '/home',
+    views: {
+      'container': {
+        templateUrl: 'partials/home.html',
+        controller: 'HomeCtrl'
+      }
+    }
+  })
+
+  .state('login', {
+    url: '/login',
+    templateUrl: 'partials/login.html',
+    controller: 'LoginCtrl'
+  });
+});
