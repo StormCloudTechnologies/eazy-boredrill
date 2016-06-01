@@ -213,7 +213,11 @@ app.put('/api/updateMail', function(req, res) {
         {
             res.send(err);
         }
-        return res.json({"message":"Updated successfully."});
+        Mails.find(function(err, mails) {
+            if (err)
+                res.send(err)
+            res.json(mails); // return all advertisement in JSON format
+        });
     });
 });
 
