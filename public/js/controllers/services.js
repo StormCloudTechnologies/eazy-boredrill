@@ -1,4 +1,4 @@
-angular.module('Services.Controllers', [])
+angular.module('services.controllers', [])
 .controller('ServicesCtrl', function($scope) {
   
 

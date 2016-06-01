@@ -1,5 +1,5 @@
-angular.module('starter', ['APIModule', 'ui.bootstrap'])
-.controller('homeCtrl', function($scope, APIService, $uibModal) {
+angular.module('home.controllers', [])
+.controller('HomeCtrl', function($scope, APIService, $uibModal) {
   
   $scope.ProjectLists = [];
   $scope.getProject = function() {

@@ -1,0 +1,46 @@
+<section id="pageCover" class="row projectPage">        
+    <div class="row pageTitle">Projects</div>
+    <div class="row pageBreadcrumbs">
+        <ol class="breadcrumb">
+          <li><a href="index.html">home</a></li>
+          <li class="active">projects</li>
+        </ol>
+    </div>
+</section>
+
+
+
+  <section id="latestPosts" class="row" ng-if="ProjectLists!=''">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 blog latest-blog" ng-repeat="ProjectList in ProjectLists" style="cursor:pointer">
+                <div class="row m0 blogInner">
+                   <!--  <div class="row m0 blogDateTime">
+                        <i class="fa fa-calendar"></i> 18 November 2014, 11:50 AM
+                    </div> -->
+                    <div class="row m0 featureImg">
+                        <a ng-click="Project(ProjectList)">
+                            <img src="{{ProjectList.images[0]}}" style="height: 200px;" alt="Faceted Search Has Landed" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="row m0 postExcerpts">
+                        <div class="row m0 postExcerptInner">
+                            <a ng-click="Project(ProjectList)" class="postTitle row m0"><h4>{{ProjectList.project_name  | limitTo: 50}}</h4></a>
+                            <p>{{ProjectList.project_description  | limitTo: 50}}</p>
+                            <a ng-click="Project(ProjectList)" class="readMore">read more</a>
+                        </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row paginationRow m0">
+        <div class="paginationInner m0 row">
+            <ul class="pagination">
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+            </ul>
+        </div>
+    </div> -->
+</section>

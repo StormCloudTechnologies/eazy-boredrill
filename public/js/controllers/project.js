@@ -1,4 +1,4 @@
-angular.module('starter', ['APIModule', 'ui.bootstrap'])
+angular.module('projects.controllers', [])
 .factory('genericInterceptor', function($q, $rootScope) {
     var interceptor = {
         'request': function(config) {

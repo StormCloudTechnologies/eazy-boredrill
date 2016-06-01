@@ -1,4 +1,4 @@
-angular.module('About.Controllers', [])
+angular.module('about.controllers', [])
 .controller('AboutCtrl', function($scope) {
   
 
