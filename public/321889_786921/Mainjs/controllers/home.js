@@ -2,16 +2,13 @@ angular.module('home.controllers', [])
 
 
 
-.controller('HomeCtrl', function($scope, APIService, Upload, $uibModal, $localstorage) {
-	// var islogin = $localstorage.get('islogin');
-	//   if(islogin!=1){
-	//       window.location = "index.html";
-	//   }
+.controller('HomeCtrl', function($scope, $state, APIService, Upload, $uibModal, $localstorage) {
+	  var islogin = $localstorage.get('islogin');
+    if(islogin!=1){
+       $state.go("login");
+    }
   
-	// $scope.logout = function(){
- //       $localstorage.set('islogin', "0");
-	//    window.location = "index.html";
-	// }
+	
     // Chart.js Data
     $scope.data = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],

@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="cancel()">&times;</button>
+  <h3 class="modal-title">Replay Message</span></h3>
+</div>
+<div class="modal-body">
+  <div class="l-box">
+      <div class="l-box-body l-spaced">
+        <form id="validateDefault" role="form" class="form-horizontal validate">
+          <div class="form-group">
+            <label for="lastname" class="col-sm-2 control-label">Message</label>
+            <div class="col-sm-10">
+              <textarea ng-model="reply.message" name="message" rows="5" required="" class="form-control"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+<div class="modal-footer">
+  <button type="button"  ng-click="cancel()" class="btn btn-danger">Close</button>
+  <button ng-click="replyMail(reply.message)" type="button"  class="btn btn-success">Send</button>
+</div>

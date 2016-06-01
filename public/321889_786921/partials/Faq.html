@@ -1,0 +1,63 @@
+<script src="js/shared/jquery.asonWidget.js"></script>
+<script src="js/calls/dashboard.2.js"></script>
+<script src="js/calls/part.header.1.js"></script>
+<script src="js/calls/part.sidebar.2.js"></script>
+
+<section class="l-main-container">
+      <!--Left Sidebar Content-->
+     
+      <!--Main Content-->
+    <section class="l-container">
+        <!--HEADER-->
+        <!-- <header class="l-header l-header-1 t-header-1">
+          <div class="navbar navbar-ason">
+            <div class="container-fluid">
+               
+            </div>
+          </div>
+        </header> -->
+        <!-- Row 1 - Info Widgets-->
+        <div class="l-page-header">
+          <h2 class="l-page-title"><span  style="color:#FFC20A;">FAQ</span> List</h2>
+          <button   type="button" class="btn btn-primary btn-lg" ng-click="editFaq()" style="float: right;margin-top: -52px;color:#FFF;">
+            <span class="btn-label"><i class="glyphicon glyphicon-plus"></i></span>
+            Add FAQ
+          </button>
+        </div>
+       
+
+        <div class="no_pro" ng-show="no_product" style="padding: 15% 0 !important;">
+            <center>
+                <i style="color:#B2B2B2;" class="fa fa-5x fa-exclamation-triangle"></i>
+                <div class="h1" style="color:#f2a730;">Whooops!</div>
+                <div class="h4" style="color:#B2B2B2;">No Project has been posted</div>
+                </div>
+            </center>
+        </div>
+    
+    
+        <div class="l-spaced" ng-hide="no_product">
+         <uib-accordion close-others="oneAtATime">
+          <uib-accordion-group is-open="status.open" ng-repeat=" FaqData in Faqlists">
+            <uib-accordion-heading>
+              <span style="font-size:16px;font-weight: 600;">{{$index +1 }} : </span> {{FaqData.question}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+            </uib-accordion-heading>
+            <div class="row">
+              <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+              {{FaqData.answer}}
+              </div>
+              <div class="col-lg-32 col-md-3 col-sm-3 col-xs-3">
+                <div class="pull-right">
+                  <button  style="line-height: 0;padding: 10px;margin: 4px;" type="button" class="btn btn-warning  btn-lg" ng-click="updateFAQlist(FaqData);">
+                  <span class="icon fa fa-pencil-square-o"></span> &nbsp;Update</button>
+                  <button  style="line-height: 0;padding: 10px 13px;;margin: 4px;" type="button" ng-click="deleteProject(FaqData)" class="btn btn-danger btn-lg">
+                  <span class="icon fa fa-trash-o "></span> &nbsp; Delete</button>
+                </div>
+              </div>
+            </div>
+          </uib-accordion-group>
+        </uib-accordion>
+     </div>
+    </section>
+  </section>
+     

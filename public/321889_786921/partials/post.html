@@ -2,12 +2,10 @@
 <script src="js/calls/dashboard.2.js"></script>
 <script src="js/calls/part.header.1.js"></script>
 <script src="js/calls/part.sidebar.2.js"></script>
-
-    <section class="l-main-container">
-      <!--Left Sidebar Content-->
+  <section class="l-main-container">
      
       <!--Main Content-->
-    <section class="l-container">
+     <section class="l-container">
         <!--HEADER-->
         <!-- <header class="l-header l-header-1 t-header-1">
           <div class="navbar navbar-ason">
@@ -18,42 +16,40 @@
         </header> -->
         <!-- Row 1 - Info Widgets-->
         <div class="l-page-header">
-          <h2 class="l-page-title"><span  style="color:#FFC20A;">Project</span> List</h2>
-          <button   type="button" class="btn btn-primary btn-lg" ng-click="editProject()" style="float: right;margin-top: -52px;color:#FFF;">
+          <h2 class="l-page-title"><span style="color:#FFC20A;">Post</span> List</h2>
+          <button ng-hide="postlist.length > '2'" type="button" class="btn btn-primary btn-lg" ng-click="editProject()" style="float: right;margin-top: -52px;color:#FFF;">
             <span class="btn-label"><i class="glyphicon glyphicon-plus"></i></span>
-            Add Project
+            Add Post
           </button>
         </div>
-       
-
+     
         <div class="no_pro" ng-show="no_product" style="padding: 15% 0 !important;">
             <center>
                 <i style="color:#B2B2B2;" class="fa fa-5x fa-exclamation-triangle"></i>
                 <div class="h1" style="color:#f2a730;">Whooops!</div>
-                <div class="h4" style="color:#B2B2B2;">No Project has been posted</div>
+                <div class="h4" style="color:#B2B2B2;">No Post has been posted</div>
                 </div>
             </center>
         </div>
     
-    
-        <div class="l-spaced" ng-hide="no_product">
+        <div class="l-spaced"  ng-hide="no_product">
           <div class="l-row">
             <div class="l-box l-col-md-12 l-spaced-bottom">
               <div class="l-box-body l-spaced">
                 <table class="table">
                   <tbody>
-                    <tr ng-repeat="project in projectlist">
+                    <tr ng-repeat="post in postlist">
                      <td>
-                        <img src="../{{project.images[0]}}" style="width: 150px;height: 150px;">
+                        <img src="../{{post.images[0]}}" style="width: 150px;height: 150px;">
                       </td>
                       <td>
-                      <h2 style="font-size:20px !important;color:#FFC20A;">{{project.project_name | limitTo: 100 }}</h2>
-                      <p>{{project.project_description | limitTo: 100 }}</p>
+                      <h2 style="font-size:20px !important;color:#FFC20A;">{{post.project_name | limitTo: 100 }}</h2>
+                      <p>{{post.project_description | limitTo: 100 }}</p>
                       </td>
                       <td style="padding-top: 30px !important;">
-                        <button  style="line-height: 0;padding: 10px;margin: 4px;" type="button" class="btn btn-warning  btn-lg" ng-click="updateProjectlist(project);">
+                        <button style="line-height: 0;padding: 10px;margin: 4px;" type="button" class="btn btn-warning  btn-lg" ng-click="updatePostlist(post);">
                         <span class="icon fa fa-pencil-square-o"></span> &nbsp;Update</button>
-                        <button  style="line-height: 0;padding: 10px 13px;;margin: 4px;" type="button" ng-click="deleteProject(project)" class="btn btn-danger btn-lg">
+                        <button style="line-height: 0;padding: 10px 13px;;margin: 4px;" type="button" ng-click="deletePost(post)" class="btn btn-danger btn-lg">
                         <span class="icon fa fa-trash-o "></span> &nbsp; Delete</button>
                       </td>
                     </tr>
@@ -65,4 +61,3 @@
         </div>
     </section>
   </section>
-     

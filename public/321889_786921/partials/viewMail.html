@@ -1,0 +1,43 @@
+<script src="js/shared/jquery.asonWidget.js"></script>
+<script src="js/calls/dashboard.2.js"></script>
+<script src="js/calls/part.header.1.js"></script>
+<script src="js/calls/part.sidebar.2.js"></script>
+
+<section class="l-main-container">
+     
+      <!--Main wrapper-->
+      <section class="l-container">
+           <div class="mail-details" style="margin:0px;">
+              <!-- Mail details header-->
+              <div class="mail-details-header">
+                 <!-- Compose--><a ng-click="compose()" role="button" class="btn btn-mail-send mail-options-compose"><i class="fa fa-pencil-square-o icon-sep-right"></i>Compose</a>
+                <div class="mail-details-time">
+                  <button type="button" ng-click="ReplyMsg()"  class="btn btn-sucess btn-lg">
+                      <span class="icon fa fa-reply"></span> &nbsp; Repaly</button>
+
+                  <button type="button" ng-click="deleteMsg(mail)" class="btn btn-sucess btn-lg">
+                      <span class="icon fa fa-trash"></span> &nbsp; Delete</button>
+                </div>
+              </div>
+              
+
+
+              <!-- Mail message 1-->
+              <div class="mail-details-message open">
+                <div class="mail-details-message-header">
+                  <div class="mail-details-sender"><img src="img/mail/profile_1.jpg" class="mail-profile"><strong>{{ mail.name }}</strong> ({{ mail.email }})</div>
+                  <div class="mail-details-time">{{ mail.date | date:"dd/MM/yyyy 'at' h:mm a" }}</div>
+                </div>
+                <div class="mail-details-message-content">
+                  <div class="mail-details-message-body">
+                    <p><span class="fa fa-phone"></span> {{ mail.phone }}</p>
+                    <p><div class="label label-bg-color-1">Message</div> {{ mail.message }}</p>
+                  </div>
+                
+                </div>
+              </div>
+             
+            </div>
+      </section>
+     
+    </section>
