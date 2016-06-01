@@ -265,64 +265,6 @@ app.post('/api/forgotAdminPassword', function(req, res) {
 
 // Mail API
 
-// add project
-app.post('/api/addProject', function(req, res) {
-    var delete_images = req.body.delete_images;
-
-    Projects.create(req.body.projectData, function(err, projects) {
-        if (err)
-            res.send(err);
-
-        // get and return all the todos after you create another
-        if(projects) {
-            return res.json({"message":"Project has been added successfully."});
-        }
-    });
-    if(delete_images.length > 0) {
-        delete_images.forEach(function(file_path) {
-          fs.unlink(file_path);
-        });
-    }
-
-});
-
-// update project
-app.put('/api/updateProject', function(req, res) {
-    var delete_images = req.body.delete_images;
-    Projects.findByIdAndUpdate(req.body.projectData._id, req.body.projectData
-    , function(err, projects) {
-        if (err)
-            res.send(err);
-        if(delete_images.length > 0) {
-            delete_images.forEach(function(file_path) {
-              fs.unlink(file_path);
-            });
-        }
-        return res.json({"message":"Updated successfully."});
-    });
-});
-
-// delete project
-app.delete('/api/removeProject', function(req, res) {
-    var delete_images = req.body.images;
-    Projects.remove({
-        _id : req.body._id
-    }, function(err, project) {
-        if (err)
-            res.send(err);
-        if(delete_images.length > 0) {
-            delete_images.forEach(function(file_path) {
-              fs.unlink(file_path);
-            });
-        }
-        Projects.find(function(err, projects) {
-            if (err)
-                res.send(err)
-            res.json(projects); // return all advertisement in JSON format
-        });
-    });
-});
-
 // get mails
 app.post('/api/getMails', function(req, res) {
     Mails.find(req.body, function(err, mails) {
@@ -346,7 +288,11 @@ app.post('/api/addProject', function(req, res) {
 
         // get and return all the todos after you create another
         if(projects) {
-            return res.json({"message":"Project has been added successfully."});
+            Projects.find(function(err, projects) {
+                if (err)
+                    res.send(err)
+                res.json(projects); // return all advertisement in JSON format
+            });
         }
     });
     if(delete_images.length > 0) {
@@ -369,7 +315,11 @@ app.put('/api/updateProject', function(req, res) {
               fs.unlink(file_path);
             });
         }
-        return res.json({"message":"Updated successfully."});
+        Projects.find(function(err, projects) {
+            if (err)
+                res.send(err)
+            res.json(projects); // return all advertisement in JSON format
+        });
     });
 });
 
@@ -416,7 +366,11 @@ app.post('/api/addLatestJob', function(req, res) {
 
         // get and return all the todos after you create another
         if(latestJob) {
-            return res.json({"message":"Project has been added successfully."});
+            LatestJobs.find(function(err, latestJobs) {
+                if (err)
+                    res.send(err)
+                res.json(latestJobs); // return all advertisement in JSON format
+            });
         }
     });
     if(delete_images.length > 0) {
@@ -439,7 +393,11 @@ app.put('/api/updateLatestJob', function(req, res) {
               fs.unlink(file_path);
             });
         }
-        return res.json({"message":"Updated successfully."});
+        LatestJobs.find(function(err, latestJobs) {
+            if (err)
+                res.send(err)
+            res.json(latestJobs); // return all advertisement in JSON format
+        });
     });
 });
 
@@ -482,7 +440,11 @@ app.post('/api/addFAQ', function(req, res) {
         if (err)
             res.send(err);
         if(faq) {
-            return res.json({"message":"FAQ has been added successfully."});
+            FAQ.find(function(err, faq) {
+                if (err)
+                    res.send(err)
+                res.json(faq); // return all FAQ in JSON format
+            });
         }
     });
 });
@@ -493,7 +455,11 @@ app.put('/api/updateFAQ', function(req, res) {
     , function(err, faq) {
         if (err)
             res.send(err);
-        return res.json({"message":"Updated successfully."});
+        FAQ.find(function(err, faq) {
+            if (err)
+                res.send(err)
+            res.json(faq); // return all FAQ in JSON format
+        });
     });
 });
 
