@@ -29,7 +29,7 @@ mongoose.connect('mongodb://localhost/boredrill-eazybiz');     // connect to mon
 
 var Schema = mongoose.Schema;
 
-// user account schema
+// project schema
 var projectSchema = new Schema({
     project_name: String,
     project_description: String,
@@ -49,6 +49,16 @@ var latestJobsSchema = new Schema({
 var LatestJobs = mongoose.model('LatestJobs', latestJobsSchema);
 
 module.exports = LatestJobs;
+
+// FAQ schema
+var faqSchema = new Schema({
+    question: String,
+    answer: String
+});
+
+var FAQ = mongoose.model('FAQ', faqSchema);
+
+module.exports = FAQ;
 
 var mailSchema = new Schema({
     name: String,
@@ -449,7 +459,7 @@ app.delete('/api/removeLatestJob', function(req, res) {
         LatestJobs.find(function(err, latestJobs) {
             if (err)
                 res.send(err)
-            res.json(latestJobs); // return all advertisement in JSON format
+            res.json(latestJobs); // return all latestJobs in JSON format
         });
     });
 });
@@ -460,6 +470,53 @@ app.post('/api/getLatestJobs', function(req, res) {
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err)
             res.send(err)
-        res.json(latestJobs); // return all advertisement in JSON format
+        res.json(latestJobs); // return all latestJobs in JSON format
+    });
+});
+
+// FAQ API
+
+// add FAQ
+app.post('/api/addFAQ', function(req, res) {
+    FAQ.create(req.body, function(err, faq) {
+        if (err)
+            res.send(err);
+        if(faq) {
+            return res.json({"message":"FAQ has been added successfully."});
+        }
+    });
+});
+
+// update FAQ
+app.put('/api/updateFAQ', function(req, res) {
+    FAQ.findByIdAndUpdate(req.body._id, req.body
+    , function(err, faq) {
+        if (err)
+            res.send(err);
+        return res.json({"message":"Updated successfully."});
+    });
+});
+
+// delete FAQ
+app.delete('/api/removeFAQ', function(req, res) {
+    FAQ.remove({
+        _id : req.body._id
+    }, function(err, faq) {
+        if (err)
+            res.send(err);
+        FAQ.find(function(err, faq) {
+            if (err)
+                res.send(err)
+            res.json(faq); // return all FAQ in JSON format
+        });
+    });
+});
+
+// get FAQ
+app.get('/api/getFAQ', function(req, res) {
+    FAQ.find({}, function(err, faq) {
+        if (err)
+            res.send(err)
+        res.json(faq); // return all FAQ in JSON format
     });
 });
