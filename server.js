@@ -29,7 +29,7 @@ mongoose.connect('mongodb://localhost/boredrill-eazybiz');     // connect to mon
 
 var Schema = mongoose.Schema;
 
-// user account schema
+// project schema
 var projectSchema = new Schema({
     project_name: String,
     project_description: String,
@@ -49,6 +49,16 @@ var latestJobsSchema = new Schema({
 var LatestJobs = mongoose.model('LatestJobs', latestJobsSchema);
 
 module.exports = LatestJobs;
+
+// FAQ schema
+var faqSchema = new Schema({
+    question: String,
+    answer: String
+});
+
+var FAQ = mongoose.model('FAQ', faqSchema);
+
+module.exports = FAQ;
 
 var mailSchema = new Schema({
     name: String,
@@ -203,7 +213,11 @@ app.put('/api/updateMail', function(req, res) {
         {
             res.send(err);
         }
-        return res.json({"message":"Updated successfully."});
+        Mails.find(function(err, mails) {
+            if (err)
+                res.send(err)
+            res.json(mails); // return all advertisement in JSON format
+        });
     });
 });
 
@@ -255,64 +269,6 @@ app.post('/api/forgotAdminPassword', function(req, res) {
 
 // Mail API
 
-// add project
-app.post('/api/addProject', function(req, res) {
-    var delete_images = req.body.delete_images;
-
-    Projects.create(req.body.projectData, function(err, projects) {
-        if (err)
-            res.send(err);
-
-        // get and return all the todos after you create another
-        if(projects) {
-            return res.json({"message":"Project has been added successfully."});
-        }
-    });
-    if(delete_images.length > 0) {
-        delete_images.forEach(function(file_path) {
-          fs.unlink(file_path);
-        });
-    }
-
-});
-
-// update project
-app.put('/api/updateProject', function(req, res) {
-    var delete_images = req.body.delete_images;
-    Projects.findByIdAndUpdate(req.body.projectData._id, req.body.projectData
-    , function(err, projects) {
-        if (err)
-            res.send(err);
-        if(delete_images.length > 0) {
-            delete_images.forEach(function(file_path) {
-              fs.unlink(file_path);
-            });
-        }
-        return res.json({"message":"Updated successfully."});
-    });
-});
-
-// delete project
-app.delete('/api/removeProject', function(req, res) {
-    var delete_images = req.body.images;
-    Projects.remove({
-        _id : req.body._id
-    }, function(err, project) {
-        if (err)
-            res.send(err);
-        if(delete_images.length > 0) {
-            delete_images.forEach(function(file_path) {
-              fs.unlink(file_path);
-            });
-        }
-        Projects.find(function(err, projects) {
-            if (err)
-                res.send(err)
-            res.json(projects); // return all advertisement in JSON format
-        });
-    });
-});
-
 // get mails
 app.post('/api/getMails', function(req, res) {
     Mails.find(req.body, function(err, mails) {
@@ -336,7 +292,11 @@ app.post('/api/addProject', function(req, res) {
 
         // get and return all the todos after you create another
         if(projects) {
-            return res.json({"message":"Project has been added successfully."});
+            Projects.find(function(err, projects) {
+                if (err)
+                    res.send(err)
+                res.json(projects); // return all advertisement in JSON format
+            });
         }
     });
     if(delete_images.length > 0) {
@@ -359,7 +319,11 @@ app.put('/api/updateProject', function(req, res) {
               fs.unlink(file_path);
             });
         }
-        return res.json({"message":"Updated successfully."});
+        Projects.find(function(err, projects) {
+            if (err)
+                res.send(err)
+            res.json(projects); // return all advertisement in JSON format
+        });
     });
 });
 
@@ -406,7 +370,11 @@ app.post('/api/addLatestJob', function(req, res) {
 
         // get and return all the todos after you create another
         if(latestJob) {
-            return res.json({"message":"Project has been added successfully."});
+            LatestJobs.find(function(err, latestJobs) {
+                if (err)
+                    res.send(err)
+                res.json(latestJobs); // return all advertisement in JSON format
+            });
         }
     });
     if(delete_images.length > 0) {
@@ -429,7 +397,11 @@ app.put('/api/updateLatestJob', function(req, res) {
               fs.unlink(file_path);
             });
         }
-        return res.json({"message":"Updated successfully."});
+        LatestJobs.find(function(err, latestJobs) {
+            if (err)
+                res.send(err)
+            res.json(latestJobs); // return all advertisement in JSON format
+        });
     });
 });
 
@@ -449,7 +421,7 @@ app.delete('/api/removeLatestJob', function(req, res) {
         LatestJobs.find(function(err, latestJobs) {
             if (err)
                 res.send(err)
-            res.json(latestJobs); // return all advertisement in JSON format
+            res.json(latestJobs); // return all latestJobs in JSON format
         });
     });
 });
@@ -460,6 +432,61 @@ app.post('/api/getLatestJobs', function(req, res) {
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err)
             res.send(err)
-        res.json(latestJobs); // return all advertisement in JSON format
+        res.json(latestJobs); // return all latestJobs in JSON format
+    });
+});
+
+// FAQ API
+
+// add FAQ
+app.post('/api/addFAQ', function(req, res) {
+    FAQ.create(req.body, function(err, faq) {
+        if (err)
+            res.send(err);
+        if(faq) {
+            FAQ.find(function(err, faq) {
+                if (err)
+                    res.send(err)
+                res.json(faq); // return all FAQ in JSON format
+            });
+        }
+    });
+});
+
+// update FAQ
+app.put('/api/updateFAQ', function(req, res) {
+    FAQ.findByIdAndUpdate(req.body._id, req.body
+    , function(err, faq) {
+        if (err)
+            res.send(err);
+        FAQ.find(function(err, faq) {
+            if (err)
+                res.send(err)
+            res.json(faq); // return all FAQ in JSON format
+        });
+    });
+});
+
+// delete FAQ
+app.delete('/api/removeFAQ', function(req, res) {
+    FAQ.remove({
+        _id : req.body._id
+    }, function(err, faq) {
+        if (err)
+            res.send(err);
+        FAQ.find(function(err, faq) {
+            if (err)
+                res.send(err)
+            res.json(faq); // return all FAQ in JSON format
+        });
+    });
+});
+
+// get FAQ
+app.get('/api/getFAQ', function(req, res) {
+    FAQ.find({}, function(err, faq) {
+        if (err)
+            res.send(err)
+        res.json(faq); // return all FAQ in JSON format
     });
 });

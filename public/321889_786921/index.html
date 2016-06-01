@@ -20,89 +20,102 @@
     <link rel="stylesheet" href="css/basic.css">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/theme.css" class="style-theme">
-    
+    <link rel="stylesheet" href="css/ngDialog-theme-default.min.css" class="style-theme">
+    <link rel="stylesheet" href="css/ngDialog.min.css" class="style-theme">
     <!-- Specific-->
     <link rel="stylesheet" href="css/addons/fonts/artill-clean-icons.css"/>
 
      <script src="js/plugins/pageprogressbar/pace.min.js"></script>
     <!-- Specific-->
-   
-    <script src="js/shared/perfect-scrollbar.min.js"></script>
+    
+     <script src="js/shared/perfect-scrollbar.min.js"></script>
     <script src="js/plugins/charts/c3/c3.min.js"></script>
     <script src="js/plugins/charts/c3/d3.v3.min.js"></script>
     <script src="js/plugins/charts/rickshaw/rickshaw.min.js"></script>
+  
 
     <script src="js/basic/jquery.min.js"></script>
-    <script src="js/basic/jquery-migrate.min.js"></script>
-    <!-- General-->
-    <script src="js/basic/modernizr.min.js"></script>
-    <script src="js/basic/bootstrap.min.js"></script>
-    <script src="js/shared/jquery.asonWidget.js"></script>
-    <script src="js/plugins/plugins.js"></script>
-    <script src="js/general.js"></script>
-
-
+   <script src="js/basic/jquery-migrate.min.js"></script>
+   <script src="js/shared/jquery-ui.min.js"></script>
+   <script src="js/shared/jquery.ui.touch-punch.min.js"></script>
+   <script type="text/javascript">
+     // jQuery Ui and Bootstrap conflict workaround
+     $.widget.bridge('uitooltip', $.ui.tooltip);
+     $.widget.bridge('uibutton', $.ui.button);
+   </script>
+   <!-- General-->
+   <script src="js/basic/modernizr.min.js"></script>
+   <script src="js/basic/bootstrap.min.js"></script>
+   <script src="js/shared/jquery.asonWidget.js"></script>
+   <script src="js/plugins/plugins.js"></script>
+   <script src="js/general.js"></script>
+   <!-- Semi general-->
+   <script type="text/javascript">
+     var paceSemiGeneral = { restartOnPushState: false };
+     if (typeof paceSpecific != 'undefined'){
+      var paceOptions = $.extend( {}, paceSemiGeneral, paceSpecific );
+      paceOptions = paceOptions;
+     }else{
+      paceOptions = paceSemiGeneral;
+     }
+     
+   </script>
+   <script src="js/plugins/pageprogressbar/pace.min.js"></script>
+   <!-- Specific-->
+   <script src="js/shared/classie.js"></script>
+   <script src="js/shared/jquery.cookie.min.js"></script>
+   <script src="js/shared/perfect-scrollbar.min.js"></script>
+   <script src="js/plugins/accordions/jquery.collapsible.min.js"></script>
+   <script src="js/plugins/charts/c3/c3.min.js"></script>
+   <script src="js/plugins/charts/c3/d3.v3.min.js"></script>
+   <script src="js/plugins/charts/other/jquery.sparkline.min.js"></script>
+   <script src="js/plugins/forms/elements/jquery.bootstrap-touchspin.min.js"></script>
+   <script src="js/plugins/forms/elements/jquery.checkBo.min.js"></script>
+   <script src="js/plugins/forms/elements/jquery.switchery.min.js"></script>
+   <script src="js/plugins/tooltip/jquery.tooltipster.min.js"></script>
+   <script src="js/calls/dashboard.2.js"></script>
+   <script src="js/calls/part.header.1.js"></script>
+   <script src="js/calls/part.sidebar.2.js"></script>
+   <script src="js/calls/part.theme.setting.js"></script>
 
     <script src="Mainjs/angular.min.js"></script>
+    <script src="Mainjs/angular-animate.min.js"></script>
+    <script src="Mainjs/angular-ui-router.min.js"></script>
+    <script src="Mainjs/tc-angular-chartjs.js"></script>
+    <script src="Mainjs/Chart.min.js"></script>
+    <script src="Mainjs/ngDialog.min.js"></script>
+
+
+
+
+
+    <script src="Mainjs/ui-bootstrap-tpls-1.3.2.min.js"></script>
+    <script src="Mainjs/ng-file-upload-shim.min.js"></script>
+    <script src="Mainjs/ng-file-upload.min.js"></script>
+    <script type="text/javascript" src="Mainjs/textAngular.min.js"></script>
+    <script type="text/javascript" src="Mainjs/angular-wysiwyg.js"></script>
+    <script type="text/javascript" src="Mainjs/bootstrap-colorpicker-module.js"></script>
+    <script src="js/app.js"></script>
     <script src="Mainjs/services.js"></script>
     <script src="Mainjs/controllers/login.js"></script>
-    <!-- <script src="Mainjs/angular-ui-router.min.js"></script>
-    <script src="Mainjs/ui-bootstrap-tpls-1.3.2.min.js"></script>
- -->
-    <!-- ========= controller start ========== -->
-   <!--  <script src="Mainjs/app.js"></script>
-    
-    <script src="Mainjs/controllers/main.js"></script>
+    <script src="Mainjs/controllers/admin.js"></script>
     <script src="Mainjs/controllers/home.js"></script>
-    <script src="Mainjs/controllers/contact.js"></script>
-    <script src="Mainjs/controllers/about.js"></script>
-    <script src="Mainjs/controllers/services.js"></script>
-    <script src="Mainjs/controllers/project.js"></script> -->
+    <script src="Mainjs/controllers/project.js"></script>
+    <script src="Mainjs/controllers/post.js"></script>
+    <script src="Mainjs/controllers/mail.js"></script>
+    <script src="Mainjs/controllers/viewMail.js"></script>
+    <script src="Mainjs/controllers/sendMail.js"></script>
+    <script src="Mainjs/controllers/mailDelete.js"></script>
+    <script src="Mainjs/controllers/compose.js"></script>
+    <script src="Mainjs/controllers/Faq.js"></script>
+
+
     
-    <!-- ========= controller End ========== -->
     
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
 </head>
 
-<body ng-app="starter" ng-controller="LoginCtrl">
-    <div ng-show='loadCompetition'>
-     <div class="loading_div">
-       <img src="img/loader.gif" style="width: 60% !important;" />
-     </div>
-   </div>
-
-    <div style="background:url('img/login.jpg') no-repeat left;background-size:cover;position: absolute; height: 100%;">
-<!--SECTION-->
-    <section class="l-main-container">
-      <!--Main Content-->
-      <div class="login-wrapper">
-        <div class="login-container">
-          <!--Logo-->
-          <h1 class="login-logo"><img src="img/logo.png"></h1>
-          <!--Login Form-->
-          <form ng-show="allvalue" name="admin_login" role="form" class="login-form">
-            <div class="form-group">
-              <input  type="text" ng-model="loginData.email" name="username" placeholder="User Name" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password"  name="password" ng-model="loginData.password" placeholder="Password" class="form-control">
-            </div>
-            <button  ng-click="login(loginData)" class="btn btn-dark btn-block btn-login">Login</button>
-
-            <div class="login-options" ><a ng-click="forgetpassword()" class="fl">FORGOT PASSWORD ?</a></div>
-          </form>
-
-          <form ng-hide="allvalue" name="admin_forget" role="form" class="login-form">
-            <button ng-click="resetpassword()" class="btn btn-dark btn-block btn-login">Send Password</button>
-            <div class="login-options" ><a  class="fl">Login</a></div>
-         </form>
-        </div>
-      </div>
- </section>
-</div>
+<body ng-app="eazyBoredrill">
+    <div ui-view></div>
 </body>
 
 

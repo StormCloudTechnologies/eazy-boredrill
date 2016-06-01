@@ -1,63 +1,12 @@
-var url = 'http://localhost:8000/';
-angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'colorpicker.module', 'wysiwyg.module'])
-.factory('$localstorage', ['$window', function($window) {
-  return {
-    set: function(key, value) {
-      $window.localStorage[key] = value;
-    },
-    get: function(key, defaultValue) {
-      return $window.localStorage[key] || defaultValue;
-    },
-    setObject: function(key, value) {
-      $window.localStorage[key] = JSON.stringify(value);
-    },
-    getObject: function(key) {
-      return JSON.parse($window.localStorage[key] || '{}');
-    }
-  }
-}]).factory('genericInterceptor', function($q, $rootScope) {
-    var interceptor = {
-        'request': function(config) {
-            // Successful request method
-            $rootScope.loadCompetition = true;
-            return config; // or $q.when(config);
-        },
-        'response': function(response) {
-            // Successful response
-            $rootScope.loadCompetition = false;
-            return response; // or $q.when(config);
-        },
-        'requestError': function(rejection) {
-            // An error happened on the request
-            // if we can recover from the error
-            // we can return a new request
-            // or promise
-            $rootScope.loadCompetition = false;
-            return response;
-            // Otherwise, we can reject the next
-            // by returning a rejection
-            // return $q.reject(rejection);
-        },
-        'responseError': function(rejection) {
-            
-            // Returning a rejection
-            $rootScope.loadCompetition = false;
-            return rejection;
-        }
-    };
-    return interceptor;
-})
+angular.module('Compose.controllers', [])
 
-.controller('ComposeCtrl', function($scope, APIService, Upload, $uibModal, $localstorage) {
-	var islogin = $localstorage.get('islogin');
-	  if(islogin!=1){
-	      window.location = "index.html";
-	  }
-    console.log("hiii");
-	$scope.logout = function(){
-       $localstorage.set('islogin', "0");
-	   window.location = "index.html";
-	}
+.controller('ComposeCtrl', function($scope, $state, APIService, Upload, $uibModal, $localstorage) {
+	
+    var islogin = $localstorage.get('islogin');
+    if(islogin!=1){
+       $state.go("login");
+    }
+ 
 
   $scope.toggled = function(open) {
     $log.log('Dropdown is now: ', open);
@@ -123,10 +72,8 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'colorpi
           req_url: url + 'api/sendCustomMail',
           data : {to: To, subject: subject ,message: editerdata, images : images }
       }).then(function(resp) {
-          if(resp.data.message="Message sent successfully.") {
-              // $scope.mails = resp.data;
-              // ngDialog.open({ template: 'sendmailsucess.html', className: 'ngdialog-theme-default' });
-              window.location = "mail.html";
+          if(resp.data) {
+              $state.go('mailMenu.sendMail');
           }
           else {
               $scope.mails = [];

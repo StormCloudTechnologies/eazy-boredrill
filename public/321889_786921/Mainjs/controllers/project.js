@@ -1,84 +1,16 @@
-var url = 'http://52.39.156.51:8000/';
-angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialog'])
-.factory('$localstorage', ['$window', function($window) {
-  return {
-    set: function(key, value) {
-      $window.localStorage[key] = value;
-    },
-    get: function(key, defaultValue) {
-      return $window.localStorage[key] || defaultValue;
-    },
-    setObject: function(key, value) {
-      $window.localStorage[key] = JSON.stringify(value);
-    },
-    getObject: function(key) {
-      return JSON.parse($window.localStorage[key] || '{}');
-    }
-  }
-}]).directive('capitalizeFirst', function($parse) {
-   return {
-     require: 'ngModel',
-     link: function(scope, element, attrs, modelCtrl) {
-        var capitalize = function(inputValue) {
-           if (inputValue === undefined) { inputValue = ''; }
-           var capitalized = inputValue.charAt(0).toUpperCase() +
-                             inputValue.substring(1);
-           if(capitalized !== inputValue) {
-              modelCtrl.$setViewValue(capitalized);
-              modelCtrl.$render();
-            }         
-            return capitalized;
-         }
-         modelCtrl.$parsers.push(capitalize);
-         capitalize($parse(attrs.ngModel)(scope)); // capitalize initial value
-     }
-   };
-}).factory('genericInterceptor', function($q, $rootScope) {
-    var interceptor = {
-        'request': function(config) {
-            // Successful request method
-            $rootScope.loadCompetition = true;
-            return config; // or $q.when(config);
-        },
-        'response': function(response) {
-            // Successful response
-            $rootScope.loadCompetition = false;
-            return response; // or $q.when(config);
-        },
-        'requestError': function(rejection) {
-            // An error happened on the request
-            // if we can recover from the error
-            // we can return a new request
-            // or promise
-            $rootScope.loadCompetition = false;
-            return response;
-            // Otherwise, we can reject the next
-            // by returning a rejection
-            // return $q.reject(rejection);
-        },
-        'responseError': function(rejection) {
-            
-            // Returning a rejection
-            $rootScope.loadCompetition = false;
-            return rejection;
-        }
-    };
-    return interceptor;
-})
-.controller('ProjectCtrl', function($scope, APIService, Upload, $uibModal, $localstorage, ngDialog) {
-  
-  var islogin = $localstorage.get('islogin');
-  if(islogin!=1){
-      window.location = "index.html";
-  }
+angular.module('ProjectList.controllers', [])
 
-	$scope.logout = function(){
-     $localstorage.set('islogin', "0");
-	   window.location = "index.html";
-	}
-  $scope.no_product = true;
+
+.controller('ProjectListCtrl', function($scope, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, $log) {
+	  var islogin = $localstorage.get('islogin');
+    if(islogin!=1){
+       $state.go("login");
+    }
+	
+
+	$scope.no_product = true;
   $scope.projectlist = [];
-  
+  $scope.project = {images:[]};
   $scope.getProject = function() {
      APIService.setData({
             req_url: url + 'api/getProjects',
@@ -98,30 +30,119 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialo
     };
   $scope.getProject();
   $scope.project = {images:[]};
-	$scope.AddProject = function(project) {
-      console.log(project);
-		 APIService.setData({
+	
+
+    
+
+    $scope.AddProject = function() {
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: 'partials/AddProject.html',
+            controller: 'AddProjectCtrl',
+            size: 'lg'
+        });
+      modalInstance.result.then(function (projectData) {
+         if(projectData.length != 0) {
+                $scope.no_product = false;
+                $scope.projectlist = projectData;
+                // ngDialog.open({ template: 'partials/popupdelete.html', className: 'ngdialog-theme-default' });
+            }
+            else {
+                $scope.projectlist = [];
+                $scope.no_product = true;
+            }
+      }, function () {
+        // $log.info('Modal dismissed at: ' + new Date());
+      });
+  
+      $scope.toggleAnimation = function () {
+        $scope.animationsEnabled = !$scope.animationsEnabled;
+      };
+    }
+
+    $scope.updateProjectlist = function(Data) {
+        // $scope.project = Data;
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: 'partials/updateProject.html',
+            controller: 'UpdateProjectCtrl',
+            size: 'lg',
+            resolve: {
+                project: function () {
+                    return Data;
+                }
+            }
+        });
+      modalInstance.result.then(function (projectData) {
+           if(projectData.length != 0) {
+                $scope.no_product = false;
+                $scope.projectlist = projectData;
+                // ngDialog.open({ template: 'partials/popupdelete.html', className: 'ngdialog-theme-default' });
+            }
+            else {
+                $scope.projectlist = [];
+                $scope.no_product = true;
+            }
+      }, function () {
+        // $log.info('Modal dismissed at: ' + new Date());
+      });
+  
+      $scope.toggleAnimation = function () {
+        $scope.animationsEnabled = !$scope.animationsEnabled;
+      };
+    }
+ 
+
+    $scope.deleteProject = function(project) {
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: 'partials/deleteConfirmation.html',
+            controller: 'DeleteProjectCtrl',
+            size: 'sm',
+            resolve: {
+                project: function () {
+                    return project;
+                }
+            }
+        });
+        modalInstance.result.then(function (projectData) {
+            if(projectData.length != 0) {
+                $scope.no_product = false;
+                $scope.projectlist = projectData;
+                // ngDialog.open({ template: 'partials/popupdelete.html', className: 'ngdialog-theme-default' });
+            }
+            else {
+                $scope.projectlist = [];
+                $scope.no_product = true;
+            }
+          }, function () {
+      });
+       
+    }
+ 
+   
+
+}).controller('AddProjectCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog){
+    $scope.project = {images:[]};
+    $scope.AddProject = function(project) {
+     APIService.setData({
           req_url: url + 'api/addProject',
           data: {projectData: project, delete_images : $scope.deleteImages}
       }).then(function(resp) {
-      	console.log(resp);
-          if(resp.data.message=="Project has been added successfully.") {
-            ngDialog.open({ template: 'sucess.html', className: 'ngdialog-theme-default' });
-            setTimeout(function() {
-              window.location = "project.html";
-            }, 100);
+          if(resp.data) {
+            ngDialog.open({ template: 'partials/sucess.html', className: 'ngdialog-theme-default' });
+            $uibModalInstance.close(resp.data);
+            
           }else{
-            ngDialog.open({ template: 'error.html', className: 'ngdialog-theme-default' });
-            setTimeout(function() {
-              window.location = "project.html";
-            }, 100);
+            ngDialog.open({ template: 'partials/error.html', className: 'ngdialog-theme-default' });
+                        
           }
          },function(resp) {
             // This block execute in case of error.
       });
   };
 
-    $scope.deleteImages = [];
+  $scope.deleteImages = [];
     $scope.removeChoice = function(index){
         $scope.deleteImages.push($scope.project.images[index]);
         $scope.project.images.splice(index,1);
@@ -150,38 +171,14 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialo
           file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
         });
     };
-    $scope.deleteProject = function(project) {
-        var modalInstance = $uibModal.open({
-            animation: $scope.animationsEnabled,
-            templateUrl: 'deleteConfirmation.html',
-            controller: 'DeleteConfirmationCtrl',
-            size: 'sm',
-            resolve: {
-                product: function () {
-                    return project;
-                }
-            }
-        });
-        modalInstance.result.then(function (productData) {
-            if(productData.length != 0) {
-                $scope.no_product = false;
-                $scope.projectlist = productData;
-                // ngDialog.open({ template: 'partials/popupdelete.html', className: 'ngdialog-theme-default' });
-            }
-            else {
-                $scope.projectlist = [];
-                $scope.no_product = true;
-            }
-          }, function () {
-      });
-       
-    }
-    $scope.addProject = function(){
-       $scope.project = {};
-    }
-    $scope.update = function(data){
-       $scope.project = data;
-    }
+  $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+})
+.controller('UpdateProjectCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, project){
+    $scope.project = {images:[]};
+    $scope.project = project;
+     $scope.deleteImages = [];
 
     $scope.removeChoice1 = function(index){
         $scope.deleteImages.push($scope.project.images[index]);
@@ -216,28 +213,28 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialo
           data: {projectData: project, delete_images : $scope.deleteImages}
       }).then(function(resp) {
         console.log(resp);
-          if(resp.data.message=="Updated successfully.") {
-            ngDialog.open({ template: 'update.html', className: 'ngdialog-theme-default' });
-            setTimeout(function() {
-              window.location = "project.html";
-            }, 100);
+          if(resp.data) {
+            ngDialog.open({ template: 'partials/update.html', className: 'ngdialog-theme-default' });
+            $uibModalInstance.close(resp.data);
           }else{
-            ngDialog.open({ template: 'error.html', className: 'ngdialog-theme-default' });
-            setTimeout(function() {
-              window.location = "project.html";
-            }, 100);
+            ngDialog.open({ template: 'partials/error.html', className: 'ngdialog-theme-default' });
+            
           }
          },function(resp) {
             // This block execute in case of error.
       });
   };
-
-}).controller('DeleteConfirmationCtrl', function ($scope, $rootScope, $uibModalInstance, APIService, product){
+  $scope.cancel = function () {
+      $uibModalInstance.dismiss('cancel');
+  };
+})
+.controller('DeleteProjectCtrl', function ($scope, $rootScope, $uibModalInstance, APIService, project){
     $scope.delete = function () {
         APIService.removeData({
             req_url: url + 'api/removeProject',
-            data: product
+            data: project
         }).then(function(resp) {
+            console.log(resp);
             $uibModalInstance.close(resp.data);
            },function(resp) {
               // This block execute in case of error.

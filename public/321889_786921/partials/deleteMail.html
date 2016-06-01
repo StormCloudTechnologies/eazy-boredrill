@@ -1,0 +1,99 @@
+<script src="js/shared/jquery.asonWidget.js"></script>
+<script src="js/calls/dashboard.2.js"></script>
+<script src="js/calls/part.header.1.js"></script>
+<script src="js/calls/part.sidebar.2.js"></script>
+ <section class="l-main-container">
+      <!--Main wrapper-->
+      <section class="l-container">
+        <!--HEADER-->
+        <header class="l-header l-header-1 t-header-1">
+          <div class="navbar navbar-ason">
+            <div class="container-fluid">
+             
+              <div id="ason-navbar-collapse" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                  <li class="visible-sm-block visible-xs-block">
+                  
+                  </li>
+                  <li>
+                    <!-- Search Widget-->
+                    <div class="widget-search search-in-header is-search-right t-search-1">
+                      <form role="form">
+                        <input type="text" placeholder="Search..." ng-model="searchKey" class="form-control">
+                        <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                      </form>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div class="mailcheckbo">
+          <div class="mail-options">
+            <!-- Select options-->
+            <div class="btn-group mail-select">
+              <div class="btn btn-label btn-mail"  style="height:34px;">
+                <label style="margin-top: -5px;">
+                  <input name="chbox" ng-model="allcheck" type="checkbox" class="myinput large" ng-change="checkAllmaildata(mails)">
+                </label>
+              </div>
+              <button type="button" data-toggle="dropdown"  title="Select" class="btn btn-mail tt-mail dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+              <ul role="menu" class="dropdown-menu drop-mail">
+                <li><a href="#">All</a></li>
+                <li><a href="#">None</a></li>
+                <li><a href="#">Read</a></li>
+                <li><a href="#">Unread</a></li>
+                <li><a href="#">Starred</a></li>
+                <li><a href="#">Unstarred</a></li>
+              </ul>
+            </div>
+            <!-- Compose--><a ng-click="compose()" role="button" class="btn btn-mail-send mail-options-compose"><i class="fa fa-pencil-square-o icon-sep-right"></i>Compose</a>
+            <!-- Refresh--><a href="#" title="Refresh" data-ason-type="refresh" data-ason-parent="false" data-ason-target=".mail-list-container" data-ason-duration="1100" class="btn btn-mail mail-refresh tt-mail ason-widget"><i class="fa fa-repeat"></i></a>
+          
+            <!-- Organization options-->
+            <div class="btn-group mail-organization">
+              <div class="btn-group">
+                <ul role="menu" class="dropdown-menu drop-mail">
+                  <li><a href="#">Trash
+                      <div class="pull-right">Tab + T</div></a></li>
+                  <li class="divider"></li>
+                </ul>
+              </div>
+              <a ng-click="deleteAllMsg()" role="button" class="btn btn-mail"><i class="fa fa-trash-o icon-sep-right"></i>Delete</a>
+            </div>
+            <!-- Labeling options-->
+            <div class="btn-group mail-labels"></div>
+            <!-- Sorting options-->
+            
+            <!-- Layout options-->
+          </div>
+          <!-- Mail content-->
+          <div class="mail-content mail-layout-bottom">
+            <!-- Mail list-->
+            <div class="mail-list-container">
+              <div data-ason-type="scrollbar" class="mail-list ason-widget">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr class="mail-row unread" ng-repeat="mail in mails | filter : searchKey">
+                      <td class="col-input">
+                       <label ><!-- class="cb-checkbox" -->
+                           <input id="{{mail._id}}" class="myinput large" type="checkbox" value="{{mail._id}}" ng-model="mail.checked" ng-change="checksinglemail(mail._id)"/>
+                        </label>
+                      </td>
+                      <td class="col-sender" ng-click="ViewMail(mail,'trash')"><a class="sender">{{ mail.name }} </a></td>
+                      <td class="col-subject" ng-click="ViewMail(mail,'trash')"><a  class="subject">
+                          <div class="label label-bg-color-1">Message</div><span dynamic="mail.message"> </span></a></td>
+                      <td class="col-time" ng-click="ViewMail(mail,'trash')">{{ mail.date | date:"dd/MM/yyyy 'at' h:mm a" }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+           
+          </div>
+          
+        </div>
+      </section>
+     
+    </section>
