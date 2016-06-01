@@ -23,40 +23,23 @@
                         <span class="btn-text">Select Page</span>
                     </button>
                 </div>
-                <div class="collapse navbar-collapse" id="main_nav">
+                <div class="collapse navbar-collapse" id="main_nav" ng-init="aboutState=false">
                     <ul class="nav navbar-nav">
-                        <li class="active "><a ui-sref="app.home">Home</a></li>
-                        <li class=" dropdown">
+                        <li ng-class="{'active' : activeState=='home'}" ng-click="activeState = 'home'"><a ui-sref="app.home">Home</a></li>
+                        <li ng-class="{'active' : activeState=='about'}" ng-click="activeState = 'about'">
                             <a ui-sref="app.aboutUs" class="dropdown-toggle">about</a>
-                            <!-- <ul class="dropdown-menu" role="menu">
-                                <li><a href="about-us.html">About us</a></li>
-                                <li><a href="about-us2.html">About us 2</a></li>
-                            </ul> -->
                         </li>
-                        <li class=" dropdown">
+                        <li ng-class="{'active' : activeState=='project'}" ng-click="activeState = 'project'" >
                             <a ui-sref="app.projects" class="dropdown-toggle">projects</a>
-                           <!--  <ul class="dropdown-menu" role="menu">
-                                <li><a href="projects_full.html">Full Width Projects</a></li>
-                                <li><a href="projects2.html">2 Collumn Projects</a></li>
-                                <li><a href="projects3.html">3 Collumn Projects</a></li>
-                            </ul> -->
                         </li>
-                        <li><a ui-sref="app.services">services</a></li>
-                        <!-- <li class=" dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">news</a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="blog2.html">Blog 2 Col</a></li>
-                                <li><a href="blog3.html">Blog 3 Col</a></li>
-                                <li><a href="single-post.html">Sinlge Post</a></li>
-                            </ul>
-                        </li> -->
-                        <li class=" dropdown">
+                        <li ng-class="{'active' : activeState=='services'}" ng-click="activeState = 'services'"><a ui-sref="app.services" >services</a></li>
+
+
+                        <li ng-class="{'active' : activeState=='faq'}" ng-click="activeState = 'faq'"><a ui-sref="app.Faq">FAQ</a></li>
+                        
+                        <li ng-class="{'active' : activeState=='contact'}" ng-click="activeState = 'contact'">
                             <a ui-sref="app.contact" class="dropdown-toggle">contact</a>
-                            <!-- <ul class="dropdown-menu" role="menu">
-                                <li><a href="contact.html">Conact us</a></li>
-                                <li><a href="contact2.html">Conact us 2</a></li>
-                            </ul> -->
+                            
                         </li>
                     </ul>
                 </div>

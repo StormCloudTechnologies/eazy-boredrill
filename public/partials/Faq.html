@@ -1,0 +1,25 @@
+<script src="js/construction.js"></script>
+<script src="lib/google-map.js"></script>
+<section id="pageCover" class="row">
+    <img src="images/contactCover.png" alt="" class="pageCover">
+    <div class="row pageTitle">Contact us</div>
+    <div class="row pageBreadcrumbs">
+        <ol class="breadcrumb">
+          <li><a ui-sref="app.home">home</a></li>
+          <li class="active">FAQ</li>
+        </ol>
+    </div>
+</section>
+
+<section id="contacts" class="row" style="padding:10px !important;">
+    <!-- <div class="container"> -->
+         <uib-accordion close-others="oneAtATime">
+          <uib-accordion-group is-open="status.open" ng-repeat=" FaqData in Faqlists">
+            <uib-accordion-heading>
+              <span style="font-size:16px;font-weight: 600;">{{$index +1 }} : </span> {{FaqData.question}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+            </uib-accordion-heading>
+              {{FaqData.answer}}
+           </uib-accordion-group>
+        </uib-accordion>
+    <!-- </div> -->
+</section>

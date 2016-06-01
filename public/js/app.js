@@ -1,7 +1,7 @@
 //var url_prifix = 'http://52.39.156.51:8000/';
 var url_prifix = 'http://localhost:8000/';
 
-angular.module('eazyBoredrillWebiste', ['ui.router', 'APIModule', 'ui.bootstrap','main.controllers','home.controllers','services.controllers','projects.controllers','contact.controllers','about.controllers'])
+angular.module('eazyBoredrillWebiste', ['ui.router', 'APIModule', 'ui.bootstrap','main.controllers','home.controllers','services.controllers','projects.controllers','contact.controllers','about.controllers','Faq.controllers'])
 
 .factory('$localstorage', ['$window', function($window) {
   return {
@@ -98,6 +98,15 @@ angular.module('eazyBoredrillWebiste', ['ui.router', 'APIModule', 'ui.bootstrap'
       'container': {
         templateUrl: 'partials/contact.html',
         controller: 'ContactCtrl'
+      }
+    }
+  })
+.state('app.Faq', {
+    url: '/Faq',
+    views: {
+      'container': {
+        templateUrl: 'partials/Faq.html',
+        controller: 'FaqCtrl'
       }
     }
   })
