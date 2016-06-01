@@ -34,16 +34,25 @@ angular.module('ProjectList.controllers', [])
 
     
 
-    $scope.editProject = function() {
+    $scope.AddProject = function() {
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             templateUrl: 'partials/AddProject.html',
             controller: 'AddProjectCtrl',
             size: 'lg'
         });
-      modalInstance.result.then(function () {
+      modalInstance.result.then(function (projectData) {
+         if(projectData.length != 0) {
+                $scope.no_product = false;
+                $scope.projectlist = projectData;
+                // ngDialog.open({ template: 'partials/popupdelete.html', className: 'ngdialog-theme-default' });
+            }
+            else {
+                $scope.projectlist = [];
+                $scope.no_product = true;
+            }
       }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
+        // $log.info('Modal dismissed at: ' + new Date());
       });
   
       $scope.toggleAnimation = function () {
@@ -59,14 +68,23 @@ angular.module('ProjectList.controllers', [])
             controller: 'UpdateProjectCtrl',
             size: 'lg',
             resolve: {
-                product: function () {
+                project: function () {
                     return Data;
                 }
             }
         });
-      modalInstance.result.then(function (productData) {
+      modalInstance.result.then(function (projectData) {
+           if(projectData.length != 0) {
+                $scope.no_product = false;
+                $scope.projectlist = projectData;
+                // ngDialog.open({ template: 'partials/popupdelete.html', className: 'ngdialog-theme-default' });
+            }
+            else {
+                $scope.projectlist = [];
+                $scope.no_product = true;
+            }
       }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
+        // $log.info('Modal dismissed at: ' + new Date());
       });
   
       $scope.toggleAnimation = function () {
@@ -79,18 +97,18 @@ angular.module('ProjectList.controllers', [])
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             templateUrl: 'partials/deleteConfirmation.html',
-            controller: 'DeleteConfirmationCtrl',
+            controller: 'DeleteProjectCtrl',
             size: 'sm',
             resolve: {
-                product: function () {
+                project: function () {
                     return project;
                 }
             }
         });
-        modalInstance.result.then(function (productData) {
-            if(productData.length != 0) {
+        modalInstance.result.then(function (projectData) {
+            if(projectData.length != 0) {
                 $scope.no_product = false;
-                $scope.projectlist = productData;
+                $scope.projectlist = projectData;
                 // ngDialog.open({ template: 'partials/popupdelete.html', className: 'ngdialog-theme-default' });
             }
             else {
@@ -107,26 +125,17 @@ angular.module('ProjectList.controllers', [])
 }).controller('AddProjectCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog){
     $scope.project = {images:[]};
     $scope.AddProject = function(project) {
-     console.log(project);
      APIService.setData({
           req_url: url + 'api/addProject',
           data: {projectData: project, delete_images : $scope.deleteImages}
       }).then(function(resp) {
-        console.log(resp);
-          if(resp.data.message=="Project has been added successfully.") {
+          if(resp.data) {
             ngDialog.open({ template: 'partials/sucess.html', className: 'ngdialog-theme-default' });
-            setTimeout(function() {
-              $state.go('admin.projectlist');
-              $uibModalInstance.close(resp.data);
-            }, 100);
+            $uibModalInstance.close(resp.data);
             
           }else{
             ngDialog.open({ template: 'partials/error.html', className: 'ngdialog-theme-default' });
-            setTimeout(function() {
-              $state.go('admin.projectlist');
-              $uibModalInstance.close(resp.data);
-            }, 100);
-            
+                        
           }
          },function(resp) {
             // This block execute in case of error.
@@ -166,9 +175,9 @@ angular.module('ProjectList.controllers', [])
         $uibModalInstance.dismiss('cancel');
     };
 })
-.controller('UpdateProjectCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, product){
+.controller('UpdateProjectCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, project){
     $scope.project = {images:[]};
-    $scope.project = product;
+    $scope.project = project;
      $scope.deleteImages = [];
 
     $scope.removeChoice1 = function(index){
@@ -204,16 +213,12 @@ angular.module('ProjectList.controllers', [])
           data: {projectData: project, delete_images : $scope.deleteImages}
       }).then(function(resp) {
         console.log(resp);
-          if(resp.data.message=="Updated successfully.") {
+          if(resp.data) {
             ngDialog.open({ template: 'partials/update.html', className: 'ngdialog-theme-default' });
-            setTimeout(function() {
-              $state.go('admin.projectlist');
-            }, 100);
+            $uibModalInstance.close(resp.data);
           }else{
             ngDialog.open({ template: 'partials/error.html', className: 'ngdialog-theme-default' });
-            setTimeout(function() {
-              $state.go('admin.projectlist');
-            }, 100);
+            
           }
          },function(resp) {
             // This block execute in case of error.
@@ -223,12 +228,13 @@ angular.module('ProjectList.controllers', [])
       $uibModalInstance.dismiss('cancel');
   };
 })
-.controller('DeleteConfirmationCtrl', function ($scope, $rootScope, $uibModalInstance, APIService, product){
+.controller('DeleteProjectCtrl', function ($scope, $rootScope, $uibModalInstance, APIService, project){
     $scope.delete = function () {
         APIService.removeData({
             req_url: url + 'api/removeProject',
-            data: product
+            data: project
         }).then(function(resp) {
+            console.log(resp);
             $uibModalInstance.close(resp.data);
            },function(resp) {
               // This block execute in case of error.

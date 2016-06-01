@@ -8,10 +8,6 @@ angular.module('Faq.controllers', [])
     }
 
   $scope.oneAtATime = true;
-
-  
-	
-
 	$scope.no_product = true;
   $scope.Faqlists = [];
   $scope.getFaq = function() {
@@ -38,16 +34,25 @@ angular.module('Faq.controllers', [])
         console.log(" watch isOpen:" +$scope.isOpen);
    }, true);
  
-    $scope.editFaq = function() {
+    $scope.AddFaq = function() {
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             templateUrl: 'partials/AddFaq.html',
             controller: 'AddFaqCtrl',
             size: 'lg'
         });
-      modalInstance.result.then(function () {
+      modalInstance.result.then(function (FaqData) {
+          if(FaqData.length != 0) {
+                $scope.no_product = false;
+                $scope.Faqlists = FaqData;
+                // ngDialog.open({ template: 'partials/popupdelete.html', className: 'ngdialog-theme-default' });
+            }
+            else {
+                $scope.Faqlists = [];
+                $scope.no_product = true;
+            }
       }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
+        // $log.info('Modal dismissed at: ' + new Date());
       });
   
       $scope.toggleAnimation = function () {
@@ -63,14 +68,23 @@ angular.module('Faq.controllers', [])
             controller: 'UpdateFaqCtrl',
             size: 'lg',
             resolve: {
-                product: function () {
+                faqList: function () {
                     return Data;
                 }
             }
         });
-      modalInstance.result.then(function (productData) {
+      modalInstance.result.then(function (FaqData) {
+          if(FaqData.length != 0) {
+                $scope.no_product = false;
+                $scope.Faqlists = FaqData;
+                // ngDialog.open({ template: 'partials/popupdelete.html', className: 'ngdialog-theme-default' });
+            }
+            else {
+                $scope.Faqlists = [];
+                $scope.no_product = true;
+            }
       }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
+        // $log.info('Modal dismissed at: ' + new Date());
       });
   
       $scope.toggleAnimation = function () {
@@ -83,22 +97,22 @@ angular.module('Faq.controllers', [])
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             templateUrl: 'partials/deleteConfirmation.html',
-            controller: 'DeleteConfirmationCtrl',
+            controller: 'DeleteFaqCtrl',
             size: 'sm',
             resolve: {
-                product: function () {
+                faqList: function () {
                     return FaqData;
                 }
             }
         });
-        modalInstance.result.then(function (productData) {
-            if(productData.length != 0) {
+        modalInstance.result.then(function (FaqData) {
+            if(FaqData.length != 0) {
                 $scope.no_product = false;
-                $scope.projectlist = productData;
+                $scope.Faqlists = FaqData;
                 // ngDialog.open({ template: 'partials/popupdelete.html', className: 'ngdialog-theme-default' });
             }
             else {
-                $scope.projectlist = [];
+                $scope.Faqlists = [];
                 $scope.no_product = true;
             }
           }, function () {
@@ -116,19 +130,12 @@ angular.module('Faq.controllers', [])
           data: Faqlist
       }).then(function(resp) {
         console.log(resp);
-          if(resp.data.message=="FAQ has been added successfully.") {
+          if(resp.data) {
             ngDialog.open({ template: 'partials/sucess.html', className: 'ngdialog-theme-default' });
-            $state.go('admin.Faq');
-            setTimeout(function() {
-              
-              $uibModalInstance.close(resp.data);
-            }, 100);
+            $uibModalInstance.close(resp.data);
           }else{
             ngDialog.open({ template: 'partials/error.html', className: 'ngdialog-theme-default' });
-            setTimeout(function() {
-              $state.go('admin.Faq');
-              $uibModalInstance.close(resp.data);
-            }, 100);
+             $uibModalInstance.close(resp.data);
           }
          },function(resp) {
             // This block execute in case of error.
@@ -140,22 +147,22 @@ angular.module('Faq.controllers', [])
         $uibModalInstance.dismiss('cancel');
     };
 })
-.controller('UpdateFaqCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, product){
+.controller('UpdateFaqCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, faqList){
     $scope.project = {images:[]};
-    $scope.Faqlist = product;
+    $scope.Faqlist = faqList;
 
-    $scope.UpdateProject = function(project) {
+    $scope.UpdateProject = function(FaqList) {
      APIService.updateData({
           req_url: url + 'api/updateFAQ',
-          data: {projectData: project}
+          data:  FaqList
       }).then(function(resp) {
         console.log(resp);
-          if(resp.data.message=="Updated successfully.") {
+          if(resp.data) {
             ngDialog.open({ template: 'partials/update.html', className: 'ngdialog-theme-default' });
-             $state.go('admin.Faq');
+            $uibModalInstance.close(resp.data);
           }else{
             ngDialog.open({ template: 'partials/error.html', className: 'ngdialog-theme-default' });
-             $state.go('admin.Faq');
+              $uibModalInstance.close(resp.data);
           }
          },function(resp) {
             // This block execute in case of error.
@@ -165,13 +172,13 @@ angular.module('Faq.controllers', [])
       $uibModalInstance.dismiss('cancel');
   };
 })
-.controller('DeleteConfirmationCtrl', function ($scope, $state, $rootScope, $uibModalInstance, APIService, product){
+.controller('DeleteFaqCtrl', function ($scope, $state, $rootScope, $uibModalInstance, APIService, faqList){
+    
     $scope.delete = function () {
         APIService.removeData({
             req_url: url + 'api/removeFAQ',
-            data: product
+            data: faqList
         }).then(function(resp) {
-            $state.go('admin.Faq');
             $uibModalInstance.close(resp.data);
            },function(resp) {
               // This block execute in case of error.

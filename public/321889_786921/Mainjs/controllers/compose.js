@@ -72,10 +72,8 @@ angular.module('Compose.controllers', [])
           req_url: url + 'api/sendCustomMail',
           data : {to: To, subject: subject ,message: editerdata, images : images }
       }).then(function(resp) {
-          if(resp.data.message="Message sent successfully.") {
-              // $scope.mails = resp.data;
-              // ngDialog.open({ template: 'sendmailsucess.html', className: 'ngdialog-theme-default' });
-              $state.go('mailMenu.mail');
+          if(resp.data) {
+              $state.go('mailMenu.sendMail');
           }
           else {
               $scope.mails = [];

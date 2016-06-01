@@ -61,22 +61,20 @@ angular.module('Mail.controllers', [])
 
 
     $scope.deleteAllMsg = function(){
-             APIService.updateData({
-                  req_url: url + 'api/updateMail',
-                  data: {updateMailList: $scope.updateMailList,status:'TRASH'}
-              }).then(function(resp) {
-                  console.log(resp);
-                  if(resp.data.message="Updated successfully.") {
-                      // $scope.mails = resp.data;
-                      // ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
-                     $state.go('mailMenu.mail');
-                  }
-                  else {
-                      $scope.mails = [];
-                  }
-                 },function(resp) {
-                    // This block execute in case of error.
-              });
+     APIService.updateData({
+          req_url: url + 'api/updateMail',
+          data: {updateMailList: $scope.updateMailList,status:'TRASH'}
+      }).then(function(resp) {
+          console.log(resp);
+          if(resp.data) {
+            $scope.getMails();
+          }
+          else {
+              $scope.mails = [];
+          }
+         },function(resp) {
+            // This block execute in case of error.
+      });
         //     }            
         // })
         

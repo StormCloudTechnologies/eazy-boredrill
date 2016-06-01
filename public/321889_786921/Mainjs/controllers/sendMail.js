@@ -68,10 +68,8 @@ angular.module('SendMail.controllers', [])
                   data: {updateMailList: $scope.updateMailList,status:'TRASH'}
               }).then(function(resp) {
                   console.log(resp);
-                  if(resp.data.message="Updated successfully.") {
-                      // $scope.mails = resp.data;
-                      // ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
-                       $state.go('mailMenu.sendMail');
+                  if(resp.data) {
+                    $scope.getMails();
                   }
                   else {
                       $scope.mails = [];
