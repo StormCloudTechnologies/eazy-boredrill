@@ -1,77 +1,49 @@
-var url_prifix = 'http://localhost:8000/';
-angular.module('mailModule', ['APIModule', 'ngDialog'])
-.factory('genericInterceptor', function($q, $rootScope) {
-    var interceptor = {
-        'request': function(config) {
-            // Successful request method
-            $rootScope.loadCompetition = true;
-            return config; // or $q.when(config);
-        },
-        'response': function(response) {
-            // Successful response
-            $rootScope.loadCompetition = false;
-            return response; // or $q.when(config);
-        },
-        'requestError': function(rejection) {
-            // An error happened on the request
-            // if we can recover from the error
-            // we can return a new request
-            // or promise
-            $rootScope.loadCompetition = false;
-            return response;
-            // Otherwise, we can reject the next
-            // by returning a rejection
-            // return $q.reject(rejection);
-        },
-        'responseError': function(rejection) {
-            
-            // Returning a rejection
-            $rootScope.loadCompetition = false;
-            return rejection;
-        }
-    };
-    return interceptor;
-})
-.controller('ViewMailCtrl', function($scope, APIService, ngDialog) {
-   $scope.compose = function(){
-      window.location = "compose.html";
-   }
+
+angular.module('ViewMail.controllers', [])
+
+.controller('ViewMailCtrl', function($scope, $state, APIService, ngDialog, $localstorage, $uibModal) {
+   
+    var islogin = $localstorage.get('islogin');
+    if(islogin!=1){
+       $state.go("login");
+    }
 
    var statusmail = localStorage.getItem("statusmail");
    if(localStorage.getItem("viewMail")) {
       $scope.mail = JSON.parse(localStorage.getItem("viewMail"));
   }
-   $scope.replyMail = function(message) {
-      APIService.setData({
-          req_url: url_prifix + 'api/sendCustomMail',
-          data : {to: $scope.mail.email, subject: 'Boredrill Reply' ,message: message }
-      }).then(function(resp) {
-          if(resp.data.message="Message sent successfully.") {
-              // $scope.mails = resp.data;
-              ngDialog.open({ template: 'sendmailsucess.html', className: 'ngdialog-theme-default' });
-              window.location = "mail.html";
-          }
-          else {
-              $scope.mails = [];
-          }
-         },function(resp) {
-            // This block execute in case of error.
+
+  $scope.ReplyMsg = function() {
+      var modalInstance = $uibModal.open({
+          animation: $scope.animationsEnabled,
+          templateUrl: 'partials/replyMsg.html',
+          controller: 'ReplyCtrl',
+          size: 'lg'
       });
-   }
+    modalInstance.result.then(function () {
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+
+    $scope.toggleAnimation = function () {
+      $scope.animationsEnabled = !$scope.animationsEnabled;
+    };
+  }
+
    $scope.viewmailList = [];
    $scope.deleteMsg = function(mail){
     console.log("demooo",mail);
     $scope.viewmailList.push(mail._id)
     if(statusmail == "inbox"){
          APIService.updateData({
-            req_url: url_prifix + 'api/updateMail',
+            req_url: url + 'api/updateMail',
             data: {updateMailList: $scope.viewmailList,status:'TRASH'}
         }).then(function(resp) {
             console.log(resp);
             if(resp.data.message="Updated successfully.") {
                 // $scope.mails = resp.data;
                 ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
-                window.location = "mail.html";
+                $state.go('mailMenu.mail');
             }
             else {
                 $scope.mails = [];
@@ -82,14 +54,14 @@ angular.module('mailModule', ['APIModule', 'ngDialog'])
      }
      if(statusmail == "sent"){
          APIService.updateData({
-            req_url: url_prifix + 'api/updateMail',
+            req_url: url + 'api/updateMail',
             data: {updateMailList: $scope.viewmailList,status:'TRASH'}
         }).then(function(resp) {
             console.log(resp);
             if(resp.data.message="Updated successfully.") {
                 // $scope.mails = resp.data;
                 ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
-                window.location = "sendmail.html";
+                $state.go('mailMenu.sendMail');
             }
             else {
                 $scope.mails = [];
@@ -100,14 +72,14 @@ angular.module('mailModule', ['APIModule', 'ngDialog'])
      }
      if(statusmail == "trash"){
         APIService.removeData({
-            req_url: url_prifix + 'api/deleteMail',
+            req_url: url + 'api/deleteMail',
             data:  {deleteMailList: $scope.viewmailList}
         }).then(function(resp) {
             console.log("=================resp==========",resp);
             if(resp.data.length>=0) {
                 // $scope.mails = resp.data;
                 ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
-                window.location = "deletemail.html";
+                 $state.go('mailMenu.deleteMail');
             }
             else {
                 $scope.mails = [];
@@ -117,4 +89,31 @@ angular.module('mailModule', ['APIModule', 'ngDialog'])
         });
      }
  }
+})
+.controller('ReplyCtrl', function ($scope, $rootScope, $uibModalInstance, APIService, ngDialog, $state){
+    $scope.replyMail = function(message) {
+      var statusmail = localStorage.getItem("statusmail");
+       if(localStorage.getItem("viewMail")) {
+          $scope.mail = JSON.parse(localStorage.getItem("viewMail"));
+      }
+      APIService.setData({
+          req_url: url + 'api/sendCustomMail',
+          data : {to: $scope.mail.email, subject: 'Boredrill Reply' ,message: message }
+      }).then(function(resp) {
+          if(resp.data.message="Message sent successfully.") {
+              ngDialog.open({ template: 'sendmailsucess.html', className: 'ngdialog-theme-default' });
+              $state.go('mailMenu.mail');
+              $uibModalInstance.close(resp.data);
+          }
+          else {
+              $uibModalInstance.close(resp.data);
+              $scope.mails = [];
+          }
+         },function(resp) {
+            // This block execute in case of error.
+      });
+   }
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
 });

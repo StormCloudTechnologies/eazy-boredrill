@@ -1,11 +1,11 @@
-angular.module('starter', ['APIModule'])
+angular.module('login.controllers', [])
 
-.controller('LoginCtrl', function($scope, APIService, $localstorage) {
+.controller('LoginCtrl', function($scope, APIService, $localstorage, $state) {
     $scope.allvalue = true;
-    // var islogin = $localstorage.get('islogin');
-    // if(islogin==1){
-    //    $state.go("admin.home");
-    // }
+    var islogin = $localstorage.get('islogin');
+    if(islogin==1){
+       $state.go("admin.home");
+    }
 
     $scope.forgetpassword = function(){
         $scope.allvalue = false;

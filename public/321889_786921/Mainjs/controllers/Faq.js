@@ -1,11 +1,25 @@
-angular.module('ProjectList.controllers', [])
+angular.module('Faq.controllers', [])
 
 
-.controller('ProjectListCtrl', function($scope, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, $log) {
+.controller('FaqCtrl', function($scope, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, $log) {
 	  var islogin = $localstorage.get('islogin');
     if(islogin!=1){
        $state.go("login");
     }
+
+  $scope.oneAtATime = true;
+
+  $scope.addItem = function() {
+    var newItemNo = $scope.items.length + 1;
+    $scope.items.push('Item ' + newItemNo);
+  };
+
+  $scope.status = {
+    open : true,
+    isCustomHeaderOpen: false,
+    isFirstOpen: true,
+    isFirstDisabled: false
+  };
 	
 
 	$scope.no_product = true;

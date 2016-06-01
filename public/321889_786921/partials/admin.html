@@ -20,14 +20,17 @@
         <nav class="navigation">
           <ul data-ason-type="menu" class="ason-widget">
 
-            <li class="active"><a ui-sref="admin.home" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-home"></i><span class="title">Home</span></a>
+            <li><a ui-sref="admin.home" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-home"></i><span class="title">Home</span></a>
             </li>
             <li><a ui-sref="admin.projectlist" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;" class="icon fa fa-tasks"></i><span class="title">Project List</span></a>
             </li>
-            <li><a href="post.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-clipboard "></i><span class="title">Latest Post</span></a>
+            <li><a ui-sref="admin.post" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-clipboard "></i><span class="title">Latest Post</span></a>
             </li>
 
-            <li><a href="mail.html" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-envelope "></i><span class="title">Email</span></a>
+            <li><a ui-sref="mailMenu.mail" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-envelope "></i><span class="title">Email</span></a>
+            </li>
+
+            <li><a ui-sref="admin.Faq" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-question-circle "></i><span class="title">FAQ</span></a>
             </li>
 
             <li><a ng-click="logout()" style="font-size: 16px !important;font-weight: bold;"><i  style="font-size: 24px !important;"  class="icon fa fa-power-off"></i><span class="title">Logout</span></a>

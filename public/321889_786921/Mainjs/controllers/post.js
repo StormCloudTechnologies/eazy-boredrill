@@ -1,80 +1,12 @@
-var url = 'http://52.39.156.51:8000/';
-angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialog'])
-.factory('$localstorage', ['$window', function($window) {
-  return {
-    set: function(key, value) {
-      $window.localStorage[key] = value;
-    },
-    get: function(key, defaultValue) {
-      return $window.localStorage[key] || defaultValue;
-    },
-    setObject: function(key, value) {
-      $window.localStorage[key] = JSON.stringify(value);
-    },
-    getObject: function(key) {
-      return JSON.parse($window.localStorage[key] || '{}');
-    }
-  }
-}]).directive('capitalizeFirst', function($parse) {
-   return {
-     require: 'ngModel',
-     link: function(scope, element, attrs, modelCtrl) {
-        var capitalize = function(inputValue) {
-           if (inputValue === undefined) { inputValue = ''; }
-           var capitalized = inputValue.charAt(0).toUpperCase() +
-                             inputValue.substring(1);
-           if(capitalized !== inputValue) {
-              modelCtrl.$setViewValue(capitalized);
-              modelCtrl.$render();
-            }         
-            return capitalized;
-         }
-         modelCtrl.$parsers.push(capitalize);
-         capitalize($parse(attrs.ngModel)(scope)); // capitalize initial value
-     }
-   };
-}).factory('genericInterceptor', function($q, $rootScope) {
-    var interceptor = {
-        'request': function(config) {
-            // Successful request method
-            $rootScope.loadCompetition = true;
-            return config; // or $q.when(config);
-        },
-        'response': function(response) {
-            // Successful response
-            $rootScope.loadCompetition = false;
-            return response; // or $q.when(config);
-        },
-        'requestError': function(rejection) {
-            // An error happened on the request
-            // if we can recover from the error
-            // we can return a new request
-            // or promise
-            $rootScope.loadCompetition = false;
-            return response;
-            // Otherwise, we can reject the next
-            // by returning a rejection
-            // return $q.reject(rejection);
-        },
-        'responseError': function(rejection) {
-            
-            // Returning a rejection
-            $rootScope.loadCompetition = false;
-            return rejection;
-        }
-    };
-    return interceptor;
-})
-.controller('PostCtrl', function($scope, APIService, Upload, $uibModal, $localstorage, ngDialog) {
+angular.module('Post.controllers', [])
+
+.controller('PostCtrl', function($scope, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, $log) {
   
-  var islogin = $localstorage.get('islogin');
-  if(islogin!=1){
-      window.location = "index.html";
-  }
-	$scope.logout = function(){
-     $localstorage.set('islogin', "0");
-	   window.location = "index.html";
-	}
+    var islogin = $localstorage.get('islogin');
+    if(islogin!=1){
+       $state.go("login");
+    }
+
   $scope.postlist = [];
   $scope.no_product = true;
 
@@ -95,29 +27,106 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialo
         });
     };
   $scope.getPost();
-  $scope.post = {images:[]};
-	$scope.AddPost = function(post) {
-      console.log(post);
-		 APIService.setData({
-          req_url: url + 'api/addLatestJob',
-          data: {latestJobData: post, delete_images : $scope.deleteImages}
-      }).then(function(resp) {
-      	console.log(resp);
-          if(resp.data.message=="Project has been added successfully.") {
-            ngDialog.open({ template: 'sucess.html', className: 'ngdialog-theme-default' });
-          	 setTimeout(function() {
-                window.location = "post.html";
-              }, 100);
-          }else{
-            ngDialog.open({ template: 'error.html', className: 'ngdialog-theme-default' });
-            setTimeout(function() {
-              window.location = "post.html";
-            }, 100);
-          }
-         },function(resp) {
-            // This block execute in case of error.
+
+  $scope.editProject = function() {
+      var modalInstance = $uibModal.open({
+          animation: $scope.animationsEnabled,
+          templateUrl: 'partials/editPost.html',
+          controller: 'EditPostCtrl',
+          size: 'lg'
       });
-  };
+    modalInstance.result.then(function () {
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+
+    $scope.toggleAnimation = function () {
+      $scope.animationsEnabled = !$scope.animationsEnabled;
+    };
+  }
+
+    $scope.updatePostlist = function(Data) {
+        // $scope.project = Data;
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: 'partials/updatePost.html',
+            controller: 'UpdatePostCtrl',
+            size: 'lg',
+            resolve: {
+                product: function () {
+                    return Data;
+                }
+            }
+        });
+      modalInstance.result.then(function (productData) {
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+  
+      $scope.toggleAnimation = function () {
+        $scope.animationsEnabled = !$scope.animationsEnabled;
+      };
+    }
+ 
+
+
+ 
+    $scope.deletePost = function(post) {
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: 'partials/deleteConfirmation.html',
+            controller: 'DeleteConfirmationCtrl',
+            size: 'sm',
+            resolve: {
+                product: function () {
+                    return post;
+                }
+            }
+        });
+        modalInstance.result.then(function (productData) {
+            if(productData.length != 0) {
+                $scope.postlist = productData;
+                 $scope.no_product = false;
+                // ngDialog.open({ template: 'partials/popupdelete.html', className: 'ngdialog-theme-default' });
+            }
+            else {
+                $scope.postlist = [];
+                $scope.no_product = true;
+            }
+          }, function () {
+      });
+       
+    }
+ 
+    
+
+})
+.controller('EditPostCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog){
+     $scope.post = {images:[]};
+      $scope.AddPost = function(post) {
+          console.log(post);
+         APIService.setData({
+              req_url: url + 'api/addLatestJob',
+              data: {latestJobData: post, delete_images : $scope.deleteImages}
+          }).then(function(resp) {
+            console.log(resp);
+              if(resp.data.message=="Project has been added successfully.") {
+                $uibModalInstance.close(resp.data);
+                ngDialog.open({ template: 'sucess.html', className: 'ngdialog-theme-default' });
+                 setTimeout(function() {
+                    $state.go('admin.post');
+                  }, 100);
+              }else{
+                $uibModalInstance.close(resp.data);
+                ngDialog.open({ template: 'error.html', className: 'ngdialog-theme-default' });
+                setTimeout(function() {
+                  $state.go('admin.post');
+                }, 100);
+              }
+             },function(resp) {
+                // This block execute in case of error.
+          });
+      };
 
     $scope.deleteImages = [];
     $scope.removeChoice = function(index){
@@ -148,38 +157,14 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialo
           file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
         });
     };
-    $scope.deletePost = function(post) {
-        var modalInstance = $uibModal.open({
-            animation: $scope.animationsEnabled,
-            templateUrl: 'deleteConfirmation.html',
-            controller: 'DeleteConfirmationCtrl',
-            size: 'sm',
-            resolve: {
-                product: function () {
-                    return post;
-                }
-            }
-        });
-        modalInstance.result.then(function (productData) {
-            if(productData.length != 0) {
-                $scope.postlist = productData;
-                 $scope.no_product = false;
-                // ngDialog.open({ template: 'partials/popupdelete.html', className: 'ngdialog-theme-default' });
-            }
-            else {
-                $scope.postlist = [];
-                $scope.no_product = true;
-            }
-          }, function () {
-      });
-       
-    }
-    $scope.addPost = function(){
-       $scope.post = {};
-    }
-    $scope.update = function(data){
-       $scope.post = data;
-    }
+  $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+})
+.controller('UpdatePostCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, product){
+    $scope.post = {images:[]};
+    $scope.post = product;
+     $scope.deleteImages = [];
 
     $scope.removeChoice1 = function(index){
         $scope.deleteImages.push($scope.post.images[index]);
@@ -215,23 +200,29 @@ angular.module('starter', ['APIModule', 'ngFileUpload', 'ui.bootstrap', 'ngDialo
       }).then(function(resp) {
         console.log(resp);
           if(resp.data.message=="Updated successfully.") {
+            $uibModalInstance.close(resp.data);
             ngDialog.open({ template: 'update.html', className: 'ngdialog-theme-default' });
             setTimeout(function() {
-              window.location = "post.html";
+              $state.go('admin.post');
             }, 100);
             
           }else{
+            $uibModalInstance.close(resp.data);
             ngDialog.open({ template: 'error.html', className: 'ngdialog-theme-default' });
             setTimeout(function() {
-              window.location = "post.html";
+              $state.go('admin.post');
             }, 100);
           }
          },function(resp) {
             // This block execute in case of error.
       });
   };
+  $scope.cancel = function () {
+      $uibModalInstance.dismiss('cancel');
+  };
+})
 
-}).controller('DeleteConfirmationCtrl', function ($scope, $rootScope, $uibModalInstance, APIService, product){
+.controller('DeleteConfirmationCtrl', function ($scope, $rootScope, $uibModalInstance, APIService, product){
     $scope.delete = function () {
         APIService.removeData({
             req_url: url + 'api/removeLatestJob',
