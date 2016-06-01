@@ -31,8 +31,8 @@ angular.module('Post.controllers', [])
   $scope.editProject = function() {
       var modalInstance = $uibModal.open({
           animation: $scope.animationsEnabled,
-          templateUrl: 'partials/editPost.html',
-          controller: 'EditPostCtrl',
+          templateUrl: 'partials/AddPost.html',
+          controller: 'AddPostCtrl',
           size: 'lg'
       });
     modalInstance.result.then(function () {
@@ -101,7 +101,7 @@ angular.module('Post.controllers', [])
     
 
 })
-.controller('EditPostCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog){
+.controller('AddPostCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog){
      $scope.post = {images:[]};
       $scope.AddPost = function(post) {
           console.log(post);
@@ -111,16 +111,17 @@ angular.module('Post.controllers', [])
           }).then(function(resp) {
             console.log(resp);
               if(resp.data.message=="Project has been added successfully.") {
-                $uibModalInstance.close(resp.data);
+                
                 ngDialog.open({ template: 'sucess.html', className: 'ngdialog-theme-default' });
                  setTimeout(function() {
                     $state.go('admin.post');
+                    $uibModalInstance.close(resp.data);
                   }, 100);
               }else{
-                $uibModalInstance.close(resp.data);
                 ngDialog.open({ template: 'error.html', className: 'ngdialog-theme-default' });
                 setTimeout(function() {
                   $state.go('admin.post');
+                  $uibModalInstance.close(resp.data);
                 }, 100);
               }
              },function(resp) {

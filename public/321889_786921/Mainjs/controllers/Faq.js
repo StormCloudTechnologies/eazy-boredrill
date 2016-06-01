@@ -9,50 +9,40 @@ angular.module('Faq.controllers', [])
 
   $scope.oneAtATime = true;
 
-  $scope.addItem = function() {
-    var newItemNo = $scope.items.length + 1;
-    $scope.items.push('Item ' + newItemNo);
-  };
-
-  $scope.status = {
-    open : true,
-    isCustomHeaderOpen: false,
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
+  
 	
 
 	$scope.no_product = true;
-  $scope.projectlist = [];
-  $scope.project = {images:[]};
-  $scope.getProject = function() {
-     APIService.setData({
-            req_url: url + 'api/getProjects',
-            data: {projectData:{}}
+  $scope.Faqlists = [];
+  $scope.getFaq = function() {
+     APIService.getData({
+            req_url: url + 'api/getFAQ'
         }).then(function(resp) {
           console.log(resp);
             if(resp.data.length!=0) {
               $scope.no_product = false;
-              $scope.projectlist = resp.data;
+              $scope.Faqlists = resp.data;
 
             }else{
               $scope.no_product = true;
+              $scope.Faqlists = [];
             }
            },function(resp) {
               // This block execute in case of error.
         });
     };
-  $scope.getProject();
-  $scope.project = {images:[]};
-	
+  $scope.getFaq();
 
-    
-
-    $scope.editProject = function() {
+  //log
+  $scope.$watch('isOpen', function(){
+        console.log(" watch isOpen:" +$scope.isOpen);
+   }, true);
+ 
+    $scope.editFaq = function() {
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
-            templateUrl: 'partials/editProject.html',
-            controller: 'EditProjectCtrl',
+            templateUrl: 'partials/AddFaq.html',
+            controller: 'AddFaqCtrl',
             size: 'lg'
         });
       modalInstance.result.then(function () {
@@ -65,12 +55,12 @@ angular.module('Faq.controllers', [])
       };
     }
 
-    $scope.updateProjectlist = function(Data) {
+    $scope.updateFAQlist = function(Data) {
         // $scope.project = Data;
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
-            templateUrl: 'partials/updateProject.html',
-            controller: 'UpdateProjectCtrl',
+            templateUrl: 'partials/updateFaq.html',
+            controller: 'UpdateFaqCtrl',
             size: 'lg',
             resolve: {
                 product: function () {
@@ -89,7 +79,7 @@ angular.module('Faq.controllers', [])
     }
  
 
-    $scope.deleteProject = function(project) {
+    $scope.deleteProject = function(FaqData) {
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             templateUrl: 'partials/deleteConfirmation.html',
@@ -97,7 +87,7 @@ angular.module('Faq.controllers', [])
             size: 'sm',
             resolve: {
                 product: function () {
-                    return project;
+                    return FaqData;
                 }
             }
         });
@@ -118,114 +108,54 @@ angular.module('Faq.controllers', [])
  
    
 
-}).controller('EditProjectCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog){
+}).controller('AddFaqCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog){
     $scope.project = {images:[]};
-    $scope.AddProject = function(project) {
-     console.log(project);
+    $scope.AddFaq = function(Faqlist) {
      APIService.setData({
-          req_url: url + 'api/addProject',
-          data: {projectData: project, delete_images : $scope.deleteImages}
+          req_url: url + 'api/addFAQ',
+          data: Faqlist
       }).then(function(resp) {
         console.log(resp);
-          if(resp.data.message=="Project has been added successfully.") {
+          if(resp.data.message=="FAQ has been added successfully.") {
             ngDialog.open({ template: 'partials/sucess.html', className: 'ngdialog-theme-default' });
+            $state.go('admin.Faq');
             setTimeout(function() {
-              $state.go('admin.projectlist');
+              
+              $uibModalInstance.close(resp.data);
             }, 100);
-            $uibModalInstance.close(resp.data);
           }else{
             ngDialog.open({ template: 'partials/error.html', className: 'ngdialog-theme-default' });
             setTimeout(function() {
-              $state.go('admin.projectlist');
+              $state.go('admin.Faq');
+              $uibModalInstance.close(resp.data);
             }, 100);
-            $uibModalInstance.close(resp.data);
           }
          },function(resp) {
             // This block execute in case of error.
       });
   };
 
-  $scope.deleteImages = [];
-    $scope.removeChoice = function(index){
-        $scope.deleteImages.push($scope.project.images[index]);
-        $scope.project.images.splice(index,1);
-    };
-    $scope.ImagePath = [];  
-    $scope.uploadPhoto = function(file) {
-        file.upload = Upload.upload({
-          url: url + 'api/uploadPhotos',
-          arrayKey: '',
-          data: {file: file}
-        });
-
-        file.upload.then(function (response) {
-           console.log(response);
-           if(response.data.length > 0) {
-                angular.forEach(response.data, function(item){
-                   $scope.ImagePath.push(item.path);
-                   $scope.project.images = $scope.ImagePath;
-                });
-             }
-        }, function (response) {
-          if (response.status > 0)
-            $scope.errorMsg = response.status + ': ' + response.data;
-        }, function (evt) {
-          // Math.min is to fix IE which reports 200% sometimes
-          file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-        });
-    };
-  $scope.cancel = function () {
+  
+    $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
 })
-.controller('UpdateProjectCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, product){
+.controller('UpdateFaqCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, product){
     $scope.project = {images:[]};
-    $scope.project = product;
-     $scope.deleteImages = [];
-
-    $scope.removeChoice1 = function(index){
-        $scope.deleteImages.push($scope.project.images[index]);
-        $scope.project.images.splice(index,1);
-    };
-    $scope.uploadPhoto1 = function(file) {
-        file.upload = Upload.upload({
-          url: url + 'api/uploadPhotos',
-          arrayKey: '',
-          data: {file: file}
-        });
-
-        file.upload.then(function (response) {
-           console.log(response);
-           if(response.data.length > 0) {
-                angular.forEach(response.data, function(item){
-                    $scope.project.images.push(item.path);
-                });
-             }
-        }, function (response) {
-          if (response.status > 0)
-            $scope.errorMsg = response.status + ': ' + response.data;
-        }, function (evt) {
-          // Math.min is to fix IE which reports 200% sometimes
-          file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-        });
-    };
+    $scope.Faqlist = product;
 
     $scope.UpdateProject = function(project) {
      APIService.updateData({
-          req_url: url + 'api/updateProject',
-          data: {projectData: project, delete_images : $scope.deleteImages}
+          req_url: url + 'api/updateFAQ',
+          data: {projectData: project}
       }).then(function(resp) {
         console.log(resp);
           if(resp.data.message=="Updated successfully.") {
             ngDialog.open({ template: 'partials/update.html', className: 'ngdialog-theme-default' });
-            setTimeout(function() {
-              $state.go('admin.projectlist');
-            }, 100);
+             $state.go('admin.Faq');
           }else{
             ngDialog.open({ template: 'partials/error.html', className: 'ngdialog-theme-default' });
-            setTimeout(function() {
-              $state.go('admin.projectlist');
-            }, 100);
+             $state.go('admin.Faq');
           }
          },function(resp) {
             // This block execute in case of error.
@@ -235,12 +165,13 @@ angular.module('Faq.controllers', [])
       $uibModalInstance.dismiss('cancel');
   };
 })
-.controller('DeleteConfirmationCtrl', function ($scope, $rootScope, $uibModalInstance, APIService, product){
+.controller('DeleteConfirmationCtrl', function ($scope, $state, $rootScope, $uibModalInstance, APIService, product){
     $scope.delete = function () {
         APIService.removeData({
-            req_url: url + 'api/removeProject',
+            req_url: url + 'api/removeFAQ',
             data: product
         }).then(function(resp) {
+            $state.go('admin.Faq');
             $uibModalInstance.close(resp.data);
            },function(resp) {
               // This block execute in case of error.

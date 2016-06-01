@@ -37,8 +37,8 @@ angular.module('ProjectList.controllers', [])
     $scope.editProject = function() {
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
-            templateUrl: 'partials/editProject.html',
-            controller: 'EditProjectCtrl',
+            templateUrl: 'partials/AddProject.html',
+            controller: 'AddProjectCtrl',
             size: 'lg'
         });
       modalInstance.result.then(function () {
@@ -104,7 +104,7 @@ angular.module('ProjectList.controllers', [])
  
    
 
-}).controller('EditProjectCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog){
+}).controller('AddProjectCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog){
     $scope.project = {images:[]};
     $scope.AddProject = function(project) {
      console.log(project);
@@ -117,14 +117,16 @@ angular.module('ProjectList.controllers', [])
             ngDialog.open({ template: 'partials/sucess.html', className: 'ngdialog-theme-default' });
             setTimeout(function() {
               $state.go('admin.projectlist');
+              $uibModalInstance.close(resp.data);
             }, 100);
-            $uibModalInstance.close(resp.data);
+            
           }else{
             ngDialog.open({ template: 'partials/error.html', className: 'ngdialog-theme-default' });
             setTimeout(function() {
               $state.go('admin.projectlist');
+              $uibModalInstance.close(resp.data);
             }, 100);
-            $uibModalInstance.close(resp.data);
+            
           }
          },function(resp) {
             // This block execute in case of error.
