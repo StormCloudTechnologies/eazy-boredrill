@@ -15,7 +15,7 @@ angular.module('login.controllers', [])
     }
 	$scope.login = function(productObj) {
         APIService.setData({
-            req_url: 'http://52.39.156.51:8000/api/adminLogin',
+            req_url: url+'api/adminLogin',
             data: productObj
         }).then(function(resp) {
           if(resp.data.message=="success") {
@@ -28,10 +28,9 @@ angular.module('login.controllers', [])
     };
     $scope.resetpassword = function() {
          APIService.setData({
-            req_url: 'http://52.39.156.51:8000/api/forgotAdminPassword',
+            req_url: url+'api/forgotAdminPassword',
             data: ''
         }).then(function(resp) {
-            console.log(resp);
             if(resp.data.successMessage=="Credentials has been sent to your Email.") {
                 $scope.allvalue = true;
             }else{

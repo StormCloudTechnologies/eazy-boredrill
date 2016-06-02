@@ -23,21 +23,21 @@
                         <span class="btn-text">Select Page</span>
                     </button>
                 </div>
-                <div class="collapse navbar-collapse" id="main_nav" ng-init="aboutState=false">
+                <div class="collapse navbar-collapse" id="main_nav">
                     <ul class="nav navbar-nav">
-                        <li ng-class="{'active' : activeState=='home'}" ng-click="activeState = 'home'"><a ui-sref="app.home">Home</a></li>
-                        <li ng-class="{'active' : activeState=='about'}" ng-click="activeState = 'about'">
+                        <li ng-class="{'active' : activeState=='home'}"><a ui-sref="app.home">Home</a></li>
+                        <li ng-class="{'active' : activeState=='about'}"> 
                             <a ui-sref="app.aboutUs" class="dropdown-toggle">about</a>
                         </li>
-                        <li ng-class="{'active' : activeState=='project'}" ng-click="activeState = 'project'" >
+                        <li ng-class="{'active' : activeState=='project'}">
                             <a ui-sref="app.projects" class="dropdown-toggle">projects</a>
                         </li>
-                        <li ng-class="{'active' : activeState=='services'}" ng-click="activeState = 'services'"><a ui-sref="app.services" >services</a></li>
+                        <li ng-class="{'active' : activeState=='services'}"><a ui-sref="app.services" >services</a></li>
 
 
-                        <li ng-class="{'active' : activeState=='faq'}" ng-click="activeState = 'faq'"><a ui-sref="app.Faq">FAQ</a></li>
+                        <li ng-class="{'active' : activeState=='faq'}"><a ui-sref="app.Faq">FAQ</a></li>
                         
-                        <li ng-class="{'active' : activeState=='contact'}" ng-click="activeState = 'contact'">
+                        <li ng-class="{'active' : activeState=='contact'}">
                             <a ui-sref="app.contact" class="dropdown-toggle">contact</a>
                             
                         </li>

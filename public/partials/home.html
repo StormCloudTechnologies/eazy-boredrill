@@ -1,6 +1,6 @@
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 <script src="lib/bootstrap.min.js"></script>
-
+<script src="vendors/nicescroll/jquery.nicescroll.js"></script>
 <script src="vendors/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 <script src="vendors/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script src="vendors/owl.carousel/js/owl.carousel.min.js"></script>
@@ -11,10 +11,13 @@
 <!--Isotope-->
 <script src="vendors/isotope/isotope-custom.js"></script>
 
+
+
 <!--Construction JS-->
 <script src="js/construction.js"></script>
-<script src="lib/google-map.js"></script>
-<section id="nr_slider" class="row">
+
+
+<section id="nr_slider" class="row" >
     <div class="mainSliderContainer">
         <div class="mainSlider" >
             <ul>
@@ -219,13 +222,13 @@
                     </div> -->
                     <div class="row m0 featureImg">
                         <a ng-click="Project(ProjectList)">
-                            <img src="{{ProjectList.images[0]}}" style="height: 140px;" alt="Faceted Search Has Landed" class="img-responsive">
+                            <img src="{{ProjectList.images[0]}}" style="height: 230px;" alt="Faceted Search Has Landed" class="img-responsive">
                         </a>
                     </div>
                     <div class="row m0 postExcerpts">
                         <div class="row m0 postExcerptInner">
-                            <a ng-click="Project(ProjectList)" class="postTitle row m0"><h4>{{ProjectList.project_name  | limitTo: 50}}</h4></a>
-                            <p>{{ProjectList.project_description  | limitTo: 50}}</p>
+                            <a ng-click="Project(ProjectList)" class="postTitle row m0"><h4>{{ProjectList.project_name  | limitTo: 20}}<span ng-if="ProjectList.project_name.length >= 20">...</span></h4></a>
+                            <p>{{ProjectList.project_description  | limitTo: 50}}<span ng-if="ProjectList.project_name.length >= 50">...</span>  </p>
                             <a ng-click="Project(ProjectList)" class="readMore">read more</a>
                         </div>
                    </div>

@@ -15,7 +15,6 @@ angular.module('Post.controllers', [])
             req_url: url + 'api/getLatestJobs',
             data: {latestJobData:{}}
         }).then(function(resp) {
-          console.log(resp);
             if(resp.data.length!=0) {
               $scope.no_product = false;
               $scope.postlist = resp.data;
@@ -122,12 +121,10 @@ angular.module('Post.controllers', [])
 .controller('AddPostCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog){
      $scope.post = {images:[]};
       $scope.AddPost = function(post) {
-          console.log(post);
          APIService.setData({
               req_url: url + 'api/addLatestJob',
               data: {latestJobData: post, delete_images : $scope.deleteImages}
           }).then(function(resp) {
-            console.log(resp);
               if(resp.data) {
                 ngDialog.open({ template: 'sucess.html', className: 'ngdialog-theme-default' });
                 $uibModalInstance.close(resp.data);
@@ -154,7 +151,6 @@ angular.module('Post.controllers', [])
         });
 
         file.upload.then(function (response) {
-           console.log(response);
            if(response.data.length > 0) {
                 angular.forEach(response.data, function(item){
                    $scope.ImagePath.push(item.path);
@@ -190,7 +186,6 @@ angular.module('Post.controllers', [])
         });
 
         file.upload.then(function (response) {
-           console.log(response);
            if(response.data.length > 0) {
                 angular.forEach(response.data, function(item){
                     $scope.post.images.push(item.path);
@@ -210,7 +205,6 @@ angular.module('Post.controllers', [])
           req_url: url + 'api/updateLatestJob',
           data: {latestJobData: post, delete_images : $scope.deleteImages}
       }).then(function(resp) {
-        console.log(resp);
           if(resp.data) {
              ngDialog.open({ template: 'update.html', className: 'ngdialog-theme-default' });
             $uibModalInstance.close(resp.data);

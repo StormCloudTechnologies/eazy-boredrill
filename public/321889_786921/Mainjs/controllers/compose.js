@@ -34,7 +34,6 @@ angular.module('Compose.controllers', [])
     $scope.compose = {images:[]};
     $scope.inputMessage = "";
     $scope.editerdata = function(){
-      console.log($scope.inputMessage);
     }
 
     $scope.deleteImages = [];
@@ -51,7 +50,6 @@ angular.module('Compose.controllers', [])
         });
 
         file.upload.then(function (response) {
-           console.log(response);
            if(response.data.length > 0) {
                 angular.forEach(response.data, function(item){
                    $scope.compose.images.push(item.path);
@@ -72,8 +70,8 @@ angular.module('Compose.controllers', [])
           req_url: url + 'api/sendCustomMail',
           data : {to: To, subject: subject ,message: editerdata, images : images }
       }).then(function(resp) {
-          if(resp.data) {
-              $state.go('mailMenu.sendMail');
+          if(resp.data.message=="Message sent successfully.") {
+            $state.go('mailMenu.sendMail');
           }
           else {
               $scope.mails = [];

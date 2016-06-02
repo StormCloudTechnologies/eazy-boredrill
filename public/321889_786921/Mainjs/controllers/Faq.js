@@ -14,7 +14,6 @@ angular.module('Faq.controllers', [])
      APIService.getData({
             req_url: url + 'api/getFAQ'
         }).then(function(resp) {
-          console.log(resp);
             if(resp.data.length!=0) {
               $scope.no_product = false;
               $scope.Faqlists = resp.data;
@@ -31,7 +30,6 @@ angular.module('Faq.controllers', [])
 
   //log
   $scope.$watch('isOpen', function(){
-        console.log(" watch isOpen:" +$scope.isOpen);
    }, true);
  
     $scope.AddFaq = function() {
@@ -129,7 +127,6 @@ angular.module('Faq.controllers', [])
           req_url: url + 'api/addFAQ',
           data: Faqlist
       }).then(function(resp) {
-        console.log(resp);
           if(resp.data) {
             ngDialog.open({ template: 'partials/sucess.html', className: 'ngdialog-theme-default' });
             $uibModalInstance.close(resp.data);
@@ -156,7 +153,6 @@ angular.module('Faq.controllers', [])
           req_url: url + 'api/updateFAQ',
           data:  FaqList
       }).then(function(resp) {
-        console.log(resp);
           if(resp.data) {
             ngDialog.open({ template: 'partials/update.html', className: 'ngdialog-theme-default' });
             $uibModalInstance.close(resp.data);

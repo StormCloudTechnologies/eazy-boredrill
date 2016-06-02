@@ -65,6 +65,15 @@ Base Fonts 2 : Open Sans // less variable @baseFont2
 */
 /*----------------------------------------------------------------*/
 /*Prefix Styles*/
+
+/*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background: #283032;
+}*/
 .validation-message {
   margin: -5px 0 5px 0 !important;
   color: red !important;
@@ -81,6 +90,7 @@ Base Fonts 2 : Open Sans // less variable @baseFont2
 body {
   position: relative;
 }
+
 /*Floating*/
 .fleft {
   float: left;
@@ -435,6 +445,7 @@ header .social_nav ul li:last-child {
   background: #f7b71e;
   color: #FFF;
 }
+
 .navbar-static-top .navbar-collapse ul li.active {
   border-right: 0;
 }
@@ -1645,6 +1656,7 @@ header .social_nav ul li:last-child {
   font-family: 'Raleway', sans-serif;
   background: #FFF;
   position: relative;
+  word-wrap: break-word !important;
 }
 .blog .blogInner .postExcerpts .postExcerptInner a.postTitle h4 {
   font-size: 17px;
@@ -2646,6 +2658,71 @@ header .social_nav ul li:last-child {
 #pageCover1.servicePage {
   background-image: url("../images/serviceCover.png");
 }
+
+#pageCover2 {
+  position: relative;
+  min-height: 281px;
+  text-align: center;
+  padding-top: 80px;
+  background: url("../images/Faq.png") no-repeat scroll center center #f7b71e;
+}
+#pageCover2 img.pageCover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  z-index: -1;
+}
+#pageCover2 .pageTitle {
+  color: #FFF;
+  padding: 0 27px;
+  min-width: 138px;
+  line-height: 65px;
+  border: 1px solid #f7b71e;
+  margin: 0 auto;
+  display: inline-block;
+  font-size: 22px;
+  font-family: 'Raleway', sans-serif;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+#pageCover2 .pageBreadcrumbs {
+  margin: 0;
+}
+#pageCover2 .pageBreadcrumbs .breadcrumb {
+  border-bottom: 1px solid #FFF;
+  line-height: 40px;
+  display: inline-block;
+  border-radius: 0;
+  background: transparent;
+}
+#pageCover2 .pageBreadcrumbs .breadcrumb li {
+  color: #FFF;
+  font-family: 'Raleway', sans-serif;
+}
+#pageCover2 .pageBreadcrumbs .breadcrumb li a {
+  color: #FFF;
+  font-family: 'Raleway', sans-serif;
+}
+#pageCover2 .pageBreadcrumbs .breadcrumb li + li:before {
+  content: "\f061";
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#pageCover2.blogPage {
+  background-image: url("../images/projects/cover.png");
+}
+#pageCover2.projectPage {
+  background-image: url("../images/projects/cover.png");
+}
+#pageCover2.servicePage {
+  background-image: url("../images/serviceCover.png");
+}
 /*----------------------------------------------------------------*/
 /*Pagination */
 .paginationRow {
@@ -3277,16 +3354,34 @@ header .social_nav ul li:last-child {
 .modal-body {
     max-height: calc(100vh - 210px) !important;
     overflow-y: auto !important;
+    overflow-x: hidden !important;
+    word-wrap: break-all !important;
 }
+/*
 .modal-open .modal {
     overflow-x: hidden;
     overflow-y: auto;
     background: rgba(51, 51, 51, 0.69) !important;
-}
+}*/
 .loading_div{
    position: absolute;
    /* text-align: center; */
    top: 40% !important;
    left: 45% !important;
    z-index: 9999999;
+}
+
+.modal-body p {
+    word-wrap: break-word !important;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.active>a {
+    background-image: -webkit-linear-gradient(top, #F7B71E 0, #F7B71E 100%) !important;
+    background-image: -o-linear-gradient(top, #F7B71E 0, #F7B71E 100%) !important;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #F7B71E), to(#F7B71E)) !important;
+    background-image: linear-gradient(to bottom, #F7B71E 0, #F7B71E 100%) !important;
+    color: #FFF !important;
+    background-repeat: repeat-x !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F7B71E', endColorstr='#F7B71E', GradientType=0) !important;
+    -webkit-box-shadow: inset 0 3px 9px rgba(0,0,0,0.075) !important;
+    box-shadow: inset 0 3px 9px rgba(0,0,0,0.075) !important;
 }

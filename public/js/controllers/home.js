@@ -1,13 +1,15 @@
 angular.module('home.controllers', [])
-.controller('HomeCtrl', function($scope, APIService, $uibModal) {
-  
+.controller('HomeCtrl', function($scope, APIService, $uibModal, $rootScope) {
+  $rootScope.activeState = 'home';
+  $scope.activeClass = function(name){
+      
+  }
   $scope.ProjectLists = [];
   $scope.getProject = function() {
      APIService.setData({
-            req_url: 'http://52.39.156.51:8000/api/getLatestJobs',
+            req_url: url_prifix+'api/getLatestJobs',
             data: {projectData:{}}
         }).then(function(resp) {
-          console.log(resp);
             if(resp.data.length!=0) {
               $scope.no_product = false;
               $scope.ProjectLists = resp.data;
@@ -39,9 +41,7 @@ angular.module('home.controllers', [])
 .controller('ProjectSliderCtrl', function($scope, $uibModalInstance,product) {
   $scope.myInterval = 5000;
   $scope.active_slide = 0;
-  console.log("slide");
   $scope.ImageSliders = [];
-  console.log(product.images);
   $scope.ImageSliders= product.images;
   $scope.projectTilte = product.project_name;
   $scope.projectDiscrition = product.project_description;

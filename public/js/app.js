@@ -18,7 +18,27 @@ angular.module('eazyBoredrillWebiste', ['ui.router', 'APIModule', 'ui.bootstrap'
       return JSON.parse($window.localStorage[key] || '{}');
     }
   }
-}]).factory('genericInterceptor', function($q, $rootScope) {
+}])
+.directive('niceScroll', function() {
+    return{
+        restrict: 'A',
+        link: function(scope, element, attribute) {
+
+            var nicescrolConf = {
+                "cursorcolor": "#bdbdbd",
+                "background": "#ffffff",
+                "cursorwidth": "10px",
+                "cursorborder": "none",
+                "cursorborderradius": "2px",
+                "zindex": 9999,
+                "autohidemode": false
+            };
+
+           element.niceScroll(nicescrolConf);
+        }
+    };
+})
+.factory('genericInterceptor', function($q, $rootScope) {
     var interceptor = {
         'request': function(config) {
             // Successful request method

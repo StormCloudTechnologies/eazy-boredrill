@@ -18,7 +18,6 @@ angular.module('SendMail.controllers', [])
           req_url: url + 'api/getMails',
           data: {status: 'SENT'}
       }).then(function(resp) {
-          console.log(resp);
           if(resp.data.length > 0) {
               $scope.mails = resp.data;
           }
@@ -47,14 +46,11 @@ angular.module('SendMail.controllers', [])
    }
 
    $scope.checksinglemail = function(updatecheckId){
-      console.log(updatecheckId);
       angular.forEach($scope.mails, function (item) {
          if(item.checked==true){
-            console.log("push");
             $scope.updateMailList.push(updatecheckId);
          }
          if(item.checked==false){
-          console.log("splice");
           $scope.updateMailList.splice(updatecheckId);
          }
          
@@ -67,7 +63,6 @@ angular.module('SendMail.controllers', [])
                   req_url: url + 'api/updateMail',
                   data: {updateMailList: $scope.updateMailList,status:'TRASH'}
               }).then(function(resp) {
-                  console.log(resp);
                   if(resp.data) {
                     $scope.getMails();
                   }

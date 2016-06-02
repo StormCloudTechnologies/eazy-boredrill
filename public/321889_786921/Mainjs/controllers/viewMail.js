@@ -32,14 +32,12 @@ angular.module('ViewMail.controllers', [])
 
    $scope.viewmailList = [];
    $scope.deleteMsg = function(mail){
-    console.log("demooo",mail);
     $scope.viewmailList.push(mail._id)
     if(statusmail == "inbox"){
          APIService.updateData({
             req_url: url + 'api/updateMail',
             data: {updateMailList: $scope.viewmailList,status:'TRASH'}
         }).then(function(resp) {
-            console.log(resp);
             if(resp.data.message="Updated successfully.") {
                 // $scope.mails = resp.data;
                 ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
@@ -57,7 +55,6 @@ angular.module('ViewMail.controllers', [])
             req_url: url + 'api/updateMail',
             data: {updateMailList: $scope.viewmailList,status:'TRASH'}
         }).then(function(resp) {
-            console.log(resp);
             if(resp.data.message="Updated successfully.") {
                 // $scope.mails = resp.data;
                 ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
@@ -75,7 +72,6 @@ angular.module('ViewMail.controllers', [])
             req_url: url + 'api/deleteMail',
             data:  {deleteMailList: $scope.viewmailList}
         }).then(function(resp) {
-            console.log("=================resp==========",resp);
             if(resp.data.length>=0) {
                 // $scope.mails = resp.data;
                 ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });

@@ -16,7 +16,6 @@ angular.module('ProjectList.controllers', [])
             req_url: url + 'api/getProjects',
             data: {projectData:{}}
         }).then(function(resp) {
-          console.log(resp);
             if(resp.data.length!=0) {
               $scope.no_product = false;
               $scope.projectlist = resp.data;
@@ -156,7 +155,6 @@ angular.module('ProjectList.controllers', [])
         });
 
         file.upload.then(function (response) {
-           console.log(response);
            if(response.data.length > 0) {
                 angular.forEach(response.data, function(item){
                    $scope.ImagePath.push(item.path);
@@ -192,7 +190,6 @@ angular.module('ProjectList.controllers', [])
         });
 
         file.upload.then(function (response) {
-           console.log(response);
            if(response.data.length > 0) {
                 angular.forEach(response.data, function(item){
                     $scope.project.images.push(item.path);
@@ -212,7 +209,6 @@ angular.module('ProjectList.controllers', [])
           req_url: url + 'api/updateProject',
           data: {projectData: project, delete_images : $scope.deleteImages}
       }).then(function(resp) {
-        console.log(resp);
           if(resp.data) {
             ngDialog.open({ template: 'partials/update.html', className: 'ngdialog-theme-default' });
             $uibModalInstance.close(resp.data);
@@ -234,7 +230,6 @@ angular.module('ProjectList.controllers', [])
             req_url: url + 'api/removeProject',
             data: project
         }).then(function(resp) {
-            console.log(resp);
             $uibModalInstance.close(resp.data);
            },function(resp) {
               // This block execute in case of error.

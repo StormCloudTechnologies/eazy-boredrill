@@ -1,8 +1,9 @@
+<script src="vendors/nicescroll/jquery.nicescroll.js"></script>
 <script src="js/construction.js"></script>
-<script src="lib/google-map.js"></script>
-<section id="pageCover" class="row">
-    <img src="images/contactCover.png" alt="" class="pageCover">
-    <div class="row pageTitle">Contact us</div>
+
+<section id="pageCover2" class="row">
+    <img src="images/Faq.png" alt="" class="pageCover">
+    <div class="row pageTitle">FAQ</div>
     <div class="row pageBreadcrumbs">
         <ol class="breadcrumb">
           <li><a ui-sref="app.home">home</a></li>
@@ -16,9 +17,9 @@
          <uib-accordion close-others="oneAtATime">
           <uib-accordion-group is-open="status.open" ng-repeat=" FaqData in Faqlists">
             <uib-accordion-heading>
-              <span style="font-size:16px;font-weight: 600;">{{$index +1 }} : </span> {{FaqData.question}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+              <span style="font-size:16px;font-weight: 600;word-wrap: break-word !important;">{{$index +1 }} : {{FaqData.question | limitTo: 160}}</span> <span ng-if="FaqData.question.length >= 160">...</span>  <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
             </uib-accordion-heading>
-              {{FaqData.answer}}
+            <p style="word-wrap: break-word;">  {{FaqData.answer}}</p>
            </uib-accordion-group>
         </uib-accordion>
     <!-- </div> -->

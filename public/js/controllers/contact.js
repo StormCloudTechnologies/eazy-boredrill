@@ -1,6 +1,8 @@
 angular.module('contact.controllers', [])
 
-.controller('ContactCtrl', function($scope, APIService) {
+.controller('ContactCtrl', function($scope, APIService, $rootScope) {
+
+    $rootScope.activeState = 'contact';
     $scope.submitted = false;
     $scope.sendEmail = function(mail) {
         if(mail && (mail.name != null && mail.name != '' && mail.name != undefined) && (mail.email != null && mail.email != '' && mail.email != undefined) && (mail.phone != null && mail.phone != '' && mail.phone != undefined) && (mail.message != null && mail.message != '' && mail.message != undefined))
@@ -23,7 +25,7 @@ angular.module('contact.controllers', [])
     };
 
     function initMap() {
-      var myLatLng = {lat: -25.363, lng: 131.044};
+      var myLatLng = {lat: 18.5624670, lng: 73.7726630};
 
       var map = new google.maps.Map(document.getElementById('MapContact'), {
         zoom: 15,

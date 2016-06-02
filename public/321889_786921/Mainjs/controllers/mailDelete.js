@@ -47,14 +47,11 @@ angular.module('DeleteMail.controllers', [])
    }
 
    $scope.checksinglemail = function(updatecheckId){
-      console.log(updatecheckId);
       angular.forEach($scope.mails, function (item) {
          if(item.checked==true){
-            console.log("push");
             $scope.deleteMailList.push(updatecheckId);
          }
          if(item.checked==false){
-          console.log("splice");
           $scope.deleteMailList.splice(updatecheckId);
          }
          
@@ -65,7 +62,6 @@ angular.module('DeleteMail.controllers', [])
               req_url: url + 'api/deleteMail',
               data: {deleteMailList: $scope.deleteMailList}
           }).then(function(resp) {
-              console.log(resp);
               if(resp.data) {
                  $scope.gettrashMails();
               }

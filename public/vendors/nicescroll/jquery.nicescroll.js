@@ -26,7 +26,7 @@
     var path=scripts[scripts.length-1].src.split('?')[0];
     return (path.split('/').length>0) ? path.split('/').slice(0,-1).join('/')+'/' : '';
   }
-  var scriptpath = getScriptPath();
+ var scriptpath = getScriptPath();
 
 // derived by Paul Irish https://gist.github.com/paulirish/1579671 - thanks for your code!
 

@@ -45,14 +45,11 @@ angular.module('Mail.controllers', [])
    }
 
    $scope.checksinglemail = function(updatecheckId){
-      console.log(updatecheckId);
       angular.forEach($scope.mails, function (item) {
          if(item.checked==true){
-            console.log("push");
             $scope.updateMailList.push(updatecheckId);
          }
          if(item.checked==false){
-          console.log("splice");
           $scope.updateMailList.splice(updatecheckId);
          }
          
@@ -65,7 +62,6 @@ angular.module('Mail.controllers', [])
           req_url: url + 'api/updateMail',
           data: {updateMailList: $scope.updateMailList,status:'TRASH'}
       }).then(function(resp) {
-          console.log(resp);
           if(resp.data) {
             $scope.getMails();
           }

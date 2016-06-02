@@ -1,8 +1,11 @@
+<script src="vendors/nicescroll/jquery.nicescroll.js"></script>
+<script src="js/construction.js"></script>
+
 <section id="pageCover" class="row projectPage">        
     <div class="row pageTitle">Projects</div>
     <div class="row pageBreadcrumbs">
         <ol class="breadcrumb">
-          <li><a href="index.html">home</a></li>
+          <li><a ui-sref="app.home">home</a></li>
           <li class="active">projects</li>
         </ol>
     </div>
@@ -25,8 +28,8 @@
                     </div>
                     <div class="row m0 postExcerpts">
                         <div class="row m0 postExcerptInner">
-                            <a ng-click="Project(ProjectList)" class="postTitle row m0"><h4>{{ProjectList.project_name  | limitTo: 50}}</h4></a>
-                            <p>{{ProjectList.project_description  | limitTo: 50}}</p>
+                            <a ng-click="Project(ProjectList)" class="postTitle row m0"><h4>{{ProjectList.project_name | limitTo: 20}}<span ng-if="ProjectList.project_name.length >= 20">...</span> </h4></a>
+                            <p>{{ProjectList.project_description | limitTo: 30}}<span ng-if="ProjectList.project_name.length >= 30">...</span> </p>
                             <a ng-click="Project(ProjectList)" class="readMore">read more</a>
                         </div>
                    </div>
