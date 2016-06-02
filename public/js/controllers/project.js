@@ -29,7 +29,7 @@ angular.module('projects.controllers', [])
    $scope.Project = function (Projectdata) {
     var modalInstance = $uibModal.open({
         animation: true,
-        templateUrl: 'ProjectSlider.html',
+        templateUrl: 'partials/ProjectSlider.html',
         controller: 'ProjectSliderCtrl',
         size: 'md',
           resolve: {
