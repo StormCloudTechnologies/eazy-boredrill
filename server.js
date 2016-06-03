@@ -60,6 +60,16 @@ var FAQ = mongoose.model('FAQ', faqSchema);
 
 module.exports = FAQ;
 
+// service schema
+var serviceSchema = new Schema({
+    title: String,
+    description: String
+});
+
+var Services = mongoose.model('Services', serviceSchema);
+
+module.exports = Services;
+
 var mailSchema = new Schema({
     name: String,
     email: String,
@@ -488,5 +498,60 @@ app.get('/api/getFAQ', function(req, res) {
         if (err)
             res.send(err)
         res.json(faq); // return all FAQ in JSON format
+    });
+});
+
+// Services API
+
+// add Services
+app.post('/api/addService', function(req, res) {
+    Services.create(req.body, function(err, services) {
+        if (err)
+            res.send(err);
+        if(services) {
+            Services.find(function(err, services) {
+                if (err)
+                    res.send(err)
+                res.json(services); // return all services in JSON format
+            });
+        }
+    });
+});
+
+// update Service
+app.put('/api/updateService', function(req, res) {
+    Services.findByIdAndUpdate(req.body._id, req.body
+    , function(err, service) {
+        if (err)
+            res.send(err);
+        Services.find(function(err, services) {
+            if (err)
+                res.send(err)
+            res.json(services); // return all services in JSON format
+        });
+    });
+});
+
+// delete Service
+app.delete('/api/removeService', function(req, res) {
+    Services.remove({
+        _id : req.body._id
+    }, function(err, service) {
+        if (err)
+            res.send(err);
+        Services.find(function(err, services) {
+            if (err)
+                res.send(err)
+            res.json(services); // return all services in JSON format
+        });
+    });
+});
+
+// get Services
+app.get('/api/getServices', function(req, res) {
+    Services.find({}, function(err, services) {
+        if (err)
+            res.send(err)
+        res.json(services); // return all services in JSON format
     });
 });
