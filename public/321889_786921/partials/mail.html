@@ -86,7 +86,7 @@
                       </td>
                       <td class="col-sender" ng-click="ViewMail(mail,'inbox')"><a class="sender">{{ mail.name }} </a></td>
                       <td class="col-subject" ng-click="ViewMail(mail,'inbox')"><a class="subject">
-                          <div class="label label-bg-color-1">Message</div>{{ mail.message }}</a></td>
+                          <div class="label label-bg-color-1">Message</div>{{ mail.message  | limitTo: 120}}</a></td>
                       <td class="col-time" ng-click="ViewMail(mail,'inbox')">{{ mail.date | date:"dd/MM/yyyy 'at' h:mm a" }}</td>
                     </tr>
                   </tbody>

@@ -12,15 +12,32 @@
     </div>
 </section>
 
-<section id="contacts" class="row" style="padding:10px !important;">
-    <!-- <div class="container"> -->
-         <uib-accordion close-others="oneAtATime">
-          <uib-accordion-group is-open="status.open" ng-repeat=" FaqData in Faqlists">
-            <uib-accordion-heading>
-              <span style="font-size:16px;font-weight: 600;word-wrap: break-word !important;">{{$index +1 }} : {{FaqData.question | limitTo: 160}}</span> <span ng-if="FaqData.question.length >= 160">...</span>  <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-            </uib-accordion-heading>
-            <p style="word-wrap: break-word;">  {{FaqData.answer}}</p>
-           </uib-accordion-group>
-        </uib-accordion>
-    <!-- </div> -->
+<section id="services" class="row">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                  <div class="row m0 whyUs">
+                      <div class="col-sm-12">
+                         <uib-accordion close-others="oneAtATime">
+                          <uib-accordion-group is-open="status.open" ng-repeat=" FaqData in Faqlists">
+                            <uib-accordion-heading>
+                              <div class="row">
+                                 <div class="col-sm-11" style="float:left;">
+                                    <span style="font-size:16px;font-weight: 600;word-wrap: break-word !important;">{{$index +1 }} : {{FaqData.question | limitTo: 130}}</span> <span ng-if="FaqData.question.length >= 130">...</span>
+                                  </div>
+                                  <div class="col-sm-1">
+                                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                                  </div>
+                                </div>  
+                            </uib-accordion-heading>
+                            <p style="word-wrap: break-word;">  {{FaqData.answer}}</p>
+                           </uib-accordion-group>
+                        </uib-accordion>
+                      </div>
+                    </div>  
+               </div>
+          </div>
+        </div>
+      </div>
 </section>

@@ -1,5 +1,10 @@
 
  <section class="l-main-container">
+    <div ng-show='loadCompetition'>
+     <div class="loading_div">
+       <img src="img/loader.gif" style="width: 60% !important;" />
+     </div>
+    </div>
       <!--Left Sidebar Content-->
       <aside id="slide-left" class="l-sidebar l-sidebar-1 t-sidebar-1">
         <!--User Profile-->
@@ -49,6 +54,9 @@
               <li><a ui-sref="admin.Faq" style="font-size: 16px !important;font-weight: bold;"><i class="icon fa fa-question-circle"></i><span class="title">FAQ</span></a>
               </li>
 
+              <li><a ui-sref="admin.services" style="font-size: 16px !important;font-weight: bold;"><i class="icon fa fa-cogs"></i><span class="title">SERVICES</span></a>
+              </li>
+
              <li><a ng-click="logout()" style="font-size: 16px !important;font-weight: bold;"><i class="icon fa fa-power-off"></i><span class="title">Logout</span></a>
               </li>
             
@@ -57,15 +65,7 @@
       </aside>
       <!--Main wrapper-->
     <section class="l-container">
-        <!--HEADER-->
-       <!--  <header class="l-header l-header-1 t-header-1">
-          <div class="navbar navbar-ason">
-            <div class="container-fluid">
-
-            </div>
-          </div>
-        </header> -->
-        <!-- Row 1 - Info Widgets-->
+      
         <div ui-view="Mailcontainer"></div>
     </section>
   
