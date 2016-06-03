@@ -5,7 +5,7 @@ angular.module('services.controllers', [])
   $scope.Serviceslists = [];
   $scope.getServices = function() {
      APIService.getData({
-            req_url: url_prifix + 'api/getFAQ'
+            req_url: url_prifix + 'api/getServices'
         }).then(function(resp) {
             if(resp.data.length!=0) {
               $scope.no_product = false;

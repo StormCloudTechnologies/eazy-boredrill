@@ -1,8 +1,9 @@
 angular.module('Services.controllers', [])
 
 
-.controller('ServicesCtrl', function($scope, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, $log) {
-	  var islogin = $localstorage.get('islogin');
+.controller('ServicesCtrl', function($scope, $rootScope, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, $log) {
+	 $rootScope.activeState = 'services';
+    var islogin = $localstorage.get('islogin');
     if(islogin!=1){
        $state.go("login");
     }
@@ -12,7 +13,7 @@ angular.module('Services.controllers', [])
   $scope.Serviceslists = [];
   $scope.getServices = function() {
      APIService.getData({
-            req_url: url + 'api/getFAQ'
+            req_url: url + 'api/getServices'
         }).then(function(resp) {
             if(resp.data.length!=0) {
               $scope.no_product = false;
@@ -123,7 +124,7 @@ angular.module('Services.controllers', [])
 }).controller('AddServicesCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog){
     $scope.AddServices = function(Serviceslist) {
      APIService.setData({
-          req_url: url + 'api/addFAQ',
+          req_url: url + 'api/addService',
           data: Serviceslist
       }).then(function(resp) {
           if(resp.data) {
@@ -148,7 +149,7 @@ angular.module('Services.controllers', [])
 
     $scope.UpdateServices = function(Serviceslist) {
      APIService.updateData({
-          req_url: url + 'api/updateFAQ',
+          req_url: url + 'api/updateService',
           data:  Serviceslist
       }).then(function(resp) {
           if(resp.data) {
@@ -170,8 +171,8 @@ angular.module('Services.controllers', [])
     
     $scope.delete = function () {
         APIService.removeData({
-            req_url: url + 'api/removeFAQ',
-            data: faqList
+            req_url: url + 'api/removeService',
+            data: ServicesList
         }).then(function(resp) {
             $uibModalInstance.close(resp.data);
            },function(resp) {

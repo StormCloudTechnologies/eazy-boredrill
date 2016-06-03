@@ -1,8 +1,9 @@
 angular.module('ProjectList.controllers', [])
 
 
-.controller('ProjectListCtrl', function($scope, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, $log) {
-	  var islogin = $localstorage.get('islogin');
+.controller('ProjectListCtrl', function($scope, $rootScope, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, $log) {
+	  $rootScope.activeState = 'project';
+    var islogin = $localstorage.get('islogin');
     if(islogin!=1){
        $state.go("login");
     }

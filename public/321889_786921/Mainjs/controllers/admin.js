@@ -1,7 +1,8 @@
 angular.module('admin.controllers', [])
 
 
-.controller('AdminCtrl', function($scope, $state, APIService, Upload, $uibModal, $localstorage) {
+.controller('AdminCtrl', function($scope, $rootScope, $state, APIService, Upload, $uibModal, $localstorage) {
+	// $rootScope.activeState = 'home';
 	var islogin = $localstorage.get('islogin');
 	  if(islogin!=1){
 	     $state.go("login");

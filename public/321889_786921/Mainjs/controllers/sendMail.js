@@ -2,7 +2,8 @@
 angular.module('SendMail.controllers', [])
 
 
-.controller('SendMailCtrl', function($scope, $state, APIService, $state, $localstorage) {
+.controller('SendMailCtrl', function($scope, $rootScope, $state, APIService, $state, $localstorage) {
+    $rootScope.activeState = 'sendmail';
     var islogin = $localstorage.get('islogin');
     if(islogin!=1){
        $state.go("login");

@@ -1,8 +1,9 @@
 angular.module('Faq.controllers', [])
 
 
-.controller('FaqCtrl', function($scope, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, $log) {
-	  var islogin = $localstorage.get('islogin');
+.controller('FaqCtrl', function($scope, $rootScope, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, $log) {
+	  $rootScope.activeState = 'faq';
+    var islogin = $localstorage.get('islogin');
     if(islogin!=1){
        $state.go("login");
     }

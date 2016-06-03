@@ -1,7 +1,7 @@
 angular.module('Post.controllers', [])
 
-.controller('PostCtrl', function($scope, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, $log) {
-  
+.controller('PostCtrl', function($scope, $rootScope, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, $log) {
+    $rootScope.activeState = 'post';
     var islogin = $localstorage.get('islogin');
     if(islogin!=1){
        $state.go("login");

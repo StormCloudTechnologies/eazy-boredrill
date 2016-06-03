@@ -2,7 +2,8 @@ angular.module('home.controllers', [])
 
 
 
-.controller('HomeCtrl', function($scope, $state, APIService, Upload, $uibModal, $localstorage) {
+.controller('HomeCtrl', function($scope, $rootScope, $state, APIService, Upload, $uibModal, $localstorage) {
+  $rootScope.activeState = 'home';
 	  var islogin = $localstorage.get('islogin');
     if(islogin!=1){
        $state.go("login");

@@ -2,8 +2,8 @@
 angular.module('DeleteMail.controllers', [])
 
 
-.controller('DeleteMailCtrl', function($scope, APIService, $state, $localstorage) {
-   
+.controller('DeleteMailCtrl', function($scope, APIService, $state, $localstorage, $rootScope) {
+   $rootScope.activeState = 'trash';
    var islogin = $localstorage.get('islogin');
     if(islogin!=1){
        $state.go("login");

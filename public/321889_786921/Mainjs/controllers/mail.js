@@ -1,6 +1,7 @@
 angular.module('Mail.controllers', [])
 
-.controller('MailCtrl', function($scope, APIService,$state, $localstorage) {
+.controller('MailCtrl', function($scope, APIService,$state, $localstorage, $rootScope) {
+    $rootScope.activeState = 'mail';
     var islogin = $localstorage.get('islogin');
     if(islogin!=1){
        $state.go("login");
