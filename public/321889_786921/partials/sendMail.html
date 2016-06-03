@@ -6,7 +6,7 @@
 <section class="l-main-container">
     
       <!--Main wrapper-->
-      <section class="l-container">
+      <section class="l-container" ng-show="mails.length > 0">
         <!--HEADER-->
         <header class="l-header l-header-1 t-header-1">
           <div class="navbar navbar-ason">
@@ -97,5 +97,5 @@
           </div>
         </div>
       </section>
-     
+     <h1 ng-hide="mails.length > 0" class="text-center">No Message</h1>
     </section>

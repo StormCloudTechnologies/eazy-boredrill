@@ -66,14 +66,14 @@ Base Fonts 2 : Open Sans // less variable @baseFont2
 /*----------------------------------------------------------------*/
 /*Prefix Styles*/
 
-/*::-webkit-scrollbar {
-    width: 8px;
+::-webkit-scrollbar {
+    width: 10px;
     height: 8px;
 }
 ::-webkit-scrollbar-thumb {
     cursor: pointer;
     background: #283032;
-}*/
+}
 .validation-message {
   margin: -5px 0 5px 0 !important;
   color: red !important;
