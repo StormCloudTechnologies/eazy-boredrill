@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="cancel()">&times;</button>
+  <h3 class="modal-title">Create Services</span></h3>
+</div>
+<div class="modal-body">
+    <div class="l-box">
+        <div class="l-box-body l-spaced">
+          <form id="validateDefault" role="form" class="form-horizontal validate">
+            <div class="form-group">
+              <label for="firstname" class="col-sm-3 control-label">Title</label>
+              <div class="col-sm-9">
+                <textarea ng-model="Serviceslist.title" name="message" rows="5" required="" class="form-control"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="lastname" class="col-sm-3 control-label">Description</label>
+              <div class="col-sm-9">
+                <textarea ng-model="Serviceslist.description" name="message" rows="5" required="" class="form-control"></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" ng-click="cancel()" class="btn btn-danger">Close</button>
+    <button type="button" ng-click="AddServices(Serviceslist)" class="btn btn-success">Submit</button>
+  </div>

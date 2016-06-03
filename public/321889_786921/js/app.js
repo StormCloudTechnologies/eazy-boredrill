@@ -1,5 +1,5 @@
 var url = 'http://localhost:8000/';
-angular.module('eazyBoredrill', ['ui.router', 'APIModule', 'ngFileUpload', 'tc.chartjs', 'ui.bootstrap', 'ngDialog', , 'colorpicker.module', 'wysiwyg.module','admin.controllers', 'login.controllers','home.controllers', 'ProjectList.controllers', 'Post.controllers', 'Mail.controllers', 'ViewMail.controllers', 'SendMail.controllers', 'DeleteMail.controllers', 'Compose.controllers', 'Faq.controllers'])
+angular.module('eazyBoredrill', ['ui.router', 'APIModule', 'ngFileUpload', 'tc.chartjs', 'ui.bootstrap', 'ngDialog', , 'colorpicker.module', 'wysiwyg.module','admin.controllers', 'login.controllers','home.controllers', 'ProjectList.controllers', 'Post.controllers', 'Mail.controllers', 'ViewMail.controllers', 'SendMail.controllers', 'DeleteMail.controllers', 'Compose.controllers', 'Faq.controllers', 'Services.controllers'])
 
 
 .factory('$localstorage', ['$window', function($window) {
@@ -165,6 +165,15 @@ angular.module('eazyBoredrill', ['ui.router', 'APIModule', 'ngFileUpload', 'tc.c
       'container': {
         templateUrl: 'partials/Faq.html',
         controller: 'FaqCtrl'
+      }
+    }
+  })
+  .state('admin.services', {
+    url: '/services',
+    views: {
+      'container': {
+        templateUrl: 'partials/services.html',
+        controller: 'ServicesCtrl'
       }
     }
   })
