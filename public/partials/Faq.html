@@ -1,6 +1,7 @@
 <script src="vendors/nicescroll/jquery.nicescroll.js"></script>
 <script src="js/construction.js"></script>
 
+
 <section id="pageCover2" class="row">
     <img src="images/Faq.png" alt="" class="pageCover">
     <div class="row pageTitle">FAQ</div>
@@ -19,11 +20,11 @@
                 <div class="row">
                   <div class="row m0 whyUs">
                       <div class="col-sm-12">
-                         <uib-accordion close-others="oneAtATime">
+                         <uib-accordion close-others="oneAtATime" ng-if="render" panel-class="{{getPanelColor()}}">
                           <uib-accordion-group is-open="status.open" ng-repeat=" FaqData in Faqlists">
-                            <uib-accordion-heading>
-                              <div class="row">
-                                 <div class="col-sm-11" style="float:left;">
+                            <uib-accordion-heading >
+                              <div class="row" >
+                                 <div class="col-sm-11" style="float:left;" >
                                     <span style="font-size:16px;font-weight: 600;word-wrap: break-word !important;">{{$index +1 }} : {{FaqData.question | limitTo: 130}}</span> <span ng-if="FaqData.question.length >= 130">...</span>
                                   </div>
                                   <div class="col-sm-1">

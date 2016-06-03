@@ -5,7 +5,26 @@ angular.module('Faq.controllers', [])
 	 $rootScope.activeState = 'faq';
   $scope.oneAtATime = true;
 	$scope.no_product = true;
- 
+
+  $scope.render = true;
+  $scope.panelColor = 'panel-danger';
+
+  $scope.setPanelColor = function(val) {
+      $scope.panelColor = val;
+      $scope.render = false;
+      $timeout(function () {
+          $scope.render = true;
+     });
+  };
+
+  $scope.getPanelColor = function() {
+      return $scope.panelColor;
+  };
+   
+  $scope.gotoactive = function(index){
+    $scope.activeState = index;
+  }
+
   $scope.Faqlists = [];
   $scope.getFaq = function() {
      APIService.getData({
