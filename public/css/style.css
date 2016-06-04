@@ -384,6 +384,7 @@ header .social_nav ul li:last-child {
 @media (max-width: 767px) {
   header {
     height: auto;
+    padding: 16px 0;
   }
   header .logo {
     text-align: center;
@@ -392,6 +393,9 @@ header .social_nav ul li:last-child {
     float: none;
     text-align: center;
     margin: 15px 0 0;
+  }
+  .navbar-static-top {
+    z-index: 1;
   }
 }
 /*Navbar*/
@@ -726,8 +730,8 @@ header .social_nav ul li:last-child {
 @media (max-width: 480px) {
   #nr_slider .mainSliderContainer .mainSlider .caption h3 {
     font-size: 20px;
-    margin-top: -55px;
-    margin-left: 80px;
+    margin-top: -40px;
+    margin-left: 60px;
   }
 }
 @media (max-width: 360px) {
@@ -755,8 +759,8 @@ header .social_nav ul li:last-child {
 @media (max-width: 480px) {
   #nr_slider .mainSliderContainer .mainSlider .caption h4 {
     font-size: 14px;
-    margin-top: -55px;
-    margin-left: 80px;
+    margin-top: -40px;
+    margin-left: 60px;
   }
 }
 @media (max-width: 360px) {
