@@ -3,6 +3,9 @@ var url = 'http://52.39.156.51:8000/';
 
 angular.module('eazyBoredrill', ['ui.router', 'APIModule', 'ngFileUpload', 'tc.chartjs', 'ui.bootstrap', 'ngDialog', , 'colorpicker.module', 'wysiwyg.module','admin.controllers', 'login.controllers','home.controllers', 'ProjectList.controllers', 'Post.controllers', 'Mail.controllers', 'ViewMail.controllers', 'SendMail.controllers', 'DeleteMail.controllers', 'Compose.controllers', 'Faq.controllers', 'Services.controllers'])
 
+.config(function($httpProvider) {
+    $httpProvider.interceptors.push('genericInterceptor');
+})
 
 .factory('$localstorage', ['$window', function($window) {
   return {
