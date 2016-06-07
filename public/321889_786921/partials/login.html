@@ -1,10 +1,4 @@
-<!-- <div ng-show='loadCompetition'>
-     <div class="loading_div">
-       <img src="img/loader.gif" style="width: 60% !important;" />
-     </div>
-   </div> -->
-
-    <div style="background:url('img/login.jpg') no-repeat left;background-size:cover;position: absolute; height: 100%;">
+ <div style="background:url('img/login.jpg') no-repeat left;background-size:cover;position: absolute; height: 100%;">
 <!--SECTION-->
     <section class="l-main-container">
       <!--Main Content-->
@@ -20,14 +14,19 @@
             <div class="form-group">
               <input type="password"  name="password" ng-model="loginData.password" placeholder="Password" class="form-control">
             </div>
-            <button  ng-click="login(loginData)" class="btn btn-dark btn-block btn-login">Login</button>
+            <button  ng-click="login(loginData)" class="btn loginbtn btn-block btn-login">Login</button>
 
             <div class="login-options" ><a ng-click="forgetpassword()" class="fl">FORGOT PASSWORD ?</a></div>
           </form>
 
           <form ng-hide="allvalue" name="admin_forget" role="form" class="login-form">
-            <button ng-click="resetpassword()" class="btn btn-dark btn-block btn-login">Send Password</button>
-            <div class="login-options" ><a  class="fl">Login</a></div>
+            <button ng-click="resetpassword()" class="btn loginbtn btn-block btn-login">Send Password</button>
+            <center style="padding: 16px 2px 0 0;">
+              <a style="color:#FFF;font-size:18px;font-weight:700;">OR </a>
+            </center>
+            <div class="login-options" >
+              <button ng-click="showlogin();" class="btn loginbtn btn-block btn-login">Login</button >
+            </div>
          </form>
         </div>
       </div>

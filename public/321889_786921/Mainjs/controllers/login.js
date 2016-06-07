@@ -13,6 +13,11 @@ angular.module('login.controllers', [])
     $scope.gotologin = function(){
         $scope.allvalue = true;
     }
+
+    $scope.showlogin = function(){
+       $scope.allvalue = true;
+    }
+
 	$scope.login = function(productObj) {
         APIService.setData({
             req_url: url+'api/adminLogin',
