@@ -5,18 +5,21 @@
 <div class="modal-body">
     <div class="l-box">
         <div class="l-box-body l-spaced">
-          <form id="validateDefault" role="form" class="form-horizontal validate">
+          <form id="validateDefault" name="Addfaqform" role="form" class="form-horizontal validate">
             <div class="form-group">
               <label for="firstname" class="col-sm-3 control-label">Question</label>
               <div class="col-sm-9">
-                <textarea ng-model="Faqlist.question" name="message" rows="5" required="" class="form-control"></textarea>
+                <textarea ng-model="Faqlist.question" name="question" rows="5" required="" class="form-control"></textarea>
+                <div style="color:red;" ng-show="Addfaqform.question.$invalid && !Addfaqform.question.$pristine" class="error-message padding-right">This field is required.</div>
               </div>
             </div>
             <div class="form-group">
               <label for="lastname" class="col-sm-3 control-label">Answer</label>
               <div class="col-sm-9">
-                <textarea ng-model="Faqlist.answer" name="message" rows="5" required="" class="form-control"></textarea>
+                <textarea ng-model="Faqlist.answer" name="answer" rows="5" required="" class="form-control"></textarea>
+                <div style="color:red;" ng-show="Addfaqform.answer.$invalid && !Addfaqform.answer.$pristine" class="error-message padding-right">This field is required.</div>
               </div>
+              
             </div>
           </form>
         </div>
@@ -24,5 +27,5 @@
   </div>
   <div class="modal-footer">
     <button type="button" ng-click="cancel()" class="btn btn-danger">Close</button>
-    <button type="button" ng-click="AddFaq(Faqlist)" class="btn btn-success">Submit</button>
+    <button type="button"  ng-disabled="Addfaqform.$invalid" ng-click="AddFaq(Faqlist)" class="btn btn-success">Submit</button>
   </div>

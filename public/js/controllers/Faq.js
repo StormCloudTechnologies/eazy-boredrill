@@ -10,12 +10,12 @@ angular.module('Faq.controllers', [])
   $scope.panelColor = 'panel-danger';
 
   $scope.setPanelColor = function(val) {
-      $scope.panelColor = val;
-      $scope.render = false;
-      $timeout(function () {
-          $scope.render = true;
-     });
-  };
+    console.log(val);
+      if(val)
+        return 'panel-active';
+      else
+        return  'panel-default';
+  }
 
   $scope.getPanelColor = function() {
       return $scope.panelColor;
@@ -43,6 +43,14 @@ angular.module('Faq.controllers', [])
         });
     };
   $scope.getFaq();
+
+  // $scope.checklike=function(status){
+  //   if(status=='true' || status==true){
+  //     return 'activeAcc';    
+  //   }else{
+  //     return 'panel-heading';
+  //   } 
+  // };
 
   //log
   $scope.$watch('isOpen', function(){

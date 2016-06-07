@@ -1,25 +1,4 @@
 <script src="vendors/nicescroll/jquery.nicescroll.js"></script>
-<script type="text/javascript">
- $(document).ready(function(){
-
-    $(".accordion h3:first").addClass("active");
-    $(".accordion a:first").addClass("active");
-    $(".accordion p:not(:first)").hide();
-
-    $(".accordion h3").click(function() 
-    {
-        $(this).next("p").slideDown("slow")
-               .siblings("p:visible").slideUp("slow");
-    });
-
-    $(".accordion a").click(function() 
-    {
-        $(this).closest('.accordion').find('h3 a').removeClass("active");
-        $(this).addClass('active');
-        
-    });
-  });
-</script>
 
 <section id="pageCover2" class="row">
     <img src="images/Faq.png" alt="" class="pageCover">
@@ -38,12 +17,12 @@
             <div class="col-sm-12">
                 <div class="row">
                   <div class="row m0 whyUs">
-                      <div class="col-sm-12">
-                         <uib-accordion close-others="oneAtATime" ng-if="render" panel-class="{{getPanelColor()}}">
-                          <uib-accordion-group is-open="status.open" ng-repeat=" FaqData in Faqlists">
-                            <uib-accordion-heading >
-                              <div class="row" >
-                                 <div class="col-sm-11" style="float:left;" >
+                      <div class="col-sm-12 custom">
+                         <uib-accordion close-others="oneAtATime">
+                          <uib-accordion-group is-open="status.open" panel-class="{{setPanelColor(status.open)}}"  ng-repeat=" FaqData in Faqlists">
+                            <uib-accordion-heading>
+                              <div class="row">
+                                 <div class="col-sm-11" style="float:left;">
                                     <span style="font-size:16px;font-weight: 600;word-wrap: break-word !important;">{{$index +1 }} : {{FaqData.question | limitTo: 130}}</span> <span ng-if="FaqData.question.length >= 130">...</span>
                                   </div>
                                   <div class="col-sm-1">

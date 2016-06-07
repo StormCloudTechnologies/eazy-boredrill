@@ -8,6 +8,22 @@ angular.module('Faq.controllers', [])
        $state.go("login");
     }
 
+    $scope.render = true;
+    $scope.panelColor = 'panel-danger';
+
+    $scope.setPanelColor = function(val) {
+      console.log(val);
+        if(val)
+          return 'panel-active';
+        else
+          return  'panel-default';
+    }
+
+    $scope.getPanelColor = function() {
+        return $scope.panelColor;
+    };
+
+
   $scope.oneAtATime = true;
 	$scope.no_product = true;
   $scope.Faqlists = [];

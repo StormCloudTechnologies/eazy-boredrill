@@ -5,17 +5,19 @@
 <div class="modal-body">
   <div class="l-box">
       <div class="l-box-body l-spaced">
-        <form id="validateDefault" role="form" class="form-horizontal validate">
+        <form id="validateDefault"  name="UpdatePostForm" role="form" class="form-horizontal validate">
           <div class="form-group">
             <label for="firstname" class="col-sm-3 control-label">Title</label>
             <div class="col-sm-9">
               <input ng-model="post.project_name" type="text" name="Title" placeholder="Title" class="form-control" capitalize-first>
+               <div style="color:red;" ng-show="UpdatePostForm.Title.$invalid && !UpdatePostForm.Title.$pristine" class="error-message padding-right">This field is required.</div>
             </div>
           </div>
           <div class="form-group">
             <label for="lastname" class="col-sm-3 control-label">Description</label>
             <div class="col-sm-9">
               <textarea ng-model="post.project_description" name="message" rows="5" required="" class="form-control"></textarea>
+               <div style="color:red;" ng-show="UpdatePostForm.message.$invalid && !UpdatePostForm.message.$pristine" class="error-message padding-right">This field is required.</div>
             </div>
           </div>
            <div class="form-group">
@@ -40,5 +42,5 @@
 </div>
 <div class="modal-footer">
   <button type="button" ng-click="cancel()" class="btn btn-danger">Close</button>
-  <button type="button" class="btn btn-warning " ng-click="Updatepost(post)">Update</button>
+  <button type="button" ng-disabled="UpdatePostForm.$invalid || post.images.length==''" class="btn btn-warning " ng-click="Updatepost(post)">Update</button>
 </div>

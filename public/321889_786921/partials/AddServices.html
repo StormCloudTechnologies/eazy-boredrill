@@ -5,17 +5,19 @@
 <div class="modal-body">
     <div class="l-box">
         <div class="l-box-body l-spaced">
-          <form id="validateDefault" role="form" class="form-horizontal validate">
+          <form id="validateDefault" name="AddServicesform" role="form" class="form-horizontal validate">
             <div class="form-group">
               <label for="firstname" class="col-sm-3 control-label">Title</label>
               <div class="col-sm-9">
-                <textarea ng-model="Serviceslist.title" name="message" rows="5" required="" class="form-control"></textarea>
+                <textarea ng-model="Serviceslist.title" name="Title" rows="5" required="" class="form-control"></textarea>
+                <div style="color:red;" ng-show="AddServicesform.Title.$invalid && !AddServicesform.Title.$pristine" class="error-message padding-right">This field is required.</div>
               </div>
             </div>
             <div class="form-group">
               <label for="lastname" class="col-sm-3 control-label">Description</label>
               <div class="col-sm-9">
                 <textarea ng-model="Serviceslist.description" name="message" rows="5" required="" class="form-control"></textarea>
+                <div style="color:red;" ng-show="AddServicesform.message.$invalid && !AddServicesform.message.$pristine" class="error-message padding-right">This field is required.</div>
               </div>
             </div>
           </form>
@@ -24,5 +26,5 @@
   </div>
   <div class="modal-footer">
     <button type="button" ng-click="cancel()" class="btn btn-danger">Close</button>
-    <button type="button" ng-click="AddServices(Serviceslist)" class="btn btn-success">Submit</button>
+    <button type="button" ng-disabled="AddServicesform.$invalid" ng-click="AddServices(Serviceslist)" class="btn btn-success">Submit</button>
   </div>

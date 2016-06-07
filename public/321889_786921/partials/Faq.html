@@ -38,25 +38,33 @@
     
         <div class="l-spaced" ng-hide="no_product">
          <uib-accordion close-others="oneAtATime">
-          <uib-accordion-group is-open="status.open" ng-repeat=" FaqData in Faqlists">
-            <uib-accordion-heading>
-              <span style="font-size:16px;font-weight: 600;">{{$index +1 }} : </span> {{FaqData.question  | limitTo: 160}}<span ng-if="FaqData.question.length >= 160">...</span> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-            </uib-accordion-heading>
-            <div class="row">
-              <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="word-wrap: break-word;">
-              {{FaqData.answer}}
-              </div>
-              <div class="col-lg-32 col-md-3 col-sm-3 col-xs-3">
-                <div class="pull-right">
-                  <button  style="line-height: 0;padding: 10px;margin: 4px;" type="button" class="btn btn-warning  btn-lg" ng-click="updateFAQlist(FaqData);">
-                  <span class="icon fa fa-pencil-square-o"></span> &nbsp;Update</button>
-                  <button  style="line-height: 0;padding: 10px 13px;;margin: 4px;" type="button" ng-click="deleteProject(FaqData)" class="btn btn-danger btn-lg">
-                  <span class="icon fa fa-trash-o "></span> &nbsp; Delete</button>
+            <uib-accordion-group is-open="status.open" panel-class="{{setPanelColor(status.open)}}"  ng-repeat=" FaqData in Faqlists">
+              <uib-accordion-heading>
+                <div class="row">
+                   <div class="col-sm-11" style="float:left;">
+                      <span style="font-size:16px;font-weight: 600;word-wrap: break-word !important;">{{$index +1 }} : {{FaqData.question | limitTo: 130}}</span> <span ng-if="FaqData.question.length >= 130">...</span>
+                    </div>
+                    <div class="col-sm-1">
+                      <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </div>
+                  </div>  
+              </uib-accordion-heading>
+               <div class="row">
+                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="word-wrap: break-word;">
+                  {{FaqData.answer}}
+                  </div>
+                  <div class="col-lg-32 col-md-3 col-sm-3 col-xs-3">
+                    <div class="pull-right">
+                      <button  style="line-height: 0;padding: 10px;margin: 4px;" type="button" class="btn btn-warning  btn-lg" ng-click="updateFAQlist(FaqData);">
+                      <span class="icon fa fa-pencil-square-o"></span> &nbsp;Update</button>
+                      <button  style="line-height: 0;padding: 10px 13px;;margin: 4px;" type="button" ng-click="deleteProject(FaqData)" class="btn btn-danger btn-lg">
+                      <span class="icon fa fa-trash-o "></span> &nbsp; Delete</button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </uib-accordion-group>
-        </uib-accordion>
+             </uib-accordion-group>
+          </uib-accordion>
+
      </div>
     </section>
   </section>
