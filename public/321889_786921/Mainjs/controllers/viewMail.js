@@ -12,6 +12,12 @@ angular.module('ViewMail.controllers', [])
    if(localStorage.getItem("viewMail")) {
       $scope.mail = JSON.parse(localStorage.getItem("viewMail"));
   }
+  $scope.replybtn = true;
+  if(statusmail=='inbox'){
+    $scope.replybtn = false;
+  }else{
+    $scope.replybtn = true;
+  }
 
   $scope.ReplyMsg = function() {
       var modalInstance = $uibModal.open({
@@ -40,7 +46,7 @@ angular.module('ViewMail.controllers', [])
         }).then(function(resp) {
             if(resp.data.message="Updated successfully.") {
                 // $scope.mails = resp.data;
-                ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
+                ngDialog.open({ template: 'partials/deleteConfirmation.html', className: 'ngdialog-theme-default' });
                 $state.go('mailMenu.mail');
             }
             else {
@@ -57,7 +63,7 @@ angular.module('ViewMail.controllers', [])
         }).then(function(resp) {
             if(resp.data.message="Updated successfully.") {
                 // $scope.mails = resp.data;
-                ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
+                ngDialog.open({ template: 'partials/deleteConfirmation.html', className: 'ngdialog-theme-default' });
                 $state.go('mailMenu.sendMail');
             }
             else {
@@ -74,7 +80,7 @@ angular.module('ViewMail.controllers', [])
         }).then(function(resp) {
             if(resp.data.length>=0) {
                 // $scope.mails = resp.data;
-                ngDialog.open({ template: 'deleteConfirmation.html', className: 'ngdialog-theme-default' });
+                ngDialog.open({ template: 'partials/deleteConfirmation.html', className: 'ngdialog-theme-default' });
                  $state.go('mailMenu.deleteMail');
             }
             else {
@@ -92,12 +98,13 @@ angular.module('ViewMail.controllers', [])
        if(localStorage.getItem("viewMail")) {
           $scope.mail = JSON.parse(localStorage.getItem("viewMail"));
       }
+
       APIService.setData({
           req_url: url + 'api/sendCustomMail',
           data : {to: $scope.mail.email, subject: 'Boredrill Reply' ,message: message }
       }).then(function(resp) {
           if(resp.data.message="Message sent successfully.") {
-              ngDialog.open({ template: 'sendmailsucess.html', className: 'ngdialog-theme-default' });
+              ngDialog.open({ template: 'partials/sendmailsucess.html', className: 'ngdialog-theme-default' });
               $state.go('mailMenu.mail');
               $uibModalInstance.close(resp.data);
           }

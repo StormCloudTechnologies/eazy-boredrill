@@ -8,6 +8,7 @@ angular.module('Mail.controllers', [])
     }
    
    $scope.ViewMail = function(mail,statusmail){
+    // console.log(statusmail);
      localStorage.setItem("statusmail",statusmail);
      localStorage.setItem("viewMail",JSON.stringify(mail));
       $state.go('mailMenu.viewMail');

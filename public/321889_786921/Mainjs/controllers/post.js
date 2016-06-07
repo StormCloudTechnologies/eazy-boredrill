@@ -126,10 +126,10 @@ angular.module('Post.controllers', [])
               data: {latestJobData: post, delete_images : $scope.deleteImages}
           }).then(function(resp) {
               if(resp.data) {
-                ngDialog.open({ template: 'sucess.html', className: 'ngdialog-theme-default' });
+                ngDialog.open({ template: 'partials/sucess.html', className: 'ngdialog-theme-default' });
                 $uibModalInstance.close(resp.data);
               }else{
-                ngDialog.open({ template: 'error.html', className: 'ngdialog-theme-default' });
+                ngDialog.open({ template: 'partials/error.html', className: 'ngdialog-theme-default' });
                 $uibModalInstance.close(resp.data);
               }
              },function(resp) {
@@ -206,11 +206,11 @@ angular.module('Post.controllers', [])
           data: {latestJobData: post, delete_images : $scope.deleteImages}
       }).then(function(resp) {
           if(resp.data) {
-             ngDialog.open({ template: 'update.html', className: 'ngdialog-theme-default' });
+             ngDialog.open({ template: 'partials/update.html', className: 'ngdialog-theme-default' });
             $uibModalInstance.close(resp.data);
           }else{
             $uibModalInstance.close(resp.data);
-            ngDialog.open({ template: 'error.html', className: 'ngdialog-theme-default' });
+            ngDialog.open({ template: 'partials/error.html', className: 'ngdialog-theme-default' });
            
           }
          },function(resp) {

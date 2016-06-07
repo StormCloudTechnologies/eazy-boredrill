@@ -12,7 +12,7 @@
               <div class="mail-details-header">
                  <!-- Compose--><a ng-click="compose()" role="button" class="btn btn-mail-send mail-options-compose"><i class="fa fa-pencil-square-o icon-sep-right"></i>Compose</a>
                 <div class="mail-details-time">
-                  <button type="button" ng-click="ReplyMsg()"  class="btn btn-sucess btn-lg">
+                  <button ng-hide="replybtn" type="button" ng-click="ReplyMsg()"  class="btn btn-sucess btn-lg">
                       <span class="icon fa fa-reply"></span> &nbsp; Repaly</button>
 
                   <button type="button" ng-click="deleteMsg(mail)" class="btn btn-sucess btn-lg">
