@@ -2209,6 +2209,9 @@ header .social_nav ul li:last-child {
 /*Footer*/
 #nr_footer {
   background: #333d40;
+  position: fixed;
+  width: 100%;
+  bottom: 0px !important;
 }
 #nr_footer .container {
   position: relative;
