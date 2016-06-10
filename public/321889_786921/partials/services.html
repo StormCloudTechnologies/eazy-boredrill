@@ -40,7 +40,8 @@
          <uib-accordion close-others="oneAtATime">
           <uib-accordion-group is-open="status.open" ng-repeat=" Serviceslist in Serviceslists">
             <uib-accordion-heading>
-              <span style="font-size:16px;font-weight: 600;">{{$index +1 }} : </span> {{Serviceslist.title  | limitTo: 160}}<span ng-if="Serviceslist.title.length >= 160">...</span> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+              <span style="font-size:16px;font-weight: 600;word-wrap: break-word !important;">{{$index +1 }} : {{Serviceslist.title | limitTo: 130}}</span> <span ng-if="Serviceslist.title.length >= 130">...</span>
+              <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
             </uib-accordion-heading>
             <div class="row">
               <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="word-wrap: break-word;">

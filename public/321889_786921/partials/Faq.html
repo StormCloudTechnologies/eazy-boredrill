@@ -40,14 +40,11 @@
          <uib-accordion close-others="oneAtATime">
             <uib-accordion-group is-open="status.open" panel-class="{{setPanelColor(status.open)}}"  ng-repeat=" FaqData in Faqlists">
               <uib-accordion-heading>
-                <div class="row">
-                   <div class="col-sm-11" style="float:left;">
+              
                       <span style="font-size:16px;font-weight: 600;word-wrap: break-word !important;">{{$index +1 }} : {{FaqData.question | limitTo: 130}}</span> <span ng-if="FaqData.question.length >= 130">...</span>
-                    </div>
-                    <div class="col-sm-1">
+                  
                       <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                    </div>
-                  </div>  
+                  
               </uib-accordion-heading>
                <div class="row">
                   <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="word-wrap: break-word;">

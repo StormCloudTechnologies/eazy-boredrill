@@ -10,7 +10,6 @@ angular.module('Faq.controllers', [])
   $scope.panelColor = 'panel-danger';
 
   $scope.setPanelColor = function(val) {
-    console.log(val);
       if(val)
         return 'panel-active';
       else

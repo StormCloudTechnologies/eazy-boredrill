@@ -468,7 +468,7 @@ header .social_nav ul li:last-child {
 .navbar-static-top .navbar-collapse ul li.active a {
   background: #009774;
   color: #FFF;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
 }
 .navbar-static-top .navbar-collapse ul li.active a:hover {
@@ -2212,6 +2212,7 @@ header .social_nav ul li:last-child {
   position: fixed;
   width: 100%;
   bottom: 0px !important;
+  z-index: 99999 !important;
 }
 #nr_footer .container {
   position: relative;
