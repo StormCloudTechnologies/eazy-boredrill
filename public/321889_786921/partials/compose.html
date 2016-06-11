@@ -43,7 +43,7 @@
             <!-- New message footer-->
             <div class="new-message-footer">
               <!-- Send-->
-              <button type="button" ng-disabled="composeform.$invalid || compose.images.length==''" ng-click="sendMail(compose.to, compose.subject, compose.images, compose.editerData)" class="btn btn-mail-send new-message-send">Send</button>
+              <button type="button" ng-disabled="composeform.$invalid" ng-click="sendMail(compose.to, compose.subject, compose.images, compose.editerData)" class="btn btn-mail-send new-message-send">Send</button>
              <!-- Discard-->
               <button type="reset" class="btn btn-mail new-message-discard"><i class="fa fa-trash"></i></button>
             </div>
