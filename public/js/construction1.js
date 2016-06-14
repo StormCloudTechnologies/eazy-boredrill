@@ -8,15 +8,15 @@ $(document).ready(function(){
     
     
         
-    /*NiceScroll*/
-        $("html").niceScroll({
-            cursorcolor: "#293133",
-            cursorborderradius: "0",
-            cursorborder: "0 solid #fff",
-            cursorwidth: "10px",
-            zindex: "999999",
-            scrollspeed: 60
-        });
+    // /*NiceScroll*/
+    //     $("html").niceScroll({
+    //         cursorcolor: "#293133",
+    //         cursorborderradius: "0",
+    //         cursorborder: "0 solid #fff",
+    //         cursorwidth: "10px",
+    //         zindex: "999999",
+    //         scrollspeed: 60
+    //     });
     
     
     /*Go Top*/
