@@ -101,7 +101,7 @@ angular.module('ViewMail.controllers', [])
 
       APIService.setData({
           req_url: url + 'api/sendCustomMail',
-          data : {to: $scope.mail.email, subject: 'Boredrill Reply' ,message: message }
+          data : {to: $scope.mail.email, subject: 'Eazy BoreHole Drillers Reply' ,message: message }
       }).then(function(resp) {
           if(resp.data.message="Message sent successfully.") {
               ngDialog.open({ template: 'partials/sendmailsucess.html', className: 'ngdialog-theme-default' });
