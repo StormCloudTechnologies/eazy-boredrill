@@ -385,7 +385,7 @@ header .social_nav ul li:last-child {
 @media (max-width: 767px) {
   header {
     height: auto;
-    padding: 6px 0;
+    padding: 5px 0;
   }
   header .logo {
     text-align: center;
