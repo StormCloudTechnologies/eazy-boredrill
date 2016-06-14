@@ -2456,7 +2456,7 @@ header .social_nav ul li:last-child {
   #nr_footer .container:after {
     border-left: 485px solid transparent;
     border-right: 485px solid transparent;
-    border-top: 40px solid #FFF;
+    border-top: 0px solid #FFF !important;
   }
   #nr_footer .container .copyrightRow {
     line-height: 0px;

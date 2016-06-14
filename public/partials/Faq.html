@@ -21,9 +21,14 @@
                          <uib-accordion close-others="oneAtATime">
                           <uib-accordion-group is-open="status.open" panel-class="{{setPanelColor(status.open)}}"  ng-repeat=" FaqData in Faqlists">
                             <uib-accordion-heading>
-                                   <span style="font-size:16px;font-weight: 600;word-wrap: break-word !important;">{{$index +1 }} : {{FaqData.question | limitTo: 130}}</span> <span ng-if="FaqData.question.length >= 130">...</span>
-                                    <i class="pull-right glyphicon faqArrow" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                          
+                                  <div class="row">
+                                    <div class="col-sm-11">
+                                      <span style="font-size:16px;font-weight: 600;word-wrap: break-word !important;">{{$index +1 }} : {{FaqData.question}}</span>
+                                    </div>
+                                    <div class="col-sm-1">
+                                      <i class="pull-right glyphicon faqArrow" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                                    </div>
+                                  </div>
                             </uib-accordion-heading>
                             <p style="word-wrap: break-word;">  {{FaqData.answer}}</p>
                            </uib-accordion-group>
