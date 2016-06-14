@@ -173,7 +173,7 @@ app.post('/api/sendMail', function(req, res) {
         createTextFromHtml: true,
         from: "<eazybiz.biz@gmail.com>",
         to: "<eazybiz.biz@gmail.com>",
-        subject: "Message from boredrill website"
+        subject: "Message from Eazy BoreHole Drillers website"
       };
       transport.sendMail(msg, function (err) {
         if (err) {
@@ -264,7 +264,7 @@ app.post('/api/forgotAdminPassword', function(req, res) {
       createTextFromHtml: true,
       from: "<eazybiz.biz@gmail.com>",
       to: "<eazybiz.biz@gmail.com>",
-      subject: "Eazy Boredrill Credentials"
+      subject: "Eazy BoreHole Drillers Credentials"
     };
     transport.sendMail(msg, function (err) {
       if (err) {
