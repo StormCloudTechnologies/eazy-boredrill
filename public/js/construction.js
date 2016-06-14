@@ -3,6 +3,16 @@ $(document).ready(function(){
     (function($) {
         "use strict";
 
+        /*NiceScroll*/
+        $("html").niceScroll({
+            cursorcolor: "#293133",
+            cursorborderradius: "0",
+            cursorborder: "0 solid #fff",
+            cursorwidth: "10px",
+            zindex: "999999",
+            scrollspeed: 60
+        });
+    
     
     /*Rev Slider*/
         jQuery('.mainSlider').revolution({
