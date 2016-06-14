@@ -385,7 +385,7 @@ header .social_nav ul li:last-child {
 @media (max-width: 767px) {
   header {
     height: auto;
-    padding: 16px 0;
+    padding: 6px 0;
   }
   header .logo {
     text-align: center;
@@ -408,13 +408,19 @@ header .social_nav ul li:last-child {
 .navbar-static-top .navbar-header .navbar-toggle {
   width: 100%;
   margin: 0;
-  height: 60px;
+  height: 45px;
   border-radius: 0;
   background: #293133;
   border-color: #293133;
   color: #FFF;
-  font-size: 22px;
+  font-size: 18px;
+  top: -1px;
 }
+.topheight{
+  top: -10px;
+}
+
+
 .navbar-static-top .navbar-header .navbar-toggle .btn-text {
   text-transform: uppercase;
 }
@@ -435,7 +441,8 @@ header .social_nav ul li:last-child {
 }
 
 .navbar-static-top .navbar-collapse ul li:first-child {
-  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: 0px solid rgba(0, 0, 0, 0.1);
+  border-top: 0px solid rgba(0, 0, 0, 0.1);
 }
 .navbar-static-top .navbar-collapse ul li a {
   padding: 0;
@@ -639,6 +646,7 @@ header .social_nav ul li:last-child {
   width: 100%;
   position: relative;
   padding: 0;
+  top: -6px;
 }
 #nr_slider .mainSliderContainer .tp-bullets {
   margin-left: -17px !important;
@@ -2209,9 +2217,9 @@ header .social_nav ul li:last-child {
 /*Footer*/
 #nr_footer {
   background: #333d40;
-  position: fixed;
+  /*position: fixed;*/
   width: 100%;
-  bottom: 0px !important;
+  bottom: -1px !important;
   z-index: 99999 !important;
 }
 #nr_footer .container {
@@ -2549,6 +2557,7 @@ header .social_nav ul li:last-child {
   text-align: center;
   padding-top: 80px;
   background: url("../images/team/cover.png") no-repeat scroll center center #009774;
+  top: -6px;
 }
 #pageCover img.pageCover {
   position: absolute;
@@ -2614,6 +2623,7 @@ header .social_nav ul li:last-child {
   text-align: center;
   padding-top: 80px;
   background: url("../images/about.png") no-repeat scroll center center #009774;
+  top: -6px;
 }
 #pageCover1 img.pageCover {
   position: absolute;
@@ -2679,6 +2689,7 @@ header .social_nav ul li:last-child {
   text-align: center;
   padding-top: 80px;
   background: url("../images/Faq.png") no-repeat scroll center center #009774;
+  top: -6px;
 }
 #pageCover2 img.pageCover {
   position: absolute;
@@ -3384,6 +3395,36 @@ header .social_nav ul li:last-child {
    left: 45% !important;
    z-index: 9999999;
 }
+@media (max-width: 440px) {
+    .loading_div{
+       position: absolute;
+       /* text-align: center; */
+       top: 40% !important;
+       left: 40% !important;
+       z-index: 9999999;
+    }
+}
+.faqArrow{
+  display: block;
+}
+@media only screen and (min-width:320px) and (max-width:479px) {
+  /*.faqArrow{
+    display: block;
+    top: -15px;
+  }*/
+  #aboutus .member .memberIntro .namePro {
+      float: left;
+      line-height: 38px;
+      background: #293133;
+      position: relative;
+      color: #FFF;
+      /* padding: 1px; */
+      font-size: 24px;
+      padding-right: 0px;
+  }
+
+}
+
 
 .modal-body p {
     word-wrap: break-word !important;
