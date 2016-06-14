@@ -414,7 +414,7 @@ header .social_nav ul li:last-child {
   border-color: #293133;
   color: #FFF;
   font-size: 18px;
-  top: -1px;
+  top: 0px !important;
 }
 .topheight{
   top: -10px;
