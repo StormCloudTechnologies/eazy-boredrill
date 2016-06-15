@@ -33,7 +33,16 @@
                     <p><span class="fa fa-phone"></span> {{ mail.phone }}</p>
                     <p><div class="label label-bg-color-1">Message</div> {{ mail.message }}</p>
                   </div>
-                
+                  <div class="mail-details-message-attachment" ng-if="mail.images.length!='0'">
+                    <div class="mail-details-attachment-header"><i class="fa fa-paperclip"></i>Attachments</div>
+                    <div class="mail-details-attachment-body">
+                      <div class="l-col-lg-3 l-col-md-4" ng-repeat="image in mail.images">
+                        <div class="well well-sm">
+                          <div class="img-wrapper"><img src="{{image}}"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
              
