@@ -2459,11 +2459,16 @@ header .social_nav ul li:last-child {
     border-top: 0px solid #FFF !important;
   }
   #nr_footer .container .copyrightRow {
-    line-height: 0px;
+    line-height: 23px !important;
   }
   .twitterSlide {
     padding: 80px 0;
     margin-top: -50px;
+  }
+}
+@media (max-width: 990px) {
+  #nr_footer .container .copyrightRow {
+    line-height: 15px !important;
   }
 }
 @media (max-width: 990px) {
@@ -2473,7 +2478,7 @@ header .social_nav ul li:last-child {
     border-top: 40px solid #FFF;
   }
   #nr_footer .container .copyrightRow {
-    line-height: 43px;
+    line-height: 45px;
   }
   .twitterSlide {
     padding: 80px 0;
@@ -2900,6 +2905,7 @@ header .social_nav ul li:last-child {
   font-size: 16px;
   padding-right: 25px;
 }
+
 #aboutus .member .memberIntro .namePro span.name {
   background: #009774;
   position: relative;
@@ -2910,6 +2916,40 @@ header .social_nav ul li:last-child {
   font-weight: bold;
   margin-right: 25px;
 }
+@media screen and (min-width: 525px) and (max-width: 655px) {
+  #aboutus .member .memberIntro .namePro span.name {
+    background: #009774;
+    position: relative;
+    display: inline-block;
+    float: left;
+    padding: 0 4px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 25px;
+  }
+}
+@media screen and (min-width: 415px) and (max-width: 525px) {
+  #aboutus .member .memberIntro .namePro span.name {
+    background: #009774;
+    position: relative;
+    display: inline-block;
+    float: left;
+    padding: 0 4px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 25px;
+  }
+  #aboutus .member .memberIntro .namePro {
+    float: left;
+    line-height: 62px;
+    background: #293133;
+    position: relative;
+    color: #FFF;
+    font-size: 12px;
+    padding-right: 25px;
+  }
+}
+
 #aboutus .member .memberIntro .namePro span.name:after {
   content: '';
   width: 0;
@@ -3407,20 +3447,56 @@ header .social_nav ul li:last-child {
 .faqArrow{
   display: block;
 }
-@media only screen and (min-width:320px) and (max-width:479px) {
+@media only screen and (min-width:360px) and (max-width:420px) {
   /*.faqArrow{
     display: block;
     top: -15px;
   }*/
+  #aboutus .member .memberIntro .namePro span.name {
+      background: #009774;
+      position: relative;
+      display: inline-block;
+      float: left;
+      padding: 0 41px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-right: 25px;
+  }
   #aboutus .member .memberIntro .namePro {
       float: left;
-      line-height: 38px;
+      line-height: 46px;
       background: #293133;
       position: relative;
       color: #FFF;
-      /* padding: 1px; */
-      font-size: 24px;
-      padding-right: 0px;
+      font-size: 14px;
+      padding-right: 25px;
+      text-align: center;
+  }
+
+}
+@media only screen and (min-width:320px) and (max-width:360px) {
+  /*.faqArrow{
+    display: block;
+    top: -15px;
+  }*/
+  #aboutus .member .memberIntro .namePro span.name {
+      background: #009774;
+      position: relative;
+      display: inline-block;
+      float: left;
+      padding: 0 14px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-right: 25px;
+  }
+  #aboutus .member .memberIntro .namePro {
+      float: left;
+      line-height: 46px;
+      background: #293133;
+      position: relative;
+      color: #FFF;
+      font-size: 14px;
+      padding-right: 25px;
   }
 
 }
