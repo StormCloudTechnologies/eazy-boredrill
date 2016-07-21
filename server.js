@@ -2,7 +2,7 @@
 
 // set up ========================
 var express  = require('express');
-var app      = express();                               // create our app w/ express
+var app = express();                               // create our app w/ express
 var morgan = require('morgan');             // log requests to the console (express4)
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
@@ -11,7 +11,6 @@ var multer  =   require('multer');
 var fs = require("fs");
 
 app.use(function(req, res, next) { //allow cross origin requests
-    res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
