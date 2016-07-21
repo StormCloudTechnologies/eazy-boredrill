@@ -19,6 +19,7 @@
   "homepage": "https://github.com/StormCloudTechnologies/eazy-boredrill#readme",
   "dependencies": {
     "body-parser": "^1.15.1",
+    "cors": "^2.7.1",
     "express": "^4.13.4",
     "fs": "0.0.2",
     "mongoose": "^4.4.17",
