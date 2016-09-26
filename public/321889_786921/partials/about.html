@@ -1,0 +1,166 @@
+<!-- <script src="js/shared/jquery.asonWidget.js"></script>
+<script src="js/calls/dashboard.2.js"></script>
+<script src="js/calls/part.header.1.js"></script>
+<script src="js/calls/part.sidebar.2.js"></script>
+ -->
+<section class="l-main-container">
+      <!--Left Sidebar Content-->
+     
+      <!--Main Content-->
+    <section class="l-container">
+    
+        <div class="l-page-header">
+          <h2 class="l-page-title"><span class="text_color">About</span> List</h2>
+        </div>
+       
+
+    
+        <div class="l-spaced">
+         <uib-accordion close-others="oneAtATime">
+          <uib-accordion-group is-open="status.open">
+            <uib-accordion-heading>
+              <div class="row">
+                <div class="col-sm-11 col-xs-10">
+                    <span style="font-size:16px;font-weight: 600;word-wrap: break-word !important;">1 : Company profile </span>
+                  </div>
+                  <div class="col-sm-1 col-xs-2">
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                  </div>
+                </div>
+            </uib-accordion-heading>
+            <div class="row">
+              <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="word-wrap: break-word;">
+              {{aboutUsObj.company_profile}}
+              </div>
+              <div class="col-lg-32 col-md-3 col-sm-3 col-xs-3">
+                <div class="pull-right">
+                  <button ng-if="!aboutUsObj.company_profile" style="line-height: 0;padding: 10px;margin: 4px;" type="button" class="btn btn-warning  btn-lg" ng-click="addAbout(aboutUsObj,'company_profile');">
+                  <span class="icon glyphicon glyphicon-plus"></span> &nbsp;Add About</button>
+
+                  <button ng-if="aboutUsObj.company_profile" style="line-height: 0;padding: 10px;margin: 4px;" type="button" class="btn btn-warning  btn-lg" ng-click="updateAboutlist(aboutUsObj,'company_profile');">
+                  <span class="icon fa fa-pencil-square-o"></span> &nbsp;Update</button>
+                </div>
+              </div>
+            </div>
+          </uib-accordion-group>
+        </uib-accordion>
+
+        <uib-accordion close-others="oneAtATime">
+          <uib-accordion-group is-open="status.open">
+            <uib-accordion-heading>
+              <div class="row">
+                <div class="col-sm-11 col-xs-10">
+                    <span style="font-size:16px;font-weight: 600;word-wrap: break-word !important;">2 : Our mission</span>
+                  </div>
+                  <div class="col-sm-1 col-xs-2">
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                  </div>
+                </div>
+            </uib-accordion-heading>
+            <div class="row">
+              <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="word-wrap: break-word;">
+              {{aboutUsObj.our_mission}}
+              </div>
+              <div class="col-lg-32 col-md-3 col-sm-3 col-xs-3">
+                <div class="pull-right">
+                   <button ng-if="!aboutUsObj.our_mission" style="line-height: 0;padding: 10px;margin: 4px;" type="button" class="btn btn-warning  btn-lg" ng-click="addAbout(aboutUsObj, 'our_mission');">
+                  <span class="icon glyphicon glyphicon-plus"></span> &nbsp;Add About</button>
+
+                  <button ng-if="aboutUsObj.our_mission" style="line-height: 0;padding: 10px;margin: 4px;" type="button" class="btn btn-warning  btn-lg" ng-click="updateAboutlist(aboutUsObj, 'our_mission');">
+                  <span class="icon fa fa-pencil-square-o"></span> &nbsp;Update</button>
+                </div>
+              </div>
+            </div>
+          </uib-accordion-group>
+        </uib-accordion>
+
+        <uib-accordion close-others="oneAtATime">
+          <uib-accordion-group is-open="status.open">
+            <uib-accordion-heading>
+              <div class="row">
+                <div class="col-sm-11 col-xs-10">
+                    <span style="font-size:16px;font-weight: 600;word-wrap: break-word !important;">3 : Our team</span>
+                  </div>
+                  <div class="col-sm-1 col-xs-2">
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                  </div>
+                </div>
+            </uib-accordion-heading>
+            <div class="row">
+              <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="word-wrap: break-word;">
+              {{aboutUsObj.our_team}}
+              </div>
+              <div class="col-lg-32 col-md-3 col-sm-3 col-xs-3">
+               <div class="pull-right">
+                   <button ng-if="!aboutUsObj.our_team" style="line-height: 0;padding: 10px;margin: 4px;" type="button" class="btn btn-warning  btn-lg" ng-click="addAbout(aboutUsObj, 'our_team');">
+                  <span class="icon glyphicon glyphicon-plus"></span> &nbsp;Add About</button>
+
+                  <button ng-if="aboutUsObj.our_team" style="line-height: 0;padding: 10px;margin: 4px;" type="button" class="btn btn-warning  btn-lg" ng-click="updateAboutlist(aboutUsObj, 'our_team');">
+                  <span class="icon fa fa-pencil-square-o"></span> &nbsp;Update</button>
+                </div>
+              </div>
+            </div>
+          </uib-accordion-group>
+        </uib-accordion>
+
+        <uib-accordion close-others="oneAtATime">
+          <uib-accordion-group is-open="status.open">
+            <uib-accordion-heading>
+              <div class="row">
+                <div class="col-sm-11 col-xs-10">
+                    <span style="font-size:16px;font-weight: 600;word-wrap: break-word !important;">4 : Company Equipment</span>
+                  </div>
+                  <div class="col-sm-1 col-xs-2">
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                  </div>
+                </div>
+            </uib-accordion-heading>
+            <div class="row">
+              <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="word-wrap: break-word;">
+              {{aboutUsObj.company_equipment}}
+              </div>
+              <div class="col-lg-32 col-md-3 col-sm-3 col-xs-3">
+                <div class="pull-right">
+                   <button ng-if="!aboutUsObj.company_equipment" style="line-height: 0;padding: 10px;margin: 4px;" type="button" class="btn btn-warning  btn-lg" ng-click="addAbout(aboutUsObj, 'company_equipment');">
+                  <span class="icon glyphicon glyphicon-plus"></span> &nbsp;Add About</button>
+
+                  <button ng-if="aboutUsObj.company_equipment" style="line-height: 0;padding: 10px;margin: 4px;" type="button" class="btn btn-warning  btn-lg" ng-click="updateAboutlist(aboutUsObj, 'company_equipment');">
+                  <span class="icon fa fa-pencil-square-o"></span> &nbsp;Update</button>
+                </div>
+              </div>
+            </div>
+          </uib-accordion-group>
+        </uib-accordion>
+
+        <uib-accordion close-others="oneAtATime">
+          <uib-accordion-group is-open="status.open">
+            <uib-accordion-heading>
+              <div class="row">
+                <div class="col-sm-11 col-xs-10">
+                    <span style="font-size:16px;font-weight: 600;word-wrap: break-word !important;">5 : Strategic plan</span>
+                  </div>
+                  <div class="col-sm-1 col-xs-2">
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                  </div>
+                </div>
+            </uib-accordion-heading>
+            <div class="row">
+              <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="word-wrap: break-word;">
+              {{aboutUsObj.strategic_plan}}
+              </div>
+              <div class="col-lg-32 col-md-3 col-sm-3 col-xs-3">
+                <div class="pull-right">
+                   <button ng-if="!aboutUsObj.strategic_plan" style="line-height: 0;padding: 10px;margin: 4px;" type="button" class="btn btn-warning  btn-lg" ng-click="addAbout(aboutUsObj, 'strategic_plan');">
+                  <span class="icon glyphicon glyphicon-plus"></span> &nbsp;Add About</button>
+
+                  <button ng-if="aboutUsObj.strategic_plan" style="line-height: 0;padding: 10px;margin: 4px;" type="button" class="btn btn-warning  btn-lg" ng-click="updateAboutlist(aboutUsObj, 'strategic_plan');">
+                  <span class="icon fa fa-pencil-square-o"></span> &nbsp;Update</button>
+                </div>
+              </div>
+            </div>
+          </uib-accordion-group>
+        </uib-accordion>
+     </div>
+    </section>
+  </section>
+     
