@@ -62,6 +62,19 @@ var FAQ = mongoose.model('FAQ', faqSchema);
 
 module.exports = FAQ;
 
+// About Us schema
+var aboutUsSchema = new Schema({
+    company_profile: String,
+    our_mission: String,
+    our_team: String,
+    company_equipment: String,
+    strategic_plan: String
+});
+
+var AboutUs = mongoose.model('AboutUs', aboutUsSchema);
+
+module.exports = AboutUs;
+
 // service schema
 var serviceSchema = new Schema({
     title: String,
@@ -555,5 +568,36 @@ app.get('/api/getServices', function(req, res) {
         if (err)
             res.send(err)
         res.json(services); // return all services in JSON format
+    });
+});
+
+// About Us API
+
+// add
+app.post('/api/updateAboutUs', function(req, res) {
+    if(req.body._id) {
+        AboutUs.findByIdAndUpdate(req.body._id, req.body, {new: true}
+        , function(err, aboutUs) {
+            if (err)
+                res.send(err);
+            res.json(aboutUs);
+        });
+    }
+    else {
+        AboutUs.create(req.body, function(err, aboutUs) {
+            if (err)
+                res.send(err);
+
+            res.json(aboutUs);
+        });
+    }
+});
+
+// get AboutUs
+app.get('/api/getAboutUs', function(req, res) {
+    AboutUs.find({}, function(err, aboutUs) {
+        if (err)
+            res.send(err)
+        res.json(aboutUs);
     });
 });
