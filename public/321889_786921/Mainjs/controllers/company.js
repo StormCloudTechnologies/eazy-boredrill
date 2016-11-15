@@ -1,7 +1,7 @@
 angular.module('Company.controllers', [])
 
 .controller('CompanyCtrl', function($scope, $rootScope, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, $log) {
-    $rootScope.activeState = 'company';
+    $rootScope.activeState = 'Company';
     var islogin = $localstorage.get('islogin');
     if(islogin!=1){
        $state.go("login");
