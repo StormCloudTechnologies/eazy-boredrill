@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="cancel()">&times;</button>
+  <h3 class="modal-title">Create Team</span></h3>
+</div>
+<div class="modal-body">
+  <div class="l-box">
+      <div class="l-box-body l-spaced">
+        <form id="validateDefault" name="AddTeamForm" role="form" class="form-horizontal validate">
+          <div class="form-group">
+            <label for="firstname" class="col-sm-3 control-label">Title</label>
+            <div class="col-sm-9">
+              <input ng-model="team.project_name" type="text" name="Title" placeholder="Title" class="form-control" capitalize-first>
+              <div style="color:red;" ng-show="AddTeamForm.Title.$invalid && !AddTeamForm.Title.$pristine" class="error-message padding-right">This field is required.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lastname" class="col-sm-3 control-label">Description</label>
+            <div class="col-sm-9">
+              <textarea ng-model="team.project_description" name="message" rows="5" required="" class="form-control"></textarea>
+              <div style="color:red;" ng-show="AddTeamForm.message.$invalid && !AddTeamForm.message.$pristine" class="error-message padding-right">This field is required.</div>
+            </div>
+          </div>
+           <div class="form-group">
+            <label for="lastname" class="col-sm-3 control-label">Image</label>
+            <div class="col-sm-9">
+             <span class="btn btn-success fileinput-button"><i class="glyphicon glyphicon-plus"></i><span>Add files...</span>
+               <input type="file" ngf-select="uploadPhoto($files)" accept="image/*" multiple>
+            </span>
+            </div>
+          </div>
+          <div class="row" ng-if="team.images!=''">
+              <div ng-repeat="images in team.images" style="margin: 2% 5% 0 5%;float: left;background-color: #fafafa;width:40%;">
+                <span>
+                  <img width="80%"  height="135px" src="../{{images}}" class="thumb">
+                  <i ng-click="removeChoice($index)" style="font-size: 27px;cursor:pointer;margin-top: 44px;margin-right: 13px;;color:#F00;" class="close pull-right fa fa-trash-o danger"></i>
+                </span>
+              </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+</div>
+<div class="modal-footer">
+  <button type="button" ng-click="cancel()" class="btn btn-danger">Close</button>
+  <button type="button" ng-disabled="AddTeamForm.$invalid || post.images.length==''" ng-click="addTeam(post)" class="btn btn-success">Submit</button>
+</div>
