@@ -12,9 +12,9 @@ angular.module('Team.controllers', [])
 
   $scope.getTeam = function() {
      APIService.setData({
-            req_url: url + 'api/getLatestJobs',
-            data: {latestJobData:{}}
+            req_url: url + 'api/getOurTeam',
         }).then(function(resp) {
+            console.log(resp);
             if(resp.data.length!=0) {
               $scope.no_product = false;
               $scope.teamlist = resp.data;
@@ -88,7 +88,7 @@ angular.module('Team.controllers', [])
 
 
  
-    $scope.deleteteam = function(team) {
+    $scope.deleteTeam = function(team) {
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             templateUrl: 'partials/deleteConfirmation.html',
@@ -120,10 +120,12 @@ angular.module('Team.controllers', [])
 })
 .controller('AddTeamCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog){
      $scope.team = {images:[]};
-      $scope.Addteam = function(team) {
+      $scope.addTeam = function(team) {
+        console.log(team);
+        team.delete_images = $scope.deleteImages;
          APIService.setData({
-              req_url: url + 'api/addLatestJob',
-              data: {latestJobData: team, delete_images : $scope.deleteImages}
+              req_url: url + 'api/addOurTeam',
+              data: team
           }).then(function(resp) {
               if(resp.data) {
                 ngDialog.open({ template: 'partials/sucess.html', className: 'ngdialog-theme-default' });
@@ -154,6 +156,7 @@ angular.module('Team.controllers', [])
            if(response.data.length > 0) {
                 angular.forEach(response.data, function(item){
                    $scope.ImagePath.push(item.path);
+                   console.log($scope.ImagePath);
                    $scope.team.images = $scope.ImagePath;
                 });
              }
@@ -172,7 +175,7 @@ angular.module('Team.controllers', [])
 .controller('UpdateTeamCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, teamList){
     $scope.team = {images:[]};
     $scope.team = teamList;
-     $scope.deleteImages = [];
+    $scope.deleteImages = [];
 
     $scope.removeChoice1 = function(index){
         $scope.deleteImages.push($scope.team.images[index]);
@@ -200,10 +203,11 @@ angular.module('Team.controllers', [])
         });
     };
 
-    $scope.Updateteam = function(team) {
+    $scope.updateTeam= function(team) {
+    team.delete_images = $scope.deleteImages;
     APIService.updateData({
           req_url: url + 'api/updateLatestJob',
-          data: {latestJobData: team, delete_images : $scope.deleteImages}
+          data: team
       }).then(function(resp) {
           if(resp.data) {
              ngDialog.open({ template: 'partials/update.html', className: 'ngdialog-theme-default' });
@@ -223,9 +227,9 @@ angular.module('Team.controllers', [])
 })
 
 .controller('DeleteConfirmationCtrl', function ($scope, $rootScope, $uibModalInstance, APIService, teamList){
-    $scope.delete = function () {
+    $scope.delete = function (team) {
         APIService.removeData({
-            req_url: url + 'api/removeLatestJob',
+            req_url: url + 'api/removeOurTeam',
             data: teamList
         }).then(function(resp) {
             $uibModalInstance.close(resp.data);

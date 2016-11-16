@@ -9,14 +9,14 @@
           <div class="form-group">
             <label for="firstname" class="col-sm-3 control-label">Title</label>
             <div class="col-sm-9">
-              <input ng-model="team.project_name" type="text" name="Title" placeholder="Title" class="form-control" capitalize-first>
+              <input ng-model="team.title" type="text" name="Title" placeholder="Title" class="form-control" capitalize-first>
               <div style="color:red;" ng-show="AddTeamForm.Title.$invalid && !AddTeamForm.Title.$pristine" class="error-message padding-right">This field is required.</div>
             </div>
           </div>
           <div class="form-group">
             <label for="lastname" class="col-sm-3 control-label">Description</label>
             <div class="col-sm-9">
-              <textarea ng-model="team.project_description" name="message" rows="5" required="" class="form-control"></textarea>
+              <textarea ng-model="team.description" name="message" rows="5" required="" class="form-control"></textarea>
               <div style="color:red;" ng-show="AddTeamForm.message.$invalid && !AddTeamForm.message.$pristine" class="error-message padding-right">This field is required.</div>
             </div>
           </div>
@@ -43,5 +43,5 @@
 </div>
 <div class="modal-footer">
   <button type="button" ng-click="cancel()" class="btn btn-danger">Close</button>
-  <button type="button" ng-disabled="AddTeamForm.$invalid || post.images.length==''" ng-click="addTeam(post)" class="btn btn-success">Submit</button>
+  <button type="button" ng-disabled="AddTeamForm.$invalid || post.images.length==''" ng-click="addTeam(team)" class="btn btn-success">Submit</button>
 </div>

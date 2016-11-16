@@ -1,5 +1,5 @@
 angular.module('about.controllers', [])
-.controller('AboutCtrl', function($scope, $rootScope, $state, APIService) {
+.controller('AboutCtrl', function($scope, $rootScope, $state, APIService, $uibModal) {
   $rootScope.activeState = 'about';
   $scope.aboutUsObj = {};
   $scope.getAbout = function() {
@@ -15,4 +15,32 @@ angular.module('about.controllers', [])
         });
     };
   $scope.getAbout();
+
+  $scope.aboutView = function (Projectdata) {
+    var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'partials/projectSlider.html',
+        controller: 'ProjectSliderCtrl',
+        size: 'md',
+          resolve: {
+              product: function () {
+                  return Projectdata;
+              }
+          }
+      });
+  };
+
 })
+.controller('ProjectSliderCtrl', function($scope, $uibModalInstance,product) {
+
+  // $scope.myInterval = 5000;
+  // $scope.active_slide = 0;
+  // $scope.ImageSliders = [];
+  // $scope.ImageSliders= product.images;
+  // $scope.projectTilte = product.project_name;
+  // $scope.projectDiscrition = product.project_description;
+ 
+   $scope.cancel = function () {
+      $uibModalInstance.dismiss('cancel');
+    };
+});

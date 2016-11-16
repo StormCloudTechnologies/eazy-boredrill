@@ -10,11 +10,11 @@ angular.module('Company.controllers', [])
   $scope.companylist = [];
   $scope.no_product = true;
 
-  $scope.getcompany = function() {
+  $scope.getCompany = function() {
      APIService.setData({
-            req_url: url + 'api/getLatestJobs',
-            data: {latestJobData:{}}
+            req_url: url + 'api/getCompanyEquipment',
         }).then(function(resp) {
+            console.log(resp);
             if(resp.data.length!=0) {
               $scope.no_product = false;
               $scope.companylist = resp.data;
@@ -25,7 +25,7 @@ angular.module('Company.controllers', [])
               // This block execute in case of error.
         });
     };
-  $scope.getcompany();
+  $scope.getCompany();
 
   $scope.addCompany = function() {
       var modalInstance = $uibModal.open({
@@ -88,11 +88,11 @@ angular.module('Company.controllers', [])
 
 
  
-    $scope.deletecompany = function(company) {
+    $scope.deleteCompany = function(company) {
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             templateUrl: 'partials/deleteConfirmation.html',
-            controller: 'DeleteConfirmationCtrl',
+            controller: 'DeleteCompanyCtrl',
             size: 'sm',
             resolve: {
                 companyList: function () {
@@ -120,10 +120,11 @@ angular.module('Company.controllers', [])
 })
 .controller('AddcompanyCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog){
      $scope.company = {images:[]};
-      $scope.Addcompany = function(company) {
+      $scope.addCompany = function(company) {
+         company.delete_images = $scope.deleteImages;
          APIService.setData({
-              req_url: url + 'api/addLatestJob',
-              data: {latestJobData: company, delete_images : $scope.deleteImages}
+              req_url: url + 'api/addCompanyEquipment',
+              data: company
           }).then(function(resp) {
               if(resp.data) {
                 ngDialog.open({ template: 'partials/sucess.html', className: 'ngdialog-theme-default' });
@@ -200,10 +201,11 @@ angular.module('Company.controllers', [])
         });
     };
 
-    $scope.Updatecompany = function(company) {
+    $scope.UpdateCompany = function(company) {
+    company.delete_images = $scope.deleteImages;
     APIService.updateData({
-          req_url: url + 'api/updateLatestJob',
-          data: {latestJobData: company, delete_images : $scope.deleteImages}
+          req_url: url + 'api/updateCompanyEquipment',
+          data: company
       }).then(function(resp) {
           if(resp.data) {
              ngDialog.open({ template: 'partials/update.html', className: 'ngdialog-theme-default' });
@@ -222,10 +224,10 @@ angular.module('Company.controllers', [])
   };
 })
 
-.controller('DeleteConfirmationCtrl', function ($scope, $rootScope, $uibModalInstance, APIService, companyList){
+.controller('DeleteCompanyCtrl', function ($scope, $rootScope, $uibModalInstance, APIService, companyList){
     $scope.delete = function () {
         APIService.removeData({
-            req_url: url + 'api/removeLatestJob',
+            req_url: url + 'api/removeCompanyEquipment',
             data: companyList
         }).then(function(resp) {
             $uibModalInstance.close(resp.data);

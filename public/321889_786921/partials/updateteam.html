@@ -5,19 +5,19 @@
 <div class="modal-body">
   <div class="l-box">
       <div class="l-box-body l-spaced">
-        <form id="validateDefault"  name="UpdatePostForm" role="form" class="form-horizontal validate">
+       <form id="validateDefault" name="AddTeamForm" role="form" class="form-horizontal validate">
           <div class="form-group">
             <label for="firstname" class="col-sm-3 control-label">Title</label>
             <div class="col-sm-9">
-              <input ng-model="post.project_name" type="text" name="Title" placeholder="Title" class="form-control" capitalize-first>
-               <div style="color:red;" ng-show="UpdatePostForm.Title.$invalid && !UpdatePostForm.Title.$pristine" class="error-message padding-right">This field is required.</div>
+              <input ng-model="team.title" type="text" name="Title" placeholder="Title" class="form-control" capitalize-first>
+              <div style="color:red;" ng-show="AddTeamForm.Title.$invalid && !AddTeamForm.Title.$pristine" class="error-message padding-right">This field is required.</div>
             </div>
           </div>
           <div class="form-group">
             <label for="lastname" class="col-sm-3 control-label">Description</label>
             <div class="col-sm-9">
-              <textarea ng-model="post.project_description" name="message" rows="5" required="" class="form-control"></textarea>
-               <div style="color:red;" ng-show="UpdatePostForm.message.$invalid && !UpdatePostForm.message.$pristine" class="error-message padding-right">This field is required.</div>
+              <textarea ng-model="team.description" name="message" rows="5" required="" class="form-control"></textarea>
+              <div style="color:red;" ng-show="AddTeamForm.message.$invalid && !AddTeamForm.message.$pristine" class="error-message padding-right">This field is required.</div>
             </div>
           </div>
            <div class="form-group">
@@ -28,19 +28,20 @@
             </span>
             </div>
           </div>
-          <div class="row" ng-if="post.images!=''">
-              <div ng-repeat="images in post.images" style="margin: 2% 5% 0 5%;float: left;background-color: #fafafa;width:40%;">
+          <div class="row" ng-if="team.images!=''">
+              <div ng-repeat="images in team.images track by $index" style="margin: 2% 5% 0 5%;float: left;background-color: #fafafa;width:40%;">
                 <span>
-                  <img width="80%" height="135px" src="../{{images}}" class="thumb">
+                  <img width="80%"  height="135px" src="../{{images}}" class="thumb">
                   <i ng-click="removeChoice1($index)" style="font-size: 27px;cursor:pointer;margin-top: 44px;margin-right: 13px;;color:#F00;" class="close pull-right fa fa-trash-o danger"></i>
                 </span>
               </div>
-           </div>
-      </form>
+          </div>
+
+        </form>
       </div>
     </div>
 </div>
 <div class="modal-footer">
   <button type="button" ng-click="cancel()" class="btn btn-danger">Close</button>
-  <button type="button" ng-disabled="UpdatePostForm.$invalid || post.images.length==''" class="btn btn-warning " ng-click="Updatepost(post)">Update</button>
+  <button type="button" ng-disabled="UpdatePostForm.$invalid || team.images.length==''" class="btn btn-warning " ng-click="updateTeam(team)">Update</button>
 </div>

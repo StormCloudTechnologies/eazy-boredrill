@@ -57,7 +57,33 @@
                                 <div class="col-sm-12" >
                                     <h3 class="text_color">Our team</h3>
                                     <!-- <i class="fa fa-question"></i> -->
-                                    <p>{{aboutUsObj.our_team}}</p>
+                                    <section id="latestPosts" class="row" ng-if="ProjectLists!=''">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-sm-4 blog latest-blog" style="cursor:pointer">
+                                                    <div class="row m0 blogInner">
+                                                    
+                                                        <div class="row m0 featureImg">
+                                                            <a ng-click="aboutView()">
+                                                                <img src="images/about.png" style="height: 200px;" alt="Faceted Search Has Landed" class="img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div class="row m0 postExcerpts">
+                                                            <div class="row m0 postExcerptInner">
+                                                                <a ng-click="aboutView(ProjectList)" class="postTitle row m0"><h4>name</h4></a>
+
+                                                                 <p>description</p>
+                                                               <!--  <p>{{ProjectList.project_description | limitTo: 30}}<span ng-if="ProjectList.project_name.length >= 30">...</span> </p> -->
+                                                                <a ng-click="aboutView(ProjectList)" class="readMore">read more</a>
+                                                            </div>
+                                                       </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      
+                                    </section>
+                                    <!-- <p>{{aboutUsObj.our_team}}</p> -->
                                 </div>
                             </div>
                         </div>
@@ -75,7 +101,33 @@
                                 <div class="col-sm-12" >
                                     <h3 class="text_color">Company Equipment</h3>
                                     <!-- <i class="fa fa-question"></i> -->
-                                    <p>{{aboutUsObj.company_equipment}}</p>
+                                    <section id="latestPosts" class="row" ng-if="ProjectLists!=''">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-sm-4 blog latest-blog" style="cursor:pointer">
+                                                    <div class="row m0 blogInner">
+                                                    
+                                                        <div class="row m0 featureImg">
+                                                            <a ng-click="aboutView()">
+                                                                <img src="images/about.png" style="height: 200px;" alt="Faceted Search Has Landed" class="img-responsive">
+                                                            </a>
+                                                        </div>
+                                                        <div class="row m0 postExcerpts">
+                                                            <div class="row m0 postExcerptInner">
+                                                                <a ng-click="aboutView(ProjectList)" class="postTitle row m0"><h4>name</h4></a>
+
+                                                                 <p>description</p>
+                                                               <!--  <p>{{ProjectList.project_description | limitTo: 30}}<span ng-if="ProjectList.project_name.length >= 30">...</span> </p> -->
+                                                                <a ng-click="aboutView(ProjectList)" class="readMore">read more</a>
+                                                            </div>
+                                                       </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      
+                                    </section>
+                                    <!-- <p>{{aboutUsObj.company_equipment}}</p> -->
                                 </div>
                             </div>
                         </div>
