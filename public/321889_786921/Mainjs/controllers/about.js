@@ -9,11 +9,12 @@ angular.module('About.controllers', [])
     }
   $scope.aboutUsObj = {};
   $scope.getAbout = function() {
-     APIService.getData({
-            req_url: url + 'api/getAboutUs'
+     APIService.setData({
+            req_url: url + 'api/getAboutUsForClient'
         }).then(function(resp) {
+          console.log(resp);
            if(resp.data.length!=0) {
-              $scope.aboutUsObj = resp.data[0];
+              $scope.aboutUsObj = resp.data.aboutUs[0];
             }
            },function(resp) {
               // This block execute in case of error.
@@ -43,6 +44,7 @@ angular.module('About.controllers', [])
             }
         });
       modalInstance.result.then(function (AboutData) {
+          $scope.getAbout();
           if(AboutData.length != 0) {
                $scope.aboutData = AboutData;
                 // ngDialog.open({ template: 'partials/popupdelete.html', className: 'ngdialog-theme-default' });
@@ -76,6 +78,7 @@ angular.module('About.controllers', [])
             }
         });
        modalInstance.result.then(function (AboutData) {
+          $scope.getAbout();
           if(AboutData.length != 0) {
                 $scope.no_product = false;
                 $scope.aboutList = AboutData;
@@ -98,10 +101,19 @@ angular.module('About.controllers', [])
    
 
 }).controller('AddAboutCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, AboutData, key){
-  $scope.aboutData = AboutData;
-
-    $scope.addAbout = function(value) {
-      $scope.aboutData[key] = value;
+ 
+  if(!AboutData){
+    $scope.aboutData = {};
+  }else{
+     $scope.aboutData = AboutData;
+     console.log(AboutData);
+  }
+  $scope.addAbout = function(value, id) {
+     $scope.aboutData[key] = value;
+     if(id){
+        $scope.aboutData['_id'] = id;
+     }
+     
      APIService.setData({
           req_url: url + 'api/updateAboutUs',
           data: $scope.aboutData
@@ -116,7 +128,7 @@ angular.module('About.controllers', [])
          },function(resp) {
             // This block execute in case of error.
       });
-  };
+  }
 
   
     $scope.cancel = function () {
@@ -124,11 +136,16 @@ angular.module('About.controllers', [])
     };
 })
 .controller('UpdateAboutCtrl', function ($scope, $uibModalInstance, $state, APIService, Upload, $uibModal, $localstorage, ngDialog, AboutData, key){
-    $scope.aboutlist= {};
-    $scope.aboutData = AboutData;
-    $scope.aboutlist.description = $scope.aboutData[key];
+    if(AboutData){
+      $scope.aboutData = AboutData;
+    }
+    console.log(key);
+    $scope.aboutData.description = $scope.aboutData[key];
     $scope.updateAbout = function(value) {
      $scope.aboutData[key] = value;
+     console.log($scope.AboutData);
+     // $scope.aboutData['_id'] = id;
+     console.log($scope.aboutData);
      APIService.setData({
           req_url: url + 'api/updateAboutUs',
           data: $scope.aboutData

@@ -57,24 +57,24 @@
                                 <div class="col-sm-12" >
                                     <h3 class="text_color">Our team</h3>
                                     <!-- <i class="fa fa-question"></i> -->
-                                    <section id="latestPosts" class="row" ng-if="ProjectLists!=''">
+                                    <section id="latestPosts" class="row" ng-if="ourTeam!=''">
                                         <div class="container">
                                             <div class="row">
-                                                <div class="col-sm-4 blog latest-blog" style="cursor:pointer">
+                                                <div class="col-sm-4 blog latest-blog" ng-repeat="Team in ourTeam" style="cursor:pointer">
                                                     <div class="row m0 blogInner">
                                                     
                                                         <div class="row m0 featureImg">
-                                                            <a ng-click="aboutView()">
-                                                                <img src="images/about.png" style="height: 200px;" alt="Faceted Search Has Landed" class="img-responsive">
+                                                            <a ng-click="aboutView(Team)">
+                                                                <img src="{{Team.images[0]}}" style="height: 200px;" alt="Faceted Search Has Landed" class="img-responsive">
                                                             </a>
                                                         </div>
                                                         <div class="row m0 postExcerpts">
                                                             <div class="row m0 postExcerptInner">
-                                                                <a ng-click="aboutView(ProjectList)" class="postTitle row m0"><h4>name</h4></a>
+                                                                <a ng-click="aboutView(Team)" class="postTitle row m0"><h4>{{Team.title}}</h4></a>
 
-                                                                 <p>description</p>
+                                                                 <p>{{Team.description}}</p>
                                                                <!--  <p>{{ProjectList.project_description | limitTo: 30}}<span ng-if="ProjectList.project_name.length >= 30">...</span> </p> -->
-                                                                <a ng-click="aboutView(ProjectList)" class="readMore">read more</a>
+                                                                <a ng-click="aboutView(Team)" class="readMore">read more</a>
                                                             </div>
                                                        </div>
                                                     </div>
@@ -101,24 +101,24 @@
                                 <div class="col-sm-12" >
                                     <h3 class="text_color">Company Equipment</h3>
                                     <!-- <i class="fa fa-question"></i> -->
-                                    <section id="latestPosts" class="row" ng-if="ProjectLists!=''">
+                                    <section id="latestPosts" class="row" ng-if="ourCompany!=''">
                                         <div class="container">
                                             <div class="row">
-                                                <div class="col-sm-4 blog latest-blog" style="cursor:pointer">
+                                                <div class="col-sm-4 blog latest-blog" ng-repeat="company in ourCompany" style="cursor:pointer">
                                                     <div class="row m0 blogInner">
                                                     
                                                         <div class="row m0 featureImg">
-                                                            <a ng-click="aboutView()">
-                                                                <img src="images/about.png" style="height: 200px;" alt="Faceted Search Has Landed" class="img-responsive">
+                                                            <a ng-click="aboutView(company)">
+                                                                <img src="{{company.images[0]}}" style="height: 200px;" alt="Faceted Search Has Landed" class="img-responsive">
                                                             </a>
                                                         </div>
                                                         <div class="row m0 postExcerpts">
                                                             <div class="row m0 postExcerptInner">
-                                                                <a ng-click="aboutView(ProjectList)" class="postTitle row m0"><h4>name</h4></a>
+                                                                <a ng-click="aboutView(company)" class="postTitle row m0"><h4>{{company.title}}</h4></a>
 
-                                                                 <p>description</p>
+                                                                 <p>{{company.description}}</p>
                                                                <!--  <p>{{ProjectList.project_description | limitTo: 30}}<span ng-if="ProjectList.project_name.length >= 30">...</span> </p> -->
-                                                                <a ng-click="aboutView(ProjectList)" class="readMore">read more</a>
+                                                                <a ng-click="aboutView(company)" class="readMore">read more</a>
                                                             </div>
                                                        </div>
                                                     </div>

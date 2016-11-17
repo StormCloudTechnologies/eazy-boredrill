@@ -27,7 +27,7 @@ app.use(bodyParser.json());                                     // parse applica
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(cors());
 
-mongoose.connect('mongodb://localhost/boredrill-eazybiz');     // connect to mongoDB database
+mongoose.connect('mongodb://localhost/boredrill-eazybiz127221');     // connect to mongoDB database
 
 var Schema = mongoose.Schema;
 
@@ -63,11 +63,30 @@ var FAQ = mongoose.model('FAQ', faqSchema);
 module.exports = FAQ;
 
 // About Us schema
+
+var ourTeamSchema = new Schema({
+    title: String,
+    description: String,
+    images: [String]
+});
+
+var OurTeam = mongoose.model('OurTeam', ourTeamSchema);
+
+module.exports = OurTeam;
+
+var companyEquipmentSchema = new Schema({
+    title: String,
+    description: String,
+    images: [String]
+});
+
+var CompanyEquipment = mongoose.model('CompanyEquipment', companyEquipmentSchema);
+
+module.exports = CompanyEquipment;
+
 var aboutUsSchema = new Schema({
     company_profile: String,
     our_mission: String,
-    our_team: String,
-    company_equipment: String,
     strategic_plan: String
 });
 
@@ -578,9 +597,15 @@ app.post('/api/updateAboutUs', function(req, res) {
     if(req.body._id) {
         AboutUs.findByIdAndUpdate(req.body._id, req.body, {new: true}
         , function(err, aboutUs) {
-            if (err)
+            if (err){
+                console.log('===========err====================',err);
                 res.send(err);
-            res.json(aboutUs);
+            }else{
+               console.log('===========aboutUs====================',aboutUs);
+               res.json(aboutUs);  
+            }
+           
+
         });
     }
     else {
@@ -599,5 +624,188 @@ app.get('/api/getAboutUs', function(req, res) {
         if (err)
             res.send(err)
         res.json(aboutUs);
+    });
+});
+
+
+// OurTeam API
+
+// add OurTeam
+app.post('/api/addOurTeam', function(req, res) {
+    var delete_images = req.body.delete_images;
+
+    OurTeam.create(req.body, function(err, ourTeam) {
+        if (err)
+            res.send(err);
+
+        // get and return all the todos after you create another
+        if(ourTeam) {
+            OurTeam.find(function(err, ourTeam) {
+                if (err)
+                    res.send(err)
+                res.json(ourTeam); // return all advertisement in JSON format
+            });
+        }
+    });
+    if(delete_images.length > 0) {
+        delete_images.forEach(function(file_path) {
+          fs.unlink(file_path);
+        });
+    }
+
+});
+
+// update OurTeam
+app.put('/api/updateOurTeam', function(req, res) {
+    var delete_images = req.body.delete_images;
+    OurTeam.findByIdAndUpdate(req.body._id, req.body
+    , function(err, ourTeam) {
+        if (err)
+            res.send(err);
+        if(delete_images.length > 0) {
+            delete_images.forEach(function(file_path) {
+              fs.unlink(file_path);
+            });
+        }
+        OurTeam.find(function(err, ourTeam) {
+            if (err)
+                res.send(err)
+            res.json(ourTeam); // return all advertisement in JSON format
+        });
+    });
+});
+
+// delete OurTeam
+app.delete('/api/removeOurTeam', function(req, res) {
+    var delete_images = req.body.images;
+    OurTeam.remove({
+        _id : req.body._id
+    }, function(err, ourTeam) {
+        if (err)
+            res.send(err);
+        if(delete_images.length > 0) {
+            delete_images.forEach(function(file_path) {
+              fs.unlink(file_path);
+            });
+        }
+        OurTeam.find(function(err, ourTeam) {
+            if (err)
+                res.send(err)
+            res.json(ourTeam); // return all advertisement in JSON format
+        });
+    });
+});
+
+// get ourTeam
+app.post('/api/getOurTeam', function(req, res) {
+    OurTeam.find(req.body, function(err, ourTeam) {
+        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+        if (err)
+            res.send(err)
+        res.json(ourTeam); // return all advertisement in JSON format
+    });
+});
+
+
+
+// CompanyEquipment API
+
+// add CompanyEquipment
+app.post('/api/addCompanyEquipment', function(req, res) {
+    var delete_images = req.body.delete_images;
+
+    CompanyEquipment.create(req.body, function(err, companyEquipment) {
+        if (err)
+            res.send(err);
+
+        // get and return all the todos after you create another
+        if(companyEquipment) {
+            CompanyEquipment.find(function(err, companyEquipment) {
+                if (err)
+                    res.send(err)
+                res.json(companyEquipment); // return all advertisement in JSON format
+            });
+        }
+    });
+    if(delete_images.length > 0) {
+        delete_images.forEach(function(file_path) {
+          fs.unlink(file_path);
+        });
+    }
+
+});
+
+// update CompanyEquipment
+app.put('/api/updateCompanyEquipment', function(req, res) {
+    var delete_images = req.body.delete_images;
+    CompanyEquipment.findByIdAndUpdate(req.body._id, req.body
+    , function(err, companyEquipment) {
+        if (err)
+            res.send(err);
+        if(delete_images.length > 0) {
+            delete_images.forEach(function(file_path) {
+              fs.unlink(file_path);
+            });
+        }
+        CompanyEquipment.find(function(err, companyEquipment) {
+            if (err)
+                res.send(err)
+            res.json(companyEquipment); // return all advertisement in JSON format
+        });
+    });
+});
+
+// delete CompanyEquipment
+app.delete('/api/removeCompanyEquipment', function(req, res) {
+    var delete_images = req.body.images;
+    CompanyEquipment.remove({
+        _id : req.body._id
+    }, function(err, companyEquipment) {
+        if (err)
+            res.send(err);
+        if(delete_images.length > 0) {
+            delete_images.forEach(function(file_path) {
+              fs.unlink(file_path);
+            });
+        }
+        CompanyEquipment.find(function(err, companyEquipment) {
+            if (err)
+                res.send(err)
+            res.json(companyEquipment); // return all advertisement in JSON format
+        });
+    });
+});
+
+// get CompanyEquipment
+app.post('/api/getCompanyEquipment', function(req, res) {
+    CompanyEquipment.find(req.body, function(err, companyEquipment) {
+        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+        if (err)
+            res.send(err)
+        res.json(companyEquipment); // return all advertisement in JSON format
+    });
+});
+
+
+
+// get about us with ourteam and CompanyEquipment
+app.post('/api/getAboutUsForClient', function(req, res) {
+    
+    aboutUsObj = {};
+    AboutUs.find({}, function(err, aboutUs) {
+        if (err)
+            res.send(err)
+        aboutUsObj.aboutUs = aboutUs;
+        OurTeam.find(req.body, function(err, ourTeam) {
+            if (err)
+                res.send(err)
+            aboutUsObj.ourTeam = ourTeam;
+            CompanyEquipment.find(req.body, function(err, companyEquipment) {
+                if (err)
+                    res.send(err)
+                aboutUsObj.companyEquipment = companyEquipment;
+                res.json(aboutUsObj);
+            });
+        });
     });
 });

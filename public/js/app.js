@@ -1,5 +1,5 @@
-var url_prifix = 'http://162.243.71.65:8000/';
-// var url_prifix = 'http://localhost:8000/';
+// var url_prifix = 'http://162.243.71.65:8000/';
+var url_prifix = 'http://localhost:8000/';
 
 angular.module('eazyBoredrillWebiste', ['ui.router', 'APIModule', 'ui.bootstrap','main.controllers','home.controllers','services.controllers','projects.controllers','contact.controllers','about.controllers','Faq.controllers','angular-google-analytics'])
 
