@@ -1,5 +1,5 @@
-// var url = 'http://162.243.71.65:8000/';
-var url = 'http://localhost:8000/';
+var url = 'http://162.243.71.65:8000/';
+// var url = 'http://localhost:8000/';
 
 angular.module('eazyBoredrill', ['ui.router', 'APIModule', 'ngFileUpload', 'tc.chartjs', 'ui.bootstrap', 'ngDialog', , 'colorpicker.module', 'wysiwyg.module','admin.controllers', 'login.controllers','home.controllers', 'ProjectList.controllers', 'Post.controllers', 'Mail.controllers', 'ViewMail.controllers', 'SendMail.controllers', 'DeleteMail.controllers', 'Compose.controllers', 'Faq.controllers', 'Services.controllers', 'Team.controllers', 'Company.controllers', 'About.controllers'])
 
