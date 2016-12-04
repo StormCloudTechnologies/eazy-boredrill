@@ -25,7 +25,7 @@ angular.module('contact.controllers', [])
     };
 
     function initMap() {
-      var myLatLng = {lat: 18.5624670, lng: 73.7726630};
+      var myLatLng = {lat: -15.7886595, lng: 35.0054643};
 
       var map = new google.maps.Map(document.getElementById('MapContact'), {
         zoom: 15,
