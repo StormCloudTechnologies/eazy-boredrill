@@ -18,7 +18,7 @@ $(document).ready(function(){
         jQuery('.mainSlider').revolution({
             delay:9000,
             startwidth:960,
-            startheight:660,
+            startheight:460,
             startWithSlide:0,
 
             fullScreenAlignForce:"off",
